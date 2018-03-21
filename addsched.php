@@ -1,4 +1,20 @@
 <html><head><title>Add New Schedule</title>
+        <script type="text/javascript">
+	
+        function logout()
+        {
+	     var confirmdel = confirm("Confirm Log Out?");
+
+	     if (confirmdel==true)
+	     {
+	     	return true;
+	     }
+	     else
+	     {
+	     	return false;
+	     }
+        }
+</script>
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 <!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -31,11 +47,11 @@
 
 <div class="sidebar">
     <ul>
-        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+       <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
         <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
-        <li><a href="schedtable.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Manage</span></a></li>
+        <li><a onclick="return logout()" href="login_page.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Log Out</span></a></li>
     </ul>
 </div>
 
