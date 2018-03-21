@@ -5,7 +5,7 @@ $e_id = $_POST['txteid'];
 $ti = $_POST['txtti'];
 $to = $_POST['txtto'];
 $date = $_POST['txtd'];
-$u_code = $_POST['txtuc'];
+$u_code = $_POST['<?php echo $random;?>'];
 
 include 'connect.php';
 

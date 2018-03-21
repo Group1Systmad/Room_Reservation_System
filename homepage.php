@@ -143,9 +143,6 @@ session_start();
 
                         echo ">".$i."</a> ";
                     };
-                    //pogi ako
-                    //pogi si marj
-                    //sample comment
                     ?>
                     
                 </div>
