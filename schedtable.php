@@ -35,6 +35,7 @@ session_start();
     .table_cell{
         background: transparent;
         border: none;
+        text-align: center;
     }
     <?php echo ($_SESSION["count"]==2) ? $_SESSION["classname"].'{background:white;border:1px solid;}' : ''?>
     #room_id{
