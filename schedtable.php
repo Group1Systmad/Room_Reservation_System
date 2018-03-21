@@ -8,7 +8,7 @@ session_start();
 <!--    <link rel="stylesheet" href="bootstrap.min.css" type="text/css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
-<title>list of schedules</title>
+<title>Reservations' List</title>
 <style>
     .table{
         width: 30%;
@@ -52,9 +52,9 @@ session_start();
 <script type="text/javascript">
 	function del()
 	  {
-	     var confirmdel = confirm("are you sure?");
+	     var confirmdel = confirm("Confirm Delete?");
 
-	     if (confirmdel==true)//the user pressed the ok button
+	     if (confirmdel==true)
 	     {
 	     	return true;
 	     }
@@ -78,11 +78,10 @@ if (isset($_SESSION["count"])){
 
 <div class="sidebar">
     <ul>
-        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">home</span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">about</span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">reservations</span></a></li>
-        <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">accounts</span></a></li>
-        <li><a href="schedtable.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">manage</span></a></li>
+        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
+        <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
     </ul>
 </div>
 
@@ -107,10 +106,10 @@ if (isset($_SESSION["count"])){
             $_SESSION["result_set"] = $res;
             while($row= mysqli_fetch_array($res))
             {
-            ?><!--end of first php -->
+            ?>
             <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'cell_edit.php\'' : '' ?>>
             <tr>
-                <td align="center"><a onclick="return Del()" href="delsched.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
+                <td align="center"><a onclick="return del()" href="delsched.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
 <!--                <td align="center"><a href="editsched.php?SID=--><?php //echo $row['id']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
                 <td align="center"><a href="cell_edit.php?SID=<?php echo $row['id']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? 'button name=\'save_button\' type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php
                         echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? '<span class="glyphicon glyphicon-floppy-disk"></span></button>' : '</span>';
