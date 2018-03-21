@@ -69,13 +69,12 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
+
                     <?php
-
-                        $random = rand(00000,99999);   
-
-                        
-?>
-                    <input class="form-control" type="text" name="txtuc" id="<?php echo $random;?>"  placeholder="<?php echo $random;?>"  disabled>
+                        $random = rand(10000,99999); 
+                    ?>
+                    <input class="form-control" id="txtuc" name="txtuc" value=<?php echo $random;?>  readonly>
+                    
                 </div>
             </div>
             <div class="form-group row">
