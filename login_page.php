@@ -101,7 +101,7 @@ session_start();
                     <input class="input-child password-input" type="password" name="pword" placeholder="Password">
                     <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class="links">
-                        <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me</label>
+                        <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me.</label>
                         <a href="login_page.php" class="sign-up">Sign up</a>
                     </div>
                     </form>
