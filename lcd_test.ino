@@ -152,5 +152,6 @@ char key = customKeypad.getKey();
         lcd.print("Enter Passcode:");
         lcd.setCursor(0, 1);
         count=0; 
+        //comment
   }
 }
