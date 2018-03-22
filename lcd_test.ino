@@ -102,47 +102,8 @@ char key = customKeypad.getKey();
     }
     enter = digitalRead(enterButton);
     del = digitalRead(delButton);
-    if(count==5){
+
       if(del == HIGH){
-        lcd.setCursor(4,1);
-        lcd.print(" ");
-        lcd.setCursor(4,1);
-        count = count-1;
-      }
-    }
-    if(count==4){
-      if(del == HIGH){
-        lcd.setCursor(3,1);
-        lcd.print(" ");
-        lcd.setCursor(3,1);
-        count = count-1;
-      }
-    }
-    if(count==3){
-      if(del == HIGH){
-        lcd.setCursor(2,1);
-        lcd.print(" ");
-        lcd.setCursor(2,1);
-        count = count-1;
-      }
-    }
-    if(count==2){
-      if(del == HIGH){
-        lcd.setCursor(1,1);
-        lcd.print(" ");
-        lcd.setCursor(1,1);
-        count = count-1;
-      }
-    }
-    if(count==1){
-      if(del == HIGH){
-        lcd.setCursor(0,1);
-        lcd.print(" ");
-        lcd.setCursor(0,1);
-        count = count-1;
-      }
-    }                
-      else if(enter == HIGH){
         tone(buzzer,5000);
         delay(100);
         noTone(buzzer);
@@ -152,6 +113,18 @@ char key = customKeypad.getKey();
         lcd.print("Enter Passcode:");
         lcd.setCursor(0, 1);
         count=0; 
+        
+  }
+      else if(enter == HIGH){
+        tone(buzzer,5000);
+        delay(100);
+        noTone(buzzer);
+        delay(100);
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Access Granted!/");
+        lcd.setCursor(0, 1);
+        lcd.print("Access Denied!");
         //comment
   }
 }
