@@ -10,7 +10,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Practice</title>
+        <title>Login</title>
         <style>
             .parent{
                 height: 100%;
@@ -101,8 +101,7 @@ session_start();
                     <input class="input-child password-input" type="password" name="pword" placeholder="Password">
                     <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class="links">
-                        <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me</label>
-                        <a href="login_page.php" class="sign-up">Sign up</a>
+                        <a href="change_pass.php" class="sign-up">Change Password</a>
                     </div>
                     </form>
                 </div>   
