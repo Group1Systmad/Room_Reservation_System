@@ -97,8 +97,9 @@ session_start();
                 <div class="container">
                     <img src="man.png" class="avatar">
                     <form class="form_container" action="verifylogin.php" method="post">
-                    <input class="input-child text-input" type="text" name="uname" placeholder="Username">
+                        <input class="input-child text-input" type="text" name="uname" placeholder="Username">
                     <input class="input-child password-input" type="password" name="pword" placeholder="Password">
+                    <a href ="forgotpassword.php" name ="forgotpassword"><font color = "white">Forgot Password</font></a><br><br>
                     <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class="links">
                         <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me</label>
