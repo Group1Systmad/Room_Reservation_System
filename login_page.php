@@ -97,8 +97,8 @@ session_start();
                 <div class="container">
                     <img src="man.png" class="avatar">
                     <form class="form_container" action="verifylogin.php" method="post">
-                    <input class="input-child text-input" type="text" name="uname" placeholder="Username">
-                    <input class="input-child password-input" type="password" name="pword" placeholder="Password">
+                    <input class="input-child text-input" type="text" name="uname" placeholder="Username" required = "true">
+                    <input class="input-child password-input" type="password" name="pword" placeholder="Password" required = "true">
                     <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class="links">
                         <a href="change_pass.php" class="sign-up">Change Password</a>
@@ -114,6 +114,12 @@ session_start();
             echo 'alert("Login failed. Please try again")';
             echo '</script>';
             $_SESSION["incorrect"] = false;
+        }
+        if ($_SESSION['changed'] == 1){
+            echo '<script type="text/javascript" language="JavaScript">';
+            echo 'alert("Password Changed Successfully!")';
+            echo '</script>';
+            $_SESSION['changed'] = 0; 
         }
     ?>
     </body>
