@@ -1,4 +1,9 @@
-<html><head><title>Add New Schedule</title>
+<?php
+session_start();
+?>
+<html>
+    <head>
+        <title>Add New Schedule</title>
         <script type="text/javascript">
 	
         function logout()
@@ -14,11 +19,17 @@
 	     	return false;
 	     }
         }
+        function submitForm(action)
+        {
+        document.getElementById('columnarForm').action = action;
+        document.getElementById('columnarForm').submit();
+        }
 </script>
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 <!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
+    
 
 <style>
     .container{
@@ -56,7 +67,7 @@
 </div>
 
 <div class="container">
-        <form class="form_container" name="addsched" method="post" action="add.php">
+        <form class="form_container" name="addsched" method="post">
             <div class="child">
             <div class="form-group row">
                 <div class="col-md-12">
@@ -65,7 +76,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="text" name="txteid" id="txteid" placeholder="Employee ID">
+                    <input class="form-control" type="text" name="txteid" id="txteid" placeholder="Employee ID" required="true">
                 </div>
             </div>
             <div class="form-group row">
@@ -94,8 +105,18 @@
                 </div>
             </div>
             <div class="form-group row">
+                <?php
+                $_SESSION['avail'] = false;
+                if ($_SESSION['avail']==false){
+                        ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Save">
+                    <input class="btn btn-primary" type="submit" value="Check Availability" onclick="submitForm('checkavail.php')">
+                <?php }
+                else if ($_SESSION['avail']==true){
+                        ?>
+                <div class="col-md-6">
+                    <input class="btn btn-primary" type="submit" value="Save" onclick="submitForm('add.php')">
+                <?php }?>
                 </div>
                 <div class="col-md-6">
                     <input class="btn btn-danger" type="reset" value="Clear">
