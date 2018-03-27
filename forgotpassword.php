@@ -22,17 +22,92 @@ ini_set("smtp_port","465");
         $headers .= "CC: ". $email ."\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-         mail($email, $subject, $mailcontent , $headers);
+         $success = mail($email, $subject, $mailcontent , $headers);
+         
+         if($success != false){
+             $SQL = "SELECT Employee_ID FROM employee WHERE Emp_Email = '$email'";
+             
+             $result = mysqli_query($con, $SQL);
+             
+             $row = mysqli_fetch_assoc($result);
+             $id = $row['Employee_ID'];
+             echo $id;
+             $SQL = "UPDATE accounts SET Acc_Pass = '$password' WHERE Employee_ID = '$id'";
+             mysqli_query($con, $SQL) or die(mysqli_error($con));
+             header("location:login_page.php");
+         }
      }
      
  }
 ?>
 <html>
+    <head>
+        <title>Forgot Password Form</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body,html{
+                width: 100%;
+            }
+            body{
+               margin: 0;
+               padding: 0;
+               background: url('ben.jpg');
+               background-size: cover; 
+               background-repeat: no-repeat;
+            }
+             .parent{
+                height: 100%;
+                background: rgba(0,0,0,0);
+                padding: 10px;
+                margin: 0 auto;
+            }
+            .child{
+                width:400px;
+                height:345px;
+                background: #ffffff;
+                margin:10% auto;
+                border-radius: 5px;
+                
+            }
+            h1{
+                padding-top: 50px; 
+                color: #0086E5;
+                font-weight: 700;
+                text-align: center;
+            }
+              .form_container{
+                text-align: center;
+                display: flex;
+                flex-direction: column; 
+                flex-basis: 10px;
+            }
+            
+            .container{
+                padding-top: 10%;
+                margin: 0 auto;
+                width: 300px;
+                height: 14%;
+                
+            }
+            .button{
+                margin-top: 10px;
+            }
+        </style>
+    </head>   
     <body>
-        <form method="post" action="forgotpassword.php">
-            Email:<input type="email" name="email">
-            <input type="submit" name="submit_button">
-            </form>
+         <div class="parent">
+            <div class="child">
+                <h1 class="text">Forgot Password?</h1>
+                <div class="container">
+                    
+                    <form method="post" action="forgotpassword.php" class="form_container">
+                        <p class="text">Please enter your email address in the text box below to send you a temporary password.</p>
+                       <input class="form-control text-center" type="email" name="email" placeholder="Your Email Here">
+                       <input class="button btn btn-primary" type="submit" name="submit_button">
+                    </form>
+                </div>   
+            </div>
+        </div>
     </body>
 
 <?php
