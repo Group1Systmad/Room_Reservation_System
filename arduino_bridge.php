@@ -7,13 +7,14 @@ session_start();
  */
   include "connect.php";
   
-     $SQL = "SELECT led_value FROM arduino_test";
+     $SQL = "SELECT * FROM arduino_test";
   $result = mysqli_query($con,$SQL);
+  $rows = array();
   
-  while ($row= mysqli_fetch_assoc($result)) {
-    $name = $row['led_value'];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows['root'] = $row;
   }
-  echo $name;
+  echo json_encode($rows);
   
   if (isset($_GET["submit_button"])) {
     $_SESSION["value_num"] = $_GET["value"]; 

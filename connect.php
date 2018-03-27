@@ -1,5 +1,5 @@
 <?php
-  $con = mysqli_connect("localhost","admin","admin1234");
+  $con = mysqli_connect("localhost","root","");
 
 if (!$con)
 	{
