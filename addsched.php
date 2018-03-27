@@ -98,7 +98,7 @@ session_start();
                         $random = rand(10000,99999); 
                     ?>
                     <input class="form-control" id="txtuc" name="txtuc" value=<?php echo $random;?>  readonly>
-                    
+                   
                 </div>
             </div>
             <div class="form-group row">

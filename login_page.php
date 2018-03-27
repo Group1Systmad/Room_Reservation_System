@@ -68,20 +68,29 @@ session_start();
                color: #ffffff;
                font-family: sans-serif;
                font-size: 13px;
-               flex: 1.5;
+              
                padding-right: 10px;
+               text-align: left;
             }
             .sign-up{
+                   color: #ffffff;
+               font-family: sans-serif;
+               font-size: 13px;
+               flex: 1.5;
+               padding-right: 8px;
+               text-align: right;
+            }
+            .forgot-pass{
                 flex: 1;
                 color: #ffffff;
                font-family: sans-serif;
                font-size: 13px;
-               text-align: right;
+               text-align: center;
                margin-right: 10px;
             }
             .links{
                 display: flex;
-                
+                margin-bottom: 5px;
             }
             .button-input{
                 background: #ff3333;
@@ -100,10 +109,12 @@ session_start();
                     <input class="input-child password-input" type="password" name="pword" placeholder="Password" required = "true">
                     <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class="links">
+                        <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me</label>
+                        <a href="#" name="signup" class = "sign-up">Sign up</a>
                         <a href="change_pass.php" class="change-pass">Change Password</a>
                     </div>
-                    <div class="links">
-                        <a href="forgotpassword.php" class="forgot-pass">Forgot Password</a>
+                    <div class = "links">
+                        <a href="forgotpassword.php" name="forgotpassword" class = "forgot-pass">Forgot Password</a>
                     </div>
                     </form>
                 </div>   
