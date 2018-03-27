@@ -1,5 +1,23 @@
 <?php
 session_start();
+if(!isset($_SESSION['eid'])){
+    $_SESSION['eid']="";
+}
+if(!isset($_SESSION['rid'])){
+    $_SESSION['rid']="";
+}
+if(!isset($_SESSION['timein'])){
+    $_SESSION['timein']="";
+}
+if(!isset($_SESSION['timeout'])){
+    $_SESSION['timeout']="";
+}
+if(!isset($_SESSION['date'])){
+    $_SESSION['date']="";
+}
+if(!isset($_SESSION['avail'])){
+    $_SESSION['avail']=false;
+}
 ?>
 <html>
     <head>
@@ -19,11 +37,7 @@ session_start();
 	     	return false;
 	     }
         }
-        function submitForm(action)
-        {
-        document.getElementById('columnarForm').action = action;
-        document.getElementById('columnarForm').submit();
-        }
+        
 </script>
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 <!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
@@ -68,30 +82,30 @@ session_start();
 
 <div class="container">
         <form class="form_container" name="addsched" method="post">
-            <div class="child">
+            <div class="child">    
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="text" name="txtrid" id="txtrid" placeholder="Room Number">
+                    <input class="form-control" type="text" name="txtrid" value="<?php echo $_SESSION['rid'];?>" id="txtrid" placeholder="Room Number">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="text" name="txteid" id="txteid" placeholder="Employee ID" required="true">
+                    <input class="form-control" type="text" name="txteid" value="<?php echo $_SESSION['eid'];?>" id="txteid" placeholder="Employee ID" required="true">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="time" name="txtti" id="txtti">
+                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['timein'];?>" id="txtti">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="time" name="txtto" id="txtto">
+                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['timeout'];?>" id="txtto">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="date" name="txtd" id="txtd">
+                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['date'];?>" id="txtd">
                 </div>
             </div>
             <div class="form-group row">
@@ -106,16 +120,29 @@ session_start();
             </div>
             <div class="form-group row">
                 <?php
-                $_SESSION['avail'] = false;
                 if ($_SESSION['avail']==false){
-                        ?>
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Room not Available. Input another room or time and date")';
+                echo '</script>';    
+                ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Check Availability" onclick="submitForm('checkavail.php')">
+                    <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail.php">
                 <?php }
                 else if ($_SESSION['avail']==true){
-                        ?>
+                
+                $_SESSION['eid']="";
+                $_SESSION['rid']="";
+                $_SESSION['timein']="";
+                $_SESSION['timeout']="";
+                $_SESSION['date']="";
+                $_SESSION['avail']=false;
+                
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Room Available.")';
+                echo '</script>';  
+                ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Save" onclick="submitForm('add.php')">
+                    <input class="btn btn-primary" type="submit" value="Save" formaction="add.php">
                 <?php }?>
                 </div>
                 <div class="col-md-6">

@@ -119,7 +119,6 @@ session_start();
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("Password Changed Successfully!")';
             echo '</script>';
-            $_SESSION['changed'] = 0; 
         }
     ?>
     </body>
