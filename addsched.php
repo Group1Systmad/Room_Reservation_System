@@ -1,23 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['eid'])){
-    $_SESSION['eid']="";
-}
-if(!isset($_SESSION['rid'])){
-    $_SESSION['rid']="";
-}
-if(!isset($_SESSION['timein'])){
-    $_SESSION['timein']="";
-}
-if(!isset($_SESSION['timeout'])){
-    $_SESSION['timeout']="";
-}
-if(!isset($_SESSION['date'])){
-    $_SESSION['date']="";
-}
-if(!isset($_SESSION['avail'])){
-    $_SESSION['avail']=false;
-}
+
 ?>
 <html>
     <head>
@@ -72,7 +55,7 @@ if(!isset($_SESSION['avail'])){
 
 <div class="sidebar">
     <ul>
-       <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
         <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
@@ -119,23 +102,16 @@ if(!isset($_SESSION['avail'])){
                 </div>
             </div>
             <div class="form-group row">
-                <?php
-                if ($_SESSION['avail']==false){
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Room not Available. Input another room or time and date")';
-                echo '</script>';    
-                ?>
+                <?php 
+                if ($_SESSION['avail']==false){ ?>
                 <div class="col-md-6">
                     <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail.php">
+                </div>   
+                <div class="col-md-6">
+                    <input class="btn btn-danger" type="reset" value="Clear">
+                </div>   
                 <?php }
                 else if ($_SESSION['avail']==true){
-                
-                $_SESSION['eid']="";
-                $_SESSION['rid']="";
-                $_SESSION['timein']="";
-                $_SESSION['timeout']="";
-                $_SESSION['date']="";
-                $_SESSION['avail']=false;
                 
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Room Available.")';
@@ -143,15 +119,23 @@ if(!isset($_SESSION['avail'])){
                 ?>
                 <div class="col-md-6">
                     <input class="btn btn-primary" type="submit" value="Save" formaction="add.php">
-                <?php }?>
                 </div>
                 <div class="col-md-6">
-                    <input class="btn btn-danger" type="reset" value="Clear">
+                    <input class="btn btn-danger" type="submit" value="Cancel" formaction="schedtable.php">
                 </div>
-            </div>
+                <?php }?>
+                
             </div>
         </form>
 
 </div>
+             <?php
+                if ($_SESSION['notavail']==true){
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Room not Available. Input another room or time and date")';
+                echo '</script>'; 
+                $_SESSION['notavail']=false;
+                }
+                ?>
 </body>
 </html>

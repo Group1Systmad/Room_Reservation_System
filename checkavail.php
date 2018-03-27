@@ -31,31 +31,36 @@
                     $time_out_f = date("H:i", $time_out_stamp);
                     if ($col[$j]['date'] == $date){
                         if (($time_in_f <= $time_in AND $time_out_f >= $time_in))
-                        {   
-                        $_SESSION['avail']=false;
+                        {
+                        $_SESSION['avail']=false;   
+                        $_SESSION['notavail']=true;
                         header('location:addsched.php');
                         $j=$i;
                         }
                         else if (($time_in_f <= $time_out AND $time_out_f >= $time_out))
-                        {   
-                        $_SESSION['avail']=false;
+                        {
+                        $_SESSION['avail']=false;   
+                        $_SESSION['notavail']=true;
                         header('location:addsched.php');
                         $j=$i;
                         }    
                         else if (($time_in_f >= $time_in AND $time_out_f <= $time_out))
-                        {   
-                        $_SESSION['avail']=false;
+                        {
+                        $_SESSION['avail']=false; 
+                        $_SESSION['notavail']=true;
                         header('location:addsched.php');
                         $j=$i;
                         } 
                         else
                         {
+                        $_SESSION['notavail']=false;
                         $_SESSION['avail']=true;
                         header('location:addsched.php');
                         }
                     }
                     else
                     {
+                    $_SESSION['notavail']=false;
                     $_SESSION['avail']=true;
                     header('location:addsched.php');
                     }
@@ -63,12 +68,10 @@
             }
             else
             {
+            $_SESSION['notavail']=false;
             $_SESSION['avail']=true;
             header('location:addsched.php');
             }
            
-            
-            
-
 mysqli_close($con);
 ?>

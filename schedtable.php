@@ -146,6 +146,13 @@ if (isset($_SESSION["count"])){
             mysqli_close($con);
             ?><!-- close of second php -->
         </table>
+    <?php
+    $_SESSION['eid'] = "";
+    $_SESSION['rid'] = "";
+    $_SESSION['timein'] = "";
+    $_SESSION['timeout'] = "";
+    $_SESSION['date'] = "";
+    $_SESSION['avail']=false; ?>
     <a href="addsched.php"> <button class="btn btn-primary">Add New Schedule</button></a><br>
 
         <font size="4" face="arial"  color="blue">

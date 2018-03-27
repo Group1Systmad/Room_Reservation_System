@@ -100,7 +100,10 @@ session_start();
                     <input class="input-child password-input" type="password" name="pword" placeholder="Password" required = "true">
                     <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class="links">
-                        <a href="change_pass.php" class="sign-up">Change Password</a>
+                        <a href="change_pass.php" class="change-pass">Change Password</a>
+                    </div>
+                    <div class="links">
+                        <a href="forgotpassword.php" class="forgot-pass">Forgot Password</a>
                     </div>
                     </form>
                 </div>   

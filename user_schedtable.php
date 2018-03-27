@@ -144,6 +144,12 @@ if (isset($_SESSION["count"])){
             mysqli_close($con);
             ?><!-- close of second php -->
         </table>
+    <?php
+    $_SESSION['urid'] = "";
+    $_SESSION['utimein'] = "";
+    $_SESSION['utimeout'] = "";
+    $_SESSION['udate'] = "";
+    $_SESSION['uavail']=false; ?>
     <a href="addsched_user.php"> <button class="btn btn-primary">Add Reservation</button></a><br>
 
         <font size="4" face="arial"  color="blue">

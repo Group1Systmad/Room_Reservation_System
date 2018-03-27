@@ -1,20 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['urid'])){
-    $_SESSION['urid']="";
-}
-if(!isset($_SESSION['utimein'])){
-    $_SESSION['utimein']="";
-}
-if(!isset($_SESSION['utimeout'])){
-    $_SESSION['utimeout']="";
-}
-if(!isset($_SESSION['udate'])){
-    $_SESSION['udate']="";
-}
-if(!isset($_SESSION['uavail'])){
-    $_SESSION['uavail']=false;
-}
+
 ?>
 <html><head><title>Add New Schedule</title>
         <script type="text/javascript">
@@ -123,23 +109,12 @@ if(!isset($_SESSION['uavail'])){
                 </div>
             </div>
             <div class="form-group row">
-                <?php
-                if ($_SESSION['uavail']==false){
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Room not Available. Input another room or time and date")';
-                echo '</script>';    
-                $_SESSION['uavail']=false;
-                ?>
+                <?php 
+                if ($_SESSION['uavail']==false){ ?>
                 <div class="col-md-6">
                     <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail_user.php">
                 <?php }
                 else if ($_SESSION['uavail']==true){
-                
-                $_SESSION['urid']="";
-                $_SESSION['utimein']="";
-                $_SESSION['utimeout']="";
-                $_SESSION['udate']="";
-                $_SESSION['uavail']=false;
                 
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Room Available.")';
@@ -157,7 +132,14 @@ if(!isset($_SESSION['uavail'])){
         </form>
 
 </div>
-
+                <?php
+                if ($_SESSION['notuavail']==true){
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Room not Available. Input another room or time and date")';
+                echo '</script>'; 
+                $_SESSION['notuavail']=false;
+                }
+                ?>
 
 </body>
 </html>
