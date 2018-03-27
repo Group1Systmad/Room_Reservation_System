@@ -34,7 +34,6 @@ session_start();
                padding: 0;
                background: url('ben.jpg');
                background-size: cover;
-               
                background-repeat: no-repeat;
                
             }

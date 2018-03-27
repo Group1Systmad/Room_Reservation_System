@@ -6,11 +6,10 @@
             $time_in = $_POST['txtti'];
             $time_out = $_POST['txtto'];
             $date = $_POST['txtd'];
-            $_SESSION['eid'] = $empid;
-            $_SESSION['rid'] = $roomid;
-            $_SESSION['timein'] = $time_in;
-            $_SESSION['timeout'] = $time_out;
-            $_SESSION['date'] = $date;
+            $_SESSION['urid'] = $roomid;
+            $_SESSION['utimein'] = $time_in;
+            $_SESSION['utimeout'] = $time_out;
+            $_SESSION['udate'] = $date;
             $SQL = "SELECT * FROM tbl_sched WHERE room_id='$roomid'";
             $res = mysqli_query($con, $SQL);
             $count = mysqli_num_rows($res);
@@ -32,43 +31,40 @@
                     if ($col[$j]['date'] == $date){
                         if (($time_in_f <= $time_in AND $time_out_f >= $time_in))
                         {   
-                        $_SESSION['avail']=false;
-                        header('location:addsched.php');
+                        $_SESSION['uavail']=false;
+                        header('location:addsched_user.php');
                         $j=$i;
                         }
                         else if (($time_in_f <= $time_out AND $time_out_f >= $time_out))
                         {   
-                        $_SESSION['avail']=false;
-                        header('location:addsched.php');
+                        $_SESSION['uavail']=false;
+                        header('location:addsched_user.php');
                         $j=$i;
                         }    
                         else if (($time_in_f >= $time_in AND $time_out_f <= $time_out))
                         {   
-                        $_SESSION['avail']=false;
-                        header('location:addsched.php');
+                        $_SESSION['uavail']=false;
+                        header('location:addsched_user.php');
                         $j=$i;
                         } 
                         else
                         {
-                        $_SESSION['avail']=true;
-                        header('location:addsched.php');
+                        $_SESSION['uavail']=true;
+                        header('location:addsched_user.php');
                         }
                     }
                     else
                     {
-                    $_SESSION['avail']=true;
-                    header('location:addsched.php');
+                    $_SESSION['uavail']=true;
+                    header('location:addsched_user.php');
                     }
             }
             }
             else
             {
-            $_SESSION['avail']=true;
-            header('location:addsched.php');
+            $_SESSION['uavail']=true;
+            header('location:addsched_user.php');
             }
-           
-            
-            
 
 mysqli_close($con);
 ?>

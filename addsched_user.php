@@ -1,5 +1,20 @@
 <?php
 session_start();
+if(!isset($_SESSION['urid'])){
+    $_SESSION['urid']="";
+}
+if(!isset($_SESSION['utimein'])){
+    $_SESSION['utimein']="";
+}
+if(!isset($_SESSION['utimeout'])){
+    $_SESSION['utimeout']="";
+}
+if(!isset($_SESSION['udate'])){
+    $_SESSION['udate']="";
+}
+if(!isset($_SESSION['uavail'])){
+    $_SESSION['uavail']=false;
+}
 ?>
 <html><head><title>Add New Schedule</title>
         <script type="text/javascript">
@@ -64,11 +79,11 @@ session_start();
 </div>
 
 <div class="container">
-        <form class="form_container" name="addsched" method="post" action="add_user.php">
+        <form class="form_container" name="addsched" method="post">
             <div class="child">
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="text" name="txtrid" id="txtrid" placeholder="Room Number">
+                    <input class="form-control" type="text" name="txtrid" value="<?php echo $_SESSION['urid'];?>" id="txtrid" placeholder="Room Number">
                 </div>
             </div>
             <div class="form-group row">
@@ -84,17 +99,17 @@ session_start();
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="time" name="txtti" id="txtti">
+                     <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['utimein'];?>" id="txtti">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="time" name="txtto" id="txtto">
+                   <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['utimeout'];?>" id="txtto">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input class="form-control" type="date" name="txtd" id="txtd">
+                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['udate'];?>" id="txtd">
                 </div>
             </div>
             <div class="form-group row">
@@ -108,8 +123,31 @@ session_start();
                 </div>
             </div>
             <div class="form-group row">
+                <?php
+                if ($_SESSION['uavail']==false){
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Room not Available. Input another room or time and date")';
+                echo '</script>';    
+                $_SESSION['uavail']=false;
+                ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Save">
+                    <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail_user.php">
+                <?php }
+                else if ($_SESSION['uavail']==true){
+                
+                $_SESSION['urid']="";
+                $_SESSION['utimein']="";
+                $_SESSION['utimeout']="";
+                $_SESSION['udate']="";
+                $_SESSION['uavail']=false;
+                
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Room Available.")';
+                echo '</script>';  
+                ?>
+                <div class="col-md-6">
+                    <input class="btn btn-primary" type="submit" value="Save" formaction="add_user.php">
+                <?php }?>
                 </div>
                 <div class="col-md-6">
                     <input class="btn btn-danger" type="reset" value="Clear">

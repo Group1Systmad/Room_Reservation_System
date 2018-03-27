@@ -153,7 +153,5 @@ if(!isset($_SESSION['avail'])){
         </form>
 
 </div>
-
-
 </body>
 </html>
