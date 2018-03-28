@@ -111,13 +111,13 @@ session_start();
                     <div class="links">
                         <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me</label>
                         <a href="#" name="signup" class = "sign-up">Sign up</a>
-                        <?php
+<!--                        <?php
                         $_SESSION["username"] = 1;
                         $_SESSION["oldpass"] = 1;
                         $_SESSION["newpass"] = 1;
                         $_SESSION["cnpass"] = 1;
                         ?>
-                        <a href="change_pass.php" class="change-pass">Change Password</a>
+                        <a href="change_pass.php" class="change-pass">Change Password</a>-->
                     </div>
                     <div class = "links">
                         <a href="forgotpassword.php" name="forgotpassword" class = "forgot-pass">Forgot Password</a>
