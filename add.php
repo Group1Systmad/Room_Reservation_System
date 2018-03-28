@@ -11,6 +11,6 @@ include 'connect.php';
 
 $SQL = "INSERT INTO tbl_sched(room_id,emp_id,time_in,time_out,date,u_code,Status) VALUES('$r_id','$e_id','$ti','$to','$date','$u_code',TRUE)";
 mysqli_query($con,$SQL);
-header('location:schedtable.php');
+header('location:update_room.php');
 mysqli_close($con);
 ?>

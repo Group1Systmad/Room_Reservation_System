@@ -43,17 +43,12 @@ if($_SESSION["previous"] == $_SESSION["selected"]){
             $room_status=false;
         }
 
-
-
-
         $SQL = "UPDATE tbl_sched SET room_id='$r_id',emp_id='$e_id',time_in='$ti',time_out='$to',date='$date',u_code='$unique_code',Status='$room_status' WHERE id='$id'";
         echo $SQL;
         mysqli_query($con,$SQL)or die('Error:'.mysqli_error());
 
         mysqli_close($con);
         echo "SESSION IS 3";
-
-
 
         $_SESSION["count"] = 1;
         $_SESSION["selected"] = "none";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2018 at 06:01 PM
+-- Generation Time: Mar 28, 2018 at 06:24 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -73,6 +73,29 @@ INSERT INTO `employee` (`Employee_ID`, `Emp_FN`, `Emp_LN`, `Emp_Address`, `Emp_A
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_room`
+--
+
+CREATE TABLE `tbl_room` (
+  `room_id` varchar(5) NOT NULL,
+  `emp_id` varchar(5) NOT NULL,
+  `time_in` time NOT NULL,
+  `time_out` time NOT NULL,
+  `date` date NOT NULL,
+  `u_code` varchar(5) NOT NULL,
+  `Status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_room`
+--
+
+INSERT INTO `tbl_room` (`room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`) VALUES
+('399', '123', '07:00:00', '07:30:00', '2018-03-10', '67864', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_sched`
 --
 
@@ -95,9 +118,9 @@ INSERT INTO `tbl_sched` (`id`, `room_id`, `emp_id`, `time_in`, `time_out`, `date
 (1, '303', '2343', '10:00:00', '11:00:00', '2018-03-22', '2365T', 0),
 (2, '503', '342', '07:00:00', '08:00:00', '2018-03-23', '21452', 0),
 (4, '352', '2134', '10:30:00', '12:00:00', '2018-03-30', '21435', 1),
-(5, '502', '25367', '07:00:00', '12:00:00', '2018-03-22', '15632', 1),
+(5, '502', '25367', '11:00:00', '12:00:00', '2018-03-22', '15632', 1),
 (6, '211', '7652', '07:30:00', '08:30:00', '2018-03-23', 'DFG67', 1),
-(7, '110', '2014', '13:00:00', '15:00:00', '2018-03-16', 'cd456', 1),
+(7, '110', '2014', '13:00:00', '15:00:00', '2018-03-16', 'cd456', 0),
 (8, '510', '1616', '07:30:00', '10:30:00', '2018-03-16', 'ab123', 0),
 (9, '303', '111', '02:00:00', '03:00:00', '2018-03-22', '18466', 1),
 (10, '303', '111', '15:00:00', '16:00:00', '2018-03-22', '35246', 1),
@@ -107,7 +130,10 @@ INSERT INTO `tbl_sched` (`id`, `room_id`, `emp_id`, `time_in`, `time_out`, `date
 (15, '303', '123', '10:00:00', '11:00:00', '2018-03-23', '97105', 1),
 (16, '304', '111', '02:00:00', '03:00:00', '2018-03-22', '36023', 1),
 (21, '303', '123', '10:00:00', '11:00:00', '2018-03-23', '50387', 1),
-(22, '305', '111', '10:00:00', '11:00:00', '2018-03-22', '73008', 1);
+(22, '305', '111', '10:00:00', '11:00:00', '2018-03-22', '73008', 1),
+(23, '333', '111', '10:00:00', '11:00:00', '2018-03-14', '12345', 1),
+(24, '399', '123', '07:00:00', '07:30:00', '2018-03-10', '59896', 1),
+(25, '399', '123', '07:00:00', '07:30:00', '2018-03-10', '67864', 1);
 
 --
 -- Indexes for dumped tables
@@ -133,12 +159,12 @@ ALTER TABLE `tbl_sched`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `Account_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Account_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_sched`
 --
 ALTER TABLE `tbl_sched`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
