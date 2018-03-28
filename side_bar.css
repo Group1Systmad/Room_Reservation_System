@@ -34,7 +34,7 @@ li a.active {
 }
 
 li a:hover:not(.active) {
-    background-color: #1d73a7;
+    background-color: #ff9900;
     color: white;
 }
 .header{

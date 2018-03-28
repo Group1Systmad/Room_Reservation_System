@@ -1,0 +1,12 @@
+icon{
+    min-width: 72px;
+    min-height: 72px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+}
+

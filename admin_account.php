@@ -137,24 +137,24 @@ if (isset($_SESSION["count"])){
             $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
             $res1 = mysqli_query($con, $sql1);
             $row1 = mysqli_fetch_array($res1);
-            $username = $_SESSION['username'];
+            $profilepic = $row1['profile'];
             ?>
             <div class="center"> <img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="border-radius: 100%; max-height: 90px;">
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
-            <a href="user_account.php">Account Info</a> 
+            <a href="admin_account.php">Account Info</a> 
              <div class="logoutbtn"> <a onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
 </div>
     
 <div class="sidebar">
     <ul>
-        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
-        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
-        <li><div class="selected"><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>
-        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
-        <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
+        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li> 
+        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></li>
+        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><a href="#" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
+        <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
+        <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
     </ul>
 </div>
     
@@ -216,7 +216,7 @@ if (isset($_SESSION["count"])){
   </div>
      <div class="container">
          <div class="tableview col-md-7">
-                 <div class="greeting"> USER  </div> 
+                 <div class="greeting"> ADMINISTRATOR  </div> 
         <table class="table">
             <?php
             include 'connect.php';

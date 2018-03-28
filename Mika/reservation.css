@@ -1,0 +1,30 @@
+.table{
+        width: 30%;
+        margin: 0 auto;
+    }
+    .container{
+        margin-top: 10%;
+        text-align: center;
+    }
+    .headers{
+        color: #ff7a24;
+        text-align: center;
+        font-size: medium;
+    }
+    td{
+        font-size: small;
+    }
+    .glyphicon-remove{
+        color: #ff572d;
+        font-size: medium;
+    }
+    .glyphicon-pencil,.glyphicon-floppy-disk{
+        font-size: medium;
+    }
+    .table_cell{
+        background: transparent;
+        border: none;
+        text-align: center;
+    }
+    
+    

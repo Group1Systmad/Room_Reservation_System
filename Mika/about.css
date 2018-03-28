@@ -1,0 +1,89 @@
+.accnav{
+    height: 60%;
+    width: 0;
+    position: fixed;
+    align-content: center;
+    z-index: 1;
+    left: 6%;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    transition: 1s;
+    padding-top: 70px;
+}
+
+.accnav a {
+    padding: 10px 8px 8px 10px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    color: #000033;
+    display: block;
+    border: 1px;
+    transition: 0.3s;
+  
+}
+
+.accnav a:hover {
+    background-color: #ff7a24;
+    color: #ffffff;
+}
+
+.accnav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 25px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+.name{
+ font-family: Lucida Console, fantasy;
+ color: #ff7a24;
+ font-size: 18px;
+ padding-top: 5px;
+}
+
+.id{
+ font-family: Lucida Console, fantasy;
+ color: #c2c2a3;
+ font-size: 9px;
+ text-align: center;
+}
+
+ .center{
+            text-align: center;
+        }
+
+@media screen and (max-height: 450px) {
+  .accnav {padding-top: 15px;}
+  .accnav a {font-size: 18px;}
+}
+
+.logoutbtn {
+  border: 1px solid black;
+  background: #ffffff;
+  color: black;
+  display: inline-block;
+  cursor: pointer;
+ text-align:  center;
+  margin-top: 70px;
+}
+
+.logoutbtn a {
+  border-color: black;
+  color: black;
+  font-size: 10px;
+  padding: 3px 8px 3px 8px;
+}
+
+.logoutbtn a:hover {
+  background: #ffffff ;
+  color: #ff7a24;
+}
+
+
