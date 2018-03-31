@@ -1,4 +1,4 @@
-<?php
+/<?php
 session_start();
 ?>
 
@@ -175,7 +175,7 @@ if (isset($_SESSION["count"])){
             $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
             $res1 = mysqli_query($con, $sql1);
             $row1 = mysqli_fetch_array($res1);
-            function changeimage($empno,  $file_temp, $file_extn, $file_temp ){
+            function changeimage($empno,  $file_temp, $file_extn){
             include 'connect.php';
             $con = mysqli_connect("localhost","root","");
             $file_path = 'C:/xampp/htdocs/Room_Reservation_System/' . substr(md5(time()), 0, 10) . '.' . $file_extn;
@@ -202,7 +202,7 @@ if (isset($_SESSION["count"])){
                       $file_temp = $_FILES['profile']['tmp_name'];
                       
                       if (in_array($file_extn, $allowed) === true){
-                           changeimage($row['Employee_ID'],  $file_temp, $file_extn, $file_temp );
+                           changeimage($row['Employee_ID'],  $file_temp, $file_extn);
                       }
                      else {                          
                          echo 'Incorrect file type! Allowed: ';

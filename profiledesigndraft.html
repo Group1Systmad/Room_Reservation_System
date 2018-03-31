@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
+        <style>
+            .portrait{
+                margin: 0 auto;
+                text-align: center;
+                width: 100%;
+                position: absolute;
+                padding-bottom: 50px;
+            }
+            .icon_portrait{
+                margin-top: 50px;
+                border-radius: 100%;
+                height: 200px;
+/*                width: 200px;*/
+                max-height: 200px;
+                border: 5px solid #fff;
+            }
+            .cover{
+                width: 100%;
+                height: 150px;
+                background: #1b6d85;
+                
+            }
+            .cover-container{
+                position: relative;
+                margin-bottom: 100px; 
+            }
+            .user-identity{
+                text-align: center;
+            }
+            .userfullname{
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+            .half{
+                height: 100%;
+                background: #f7f7f7;
+                padding: 20px;
+                border: 2px solid white;
+            }
+            .table{
+                margin-top: 20px;
+                border: 1px solid #e4e4e4;
+            }
+            .table td{
+                background: #fff;
+            }
+            .change-pass-link{
+                text-align: right;
+                margin-left: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="cover-container">
+            <div class="portrait">
+            <img class="icon_portrait" src= "mika.JPG" alt="User Portrait">
+            </div>
+             <div class="cover"> </div>
+        </div>
+       
+        <div class="user-identity">
+            <h3 class="userfullname">Mishel Kate Aguilar</h3>
+            <p>ID: <span class="userid">1234567</span></p>
+        </div>
+        
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 half">
+                Basic Information
+                <table class="table">
+                    <tr>
+                        <td>First Name:</td>
+                        <td>Mishel Kate</td>
+                    </tr>
+                    <tr>
+                        <td>Middle Name:</td>
+                        <td>Morcilla</td>
+                    </tr>
+                    <tr>
+                         <td>Last Name:</td>
+                        <td>Aguilar</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>Female</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>Bagong Pook,Brgy. San Vicente , Lipa City</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6 half">
+                Contact Details
+                <table class="table">
+                    <tr>
+                        <td>Mobile Number</td>
+                        <td>09123456789</td>
+                    </tr>
+                    <tr>
+                        <td>Telephone Number</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>Email Address</td>
+                        <td>mishel_kate_aguilar@dlsl.edu.ph</td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 half">
+                    Account Details
+                    <table class="table">
+                        <tr>
+                        <td>User Name</td>
+                        <td>mishelaguilar</td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td>******* <a class="change-pass-link" href="#">Change Password</a></td>
+                        </tr>
+                    </table>
+                    
+                </div>
+                <div class="col-md-6 half">
+                    Company Details
+                    <table class="table">
+                        <tr>
+                            <td>Department</td>
+                            <td>I.T. Department</td>
+                        </tr>
+                        <tr>
+                            <td>Role</td>
+                            <td>Front End Designer</td>
+                        </tr>
+                        <tr>
+                            <td>Employed Since</td>
+                            <td>03/01/2018</td>
+                        </tr>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

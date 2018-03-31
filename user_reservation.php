@@ -105,8 +105,8 @@ if (isset($_SESSION["count"])){
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
             <hr>
-            <a class="hoverable" href="admin_account.php">Account Info</a> 
-            <a class="hoverable" href="admin_account.php">Change Password</a> 
+            <a class="hoverable" href="user_account.php">Account Info</a> 
+            <a class="hoverable" href="user_account.php">Change Password</a> 
             <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
 </div>
