@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2018 at 06:24 AM
+-- Generation Time: Mar 31, 2018 at 11:54 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -83,15 +83,16 @@ CREATE TABLE `tbl_room` (
   `time_out` time NOT NULL,
   `date` date NOT NULL,
   `u_code` varchar(5) NOT NULL,
-  `Status` tinyint(1) NOT NULL
+  `Status` tinyint(1) NOT NULL,
+  `time_millis` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_room`
 --
 
-INSERT INTO `tbl_room` (`room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`) VALUES
-('399', '123', '07:00:00', '07:30:00', '2018-03-10', '67864', 1);
+INSERT INTO `tbl_room` (`room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`, `time_millis`) VALUES
+('699', '69', '07:00:00', '09:30:00', '2017-03-01', '30082', 1, 9000000);
 
 -- --------------------------------------------------------
 
@@ -133,7 +134,9 @@ INSERT INTO `tbl_sched` (`id`, `room_id`, `emp_id`, `time_in`, `time_out`, `date
 (22, '305', '111', '10:00:00', '11:00:00', '2018-03-22', '73008', 1),
 (23, '333', '111', '10:00:00', '11:00:00', '2018-03-14', '12345', 1),
 (24, '399', '123', '07:00:00', '07:30:00', '2018-03-10', '59896', 1),
-(25, '399', '123', '07:00:00', '07:30:00', '2018-03-10', '67864', 1);
+(25, '399', '123', '07:00:00', '07:30:00', '2018-03-10', '67864', 1),
+(27, '699', '6969', '07:00:00', '09:30:00', '2018-03-01', '27836', 1),
+(28, '699', '69', '07:00:00', '09:30:00', '2017-03-01', '30082', 1);
 
 --
 -- Indexes for dumped tables
@@ -164,7 +167,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `tbl_sched`
 --
 ALTER TABLE `tbl_sched`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
