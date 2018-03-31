@@ -22,7 +22,7 @@ abnav {
     padding: 10px 12px;
     height: 72.5px;
     font-size: 14px;
-    width: 23.5%;
+    width: 24.5%;
 }
 
 .tablink:hover {
@@ -66,7 +66,7 @@ abnav {
         
          function openaccNav() {
              document.getElementById("myAccountnav").style.width = "250px";
-             document.getElementById("myAccountnav").style.border = "1px solid black";
+             //document.getElementById("myAccountnav").style.border = "1px solid";
 }
         function closeaccNav() {
             document.getElementById("myAccountnav").style.width = "0";
@@ -106,8 +106,10 @@ abnav {
              <div class="center"> <img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="border-radius: 100%; max-height: 90px;">
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
-            <a href="admin_account.php">Account Info</a> 
-             <div class="logoutbtn"> <a onclick="return logout()" href="login_page.php">Logout</a></div>
+            <hr>
+            <a class="hoverable" href="admin_account.php">Account Info</a> 
+             <a class="hoverable" href="#">Change Password</a>
+             <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
 </div>
     
@@ -115,8 +117,8 @@ abnav {
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
         <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
-        <li><div class="selected"><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>
-        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
+        <li><div><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>
+        <li><a href="aboutususer.php" class="selected"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
         <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
     </ul>

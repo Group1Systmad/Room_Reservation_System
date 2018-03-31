@@ -104,8 +104,10 @@ if (isset($_SESSION["count"])){
             <div class="center"> <img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="border-radius: 100%; max-height: 90px;">
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
-            <a href="admin_account.php">Account Info</a> 
-             <div class="logoutbtn"> <a onclick="return logout()" href="login_page.php">Logout</a></div>
+            <hr>
+            <a class="hoverable" href="admin_account.php">Account Info</a> 
+            <a class="hoverable" href="admin_account.php">Change Password</a> 
+            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
 </div>
 

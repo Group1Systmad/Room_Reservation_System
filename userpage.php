@@ -47,7 +47,7 @@ session_start();
 ?>
     
 <div id="myAccountnav" class="accnav" style="top:70px;">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeaccNav()">&times;</a>
+  <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
             <?php
             include 'connect.php';
             $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
@@ -61,9 +61,12 @@ session_start();
             <div class="center"> <img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="border-radius: 100%; max-height: 90px;">
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
-            <a href="user_account.php">Account Info</a> 
-             <div class="logoutbtn"> <a onclick="return logout()" href="login_page.php">Logout</a></div>
+            <hr>
+            <a class="hoverable" href="user_account.php">Account Info</a> 
+                <a class="hoverable" href="#">Change Password</a>
+                  <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
+          
 </div>
     
 <div class="sidebar">
