@@ -11,10 +11,33 @@
             $_SESSION['timein'] = $time_in;
             $_SESSION['timeout'] = $time_out;
             $_SESSION['date'] = $date;
+            date_default_timezone_set('Asia/Manila');
+            $date_current = date('Y-m-d');
+            $time_current = date('H:i:s');
             $SQL = "SELECT * FROM tbl_sched WHERE room_id='$roomid'";
             $res = mysqli_query($con, $SQL);
             $count = mysqli_num_rows($res);
             $i = -1;
+            
+            if ($date < $date_current){
+                    $_SESSION['error']= 'wrongdate';   
+                    header('location:addsched.php');
+                    }
+            else if ($date == $date_current){
+                if ($time_in < $time_current OR $time_out < $time_current){
+                    $_SESSION['error']= 'wrongtime'; 
+                    header('location:addsched.php');
+                    }
+                    else if ($time_out < $time_in){
+                    $_SESSION['error']= 'wrongtime';  
+                    header('location:addsched.php');
+                    }
+            }
+            else if ($time_out < $time_in){
+                    $_SESSION['error']= 'wrongtime';  
+                    header('location:addsched.php');
+                    }
+            else{        
             while($row = mysqli_fetch_array($res))
             {
                 $i++;
@@ -22,7 +45,7 @@
                 $col[$i]['time_out']=$row['time_out'];
                 $col[$i]['date']=$row['date'];
 
-            }
+            }       
             if ($count>=1){
                 for ($j=0;$j<=$i;$j++){
                     $time_in_stamp = strtotime($col[$j]['time_in']);
@@ -32,45 +55,40 @@
                     if ($col[$j]['date'] == $date){
                         if (($time_in_f <= $time_in AND $time_out_f >= $time_in))
                         {
-                        $_SESSION['avail']=false;   
-                        $_SESSION['notavail']=true;
-                        header('location:addsched.php');
+                        $_SESSION['error']= 'notavail';   
                         $j=$i;
+                        header('location:addsched.php');
                         }
                         else if (($time_in_f <= $time_out AND $time_out_f >= $time_out))
                         {
-                        $_SESSION['avail']=false;   
-                        $_SESSION['notavail']=true;
-                        header('location:addsched.php');
+                        $_SESSION['error']= 'notavail';   
                         $j=$i;
+                        header('location:addsched.php');
                         }    
                         else if (($time_in_f >= $time_in AND $time_out_f <= $time_out))
                         {
-                        $_SESSION['avail']=false; 
-                        $_SESSION['notavail']=true;
-                        header('location:addsched.php');
+                        $_SESSION['error']= 'notavail';   
                         $j=$i;
+                        header('location:addsched.php');
                         } 
                         else
                         {
-                        $_SESSION['notavail']=false;
-                        $_SESSION['avail']=true;
+                        $_SESSION['error']= 'notavail'; 
                         header('location:addsched.php');
                         }
                     }
                     else
                     {
-                    $_SESSION['notavail']=false;
-                    $_SESSION['avail']=true;
+                    $_SESSION['error']= 'avail'; 
                     header('location:addsched.php');
                     }
             }
             }
             else
             {
-            $_SESSION['notavail']=false;
-            $_SESSION['avail']=true;
+            $_SESSION['error']= 'avail';  
             header('location:addsched.php');
+            }
             }
            
 mysqli_close($con);

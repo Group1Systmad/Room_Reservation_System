@@ -131,7 +131,7 @@ session_start();
             </div>
             <div class="form-group row">
                 <?php 
-                if ($_SESSION['avail']==false){ ?>
+                if ($_SESSION['error'] != 'avail'){ ?>
                 <div class="col-md-6">
                     <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail.php">
                 </div>   
@@ -139,7 +139,7 @@ session_start();
                     <input class="btn btn-danger" type="reset" value="Clear">
                 </div>   
                 <?php }
-                else if ($_SESSION['avail']==true){
+                else if ($_SESSION['error']=='avail'){
                 
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Room Available.")';
@@ -158,11 +158,23 @@ session_start();
 
 </div>
              <?php
-                if ($_SESSION['notavail']==true){
+                if ($_SESSION['error']== 'wrongdate'){
                 echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Room not Available. Input another room or time and date")';
+                echo 'alert("Wrong input of date.")';
                 echo '</script>'; 
-                $_SESSION['notavail']=false;
+                $_SESSION['error']='no';
+                }
+                else if ($_SESSION['error']== 'wrongtime'){
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Wrong input of time.")';
+                echo '</script>'; 
+                $_SESSION['error']='no';
+                }
+                else if ($_SESSION['error']== 'notavail'){
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Room not available. Input another room or time and date")';
+                echo '</script>'; 
+                $_SESSION['error']='no';
                 }
                 ?>
 </body>

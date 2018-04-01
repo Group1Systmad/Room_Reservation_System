@@ -184,7 +184,8 @@ if (isset($_SESSION["count"])){
     $_SESSION['timein'] = "";
     $_SESSION['timeout'] = "";
     $_SESSION['date'] = "";
-    $_SESSION['avail']=false; ?>
+    $_SESSION['error'] = 'no';
+            ?>
     <a href="addsched.php"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br>
 
         <font size="4" face="arial"  color="#ff7a24">
