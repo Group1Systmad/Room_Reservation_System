@@ -1,11 +1,12 @@
 <?php
+session_start();
 include 'connect.php';
 ini_set("SMTP","ssl://smtp.gmail.com");
 ini_set("smtp_port","465");
 
  if(isset($_POST['submit_button'])){
      $email = $_POST['email'];
-     
+     $_SESSION['user_email'] = $email;
      $SQL = "SELECT * FROM employee WHERE Emp_Email = '$email'";
      $result_set = mysqli_query($con,$SQL);
      
@@ -34,7 +35,7 @@ ini_set("smtp_port","465");
              echo $id;
              $SQL = "UPDATE accounts SET Acc_Pass = '$password' WHERE Employee_ID = '$id'";
              mysqli_query($con, $SQL) or die(mysqli_error($con));
-             header("location:login_page.php");
+             header("location:forgot_redirect.php");
          }
      }
      
@@ -102,7 +103,8 @@ ini_set("smtp_port","465");
                     
                     <form method="post" action="forgotpassword.php" class="form_container">
                         <p class="text">Please enter your email address in the text box below to send you a temporary password.</p>
-                       <input class="form-control text-center" type="email" name="email" placeholder="Your Email Here">
+                        <input class="form-control text-center" type="email" name="email" placeholder="Your Email Here" 
+                            <?php echo (isset($_SESSION['user_email'])) ? 'value = \'' . $_SESSION['user_email'].'\'' : ""; ?>>
                        <input class="button btn btn-primary" type="submit" name="submit_button">
                     </form>
                 </div>   

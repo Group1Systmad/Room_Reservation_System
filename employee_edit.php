@@ -41,7 +41,7 @@ if($_SESSION["previous"] == $_SESSION["selected"]){
         $cnumber = $_POST['emp_cnumber'];
 
         $SQL = "UPDATE employee SET Employee_ID='$emp_id',Emp_FN='$emp_fn',Emp_LN='$emp_ln',Emp_Address='$emp_add',
-Emp_Age='$emp_age',Emp_Department='$emp_dept',Emp_Gender='$gender',Emp_CNumber = '$cnumber' WHERE Employee_ID='$emp_id'";
+Emp_Age='$emp_age',Emp_Department='$emp_dept',Emp_Gender='$gender',Emp_CNumber = '$cnumber',Emp_Email = '$emp_email' WHERE Employee_ID='$emp_id'";
         echo $SQL;
         mysqli_query($con,$SQL)or die('Error:'.mysqli_error());
 

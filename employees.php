@@ -127,7 +127,7 @@ session_start();
 
 <div class="container">
 
-    <FORM class="form-inline" NAME="searchArea" METHOD="POST" ACTION="">
+    <FORM class="form-inline" NAME="searchArea" METHOD="POST" ACTION="employees.php">
                 <div class="form-group">
                     <Label>Search by Last name:</Label>
                     <INPUT class="form-control form-control-xs mb-2 mr-sm-2" TYPE="text" ID="txtSearchLN" NAME="txtSearchLN">
@@ -152,23 +152,25 @@ session_start();
         <?php
         include 'connect.php';
 
-        if (!isset($_POST['txtSearchLN']))
+        if (isset($_POST['txtSearchLN']))
         {
+            $_SESSION['current_search'] = $_POST['txtSearchLN'];
+            $searchLN = $_SESSION['current_search'];
+        }else{
             $_POST['txtSearchLN'] = "undefined";
         }
-
-        $searchLN = $_POST['txtSearchLN'];
-
-        if ($searchLN=="undefined")
+        if (isset($_SESSION['current_search']))
         {
-            $SQL = mysqli_query($con,"SELECT * FROM employee ORDER BY Emp_LN");
-
+            $query = "SELECT * FROM employee WHERE Emp_LN LIKE '".$_SESSION['current_search']."%"."'";
+            
+            $SQL=mysqli_query($con,$query);
+           
         }
-        else
+        else 
         {
-            $SQL=mysqli_query($con,"SELECT * FROM employee WHERE Emp_LN LIKE '$searchLN%'");
+             $SQL = mysqli_query($con,"SELECT * FROM employee ORDER BY Emp_LN");
         }
-        while($row=mysqli_fetch_array($SQL))
+        while($_SESSION['row']=mysqli_fetch_assoc($SQL))
         {
         ?><!--end of first php -->
         <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'employee_edit.php\'' : '' ?>>
@@ -183,25 +185,25 @@ session_start();
 <!--            <TD>--><?php //echo $row['Emp_Department']; ?><!--</TD>-->
 <!--            <TD>--><?php //echo $row['Emp_Email']; ?><!--</TD>-->
 <!--            <TD>--><?php //echo $row['Emp_Gender']; ?><!--</TD>-->
-            <td align="center"><a onclick="return Del()" href="delete_employee.php?SID=<?php echo $row['Employee_ID']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
+            <td align="center"><a onclick="return Del()" href="delete_employee.php?SID=<?php echo $_SESSION['row']['Employee_ID']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
             <!--                <td align="center"><a href="editsched.php?SID=--><?php //echo $row['id']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
-            <td align="center"><a href="employee_edit.php?SID=<?php echo $row['Employee_ID']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['Employee_ID']) ? 'button name=\'save_button\' type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['Employee_ID']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php
-                    echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['Employee_ID']) ? '<span class="glyphicon glyphicon-floppy-disk"></span></button>' : '</span>';
+            <td align="center"><a href="employee_edit.php?SID=<?php echo $_SESSION['row']['Employee_ID']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$_SESSION['row']['Employee_ID']) ? 'button name=\'save_button\' type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$_SESSION['row']['Employee_ID']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php
+                    echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$_SESSION['row']['Employee_ID']) ? '<span class="glyphicon glyphicon-floppy-disk"></span></button>' : '</span>';
                     ?></a></td>
             <!--                <td>--><?php //echo $row['id']; ?><!--</td>-->
-            <td><input class="<?php echo 'cell'.$row['Employee_ID']?> table_cell" name="emp_id" id="emp_id" value=<?php echo $row['Employee_ID']; ?> readonly></td>
-            <td><input class="<?php echo 'cell'.$row['Employee_ID']?> table_cell" name="emp_ln" id="emp_ln" value=<?php echo $row['Emp_LN']; ?> <?php echo (($_SESSION["count"]==2 && $row['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>> </td>
-            <td><input class="table_cell <?php echo 'cell'.$row['Employee_ID']?>" name="emp_fn" id="emp_fn" value=<?php echo $row['Emp_FN']; ?>  <?php echo (($_SESSION["count"]==2 && $row['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
-            <td><input type="text" class="table_cell <?php echo 'cell'.$row['Employee_ID']?>" id="emp_add" name="emp_add" value="<?php echo $row['Emp_Address']; ?>"  <?php echo (($_SESSION["count"]==2 && $row['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
-            <td><input type="text" class="table_cell <?php echo 'cell'.$row['Employee_ID']?>" id="emp_age" name="emp_age" value=<?php echo $row['Emp_Age']; ?>  <?php echo (($_SESSION["count"]==2 && $row['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
-            <td><input type="text" class="table_cell <?php echo 'cell'.$row['Employee_ID']?>" id="emp_dept" name="emp_dept" value=<?php echo $row['Emp_Department']; ?>  <?php echo (($_SESSION["count"]==2 && $row['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
-            <td><input type="email" class="table_cell <?php echo 'cell'.$row['Employee_ID']?>" id="emp_email" name="emp_email" value=<?php echo $row['Emp_Email'];?>  <?php echo (($_SESSION["count"]==2 && $row['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
-            <td><select class="table_cell <?php echo 'cell'.$row['Employee_ID']?>" id="gender" name="gender">
-                    <option value="Female" <?php echo ($row['Emp_Gender']=="Female") ? "selected":"";?> <?php echo (($_SESSION["count"]==2 && $row['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "disabled=\"disabled\"" : ""?>>F</option>
-                    <option value="Male"  <?php echo ($row['Emp_Gender']=="Male") ? "selected":"";?> <?php echo (($_SESSION["count"]==2 && $row['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "disabled=\"disabled\"" : ""?>>M</option>
+            <td><input class="<?php echo 'cell'.$_SESSION['row']['Employee_ID']?> table_cell" name="emp_id" id="emp_id" value=<?php echo $_SESSION['row']['Employee_ID']; ?> readonly></td>
+            <td><input class="<?php echo 'cell'.$_SESSION['row']['Employee_ID']?> table_cell" name="emp_ln" id="emp_ln" value=<?php echo $_SESSION['row']['Emp_LN']; ?> <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>> </td>
+            <td><input class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" name="emp_fn" id="emp_fn" value='<?php echo $_SESSION['row']['Emp_FN']; ?>'  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
+            <td><input type="text" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_add" name="emp_add" value="<?php echo $_SESSION['row']['Emp_Address']; ?>"  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
+            <td><input type="text" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_age" name="emp_age" value=<?php echo $_SESSION['row']['Emp_Age']; ?>  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
+            <td><input type="text" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_dept" name="emp_dept" value=<?php echo $_SESSION['row']['Emp_Department']; ?>  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
+            <td><input type="email" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_email" name="emp_email" value=<?php echo $_SESSION['row']['Emp_Email'];?>  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
+            <td><select class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="gender" name="gender">
+                    <option value="Female" <?php echo ($_SESSION['row']['Emp_Gender']=="Female") ? "selected":"";?> <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "disabled=\"disabled\"" : ""?>>F</option>
+                    <option value="Male"  <?php echo ($_SESSION['row']['Emp_Gender']=="Male") ? "selected":"";?> <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "disabled=\"disabled\"" : ""?>>M</option>
                 </select>
             </td>
-            <td><input type="text" class="table_cell <?php echo 'cell'.$row['Employee_ID']?>" id="emp_cnumber" name="emp_cnumber" value=<?php echo $row['Emp_CNumber']; ?>  <?php echo (($_SESSION["count"]==2 && $row['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
+            <td><input type="text" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_cnumber" name="emp_cnumber" value=<?php echo $_SESSION['row']['Emp_CNumber']; ?>  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
         </TR>
         </form>
         <?php //open of second php
