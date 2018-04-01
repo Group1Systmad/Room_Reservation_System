@@ -8,35 +8,11 @@ session_start();
 <!--    <link rel="stylesheet" href="bootstrap.min.css" type="text/css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
+    <link rel="stylesheet" href="mika/about.css" type="text/css">
+    <link rel="stylesheet" href="mika/reservation.css" type="text/css">
 <title>Reservations' List</title>
 <style>
-    .table{
-        width: 30%;
-        margin: 0 auto;
-    }
-    .container{
-        margin-top: 10%;
-        text-align: center;
-    }
-    .headers{
-        text-align: center;
-        font-size: medium;
-    }
-    td{
-        font-size: small;
-    }
-    .glyphicon-remove{
-        color: #ff572d;
-        font-size: medium;
-    }
-    .glyphicon-pencil,.glyphicon-floppy-disk{
-        font-size: medium;
-    }
-    .table_cell{
-        background: transparent;
-        border: none;
-        text-align: center;
-    }
+    
     <?php echo ($_SESSION["count"]==2) ? $_SESSION["classname"].'{background:white;border:1px solid;}' : ''?>
     #room_id{
         width: 50px;
@@ -49,6 +25,7 @@ session_start();
 
     }
 </style>
+
 <script type="text/javascript">
 	function del()
 	  {
@@ -77,6 +54,16 @@ session_start();
 	     	return false;
 	     }
         }
+        
+        
+  function openaccNav() {
+             document.getElementById("myAccountnav").style.width = "250px";
+             document.getElementById("myAccountnav").style.border = "1px solid black";
+}
+        function closeaccNav() {
+            document.getElementById("myAccountnav").style.width = "0";
+            document.getElementById("myAccountnav").style.border = "none";
+}
 </script>
 </head>
 <body>
@@ -89,30 +76,53 @@ if (isset($_SESSION["count"])){
     echo "Session is not set";
 }
 ?>
-
+  
+    
 <div class="sidebar">
     <ul>
+        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
+        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
         <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
+        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
         <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-        <li><a href="user_account.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
-        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
-        <li><a onclick="return logout()" href="login_page.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Log Out</span></a></li>
+        <li><div class="selected"><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></div></li>
     </ul>
+</div>
+    
+    
+<div id="myAccountnav" class="accnav"style="top:70px;">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeaccNav()">&times;</a>
+            <?php
+            include 'connect.php';
+            $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
+            $res = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($res);
+            $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
+            $res1 = mysqli_query($con, $sql1);
+            $row1 = mysqli_fetch_array($res1);
+            ?>
+            <div class="center"> <img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="border-radius: 100%; max-height: 90px;">
+            <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
+            <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
+            <hr>
+            <a class="hoverable" href="user_account.php">Account Info</a> 
+            <a class="hoverable" href="user_account.php">Change Password</a> 
+            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
+            </div>
 </div>
 
 <div class="container">
         <table class="table">
-            <tr class="headers">
+            <tr class="headers" style="color:#00b3b3">
                 <td>Remove</td>
                 <td>Edit</td>
-                <td>Reservation ID</td>
-                <td>Room ID</td>
-                <td>Employee ID</td>
-                <td>Time In</td>
-                <td>Time Out</td>
+                <td>ReservationID</td>
+                <td>RoomID</td>
+                <td>EmployeeID</td>
+                <td>TimeIn</td>
+                <td>TimeOut</td>
                 <td>Date</td>
-                <td>Unique Code</td>
+                <td>UniqueCode</td>
                 <td>Status</td>
             </tr>
             <?php
@@ -149,9 +159,9 @@ if (isset($_SESSION["count"])){
             mysqli_close($con);
             ?><!-- close of second php -->
         </table>
-    <a href="addsched_user.php"> <button class="btn btn-primary">Add Reservation</button></a><br>
+     <a href="addsched_user.php"> <button class="btn btn-primary" style="margin-top: 45px">Add Reservation</button></a><br>
 
-        <font size="4" face="arial"  color="blue">
+        <font size="4" face="arial"  color="#ff7a24">
             <?php
             include 'connect.php';
             $SQL ="SELECT * FROM accounts WHERE Acc_Uname='".$_SESSION['username']."'";

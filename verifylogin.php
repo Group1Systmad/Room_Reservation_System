@@ -22,7 +22,9 @@ if ($count == 1)
     $_SESSION['timein'] = "";
     $_SESSION['timeout'] = "";
     $_SESSION['date'] = "";
+     $_SESSION['acctype'] = 'admin';
     header('location:homepage.php');
+   
     }
     else if ($row['acc_type'] == 'user'){
     session_start();
@@ -32,7 +34,9 @@ if ($count == 1)
     $_SESSION['utimeout'] = "";
     $_SESSION['udate'] = "";
     $_SESSION['username'] = $un;
+     $_SESSION['acctype'] = 'user';
     header('location:userpage.php');
+   
     }
   }
   else

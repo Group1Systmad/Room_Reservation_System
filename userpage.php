@@ -19,53 +19,24 @@ session_start();
 	     	return false;
 	     }
         }
+        
+          function openaccNav() {
+             document.getElementById("myAccountnav").style.width = "250px";
+             document.getElementsByClassName("container").style.marginLeft = "250px";
+}
+        function closeaccNav() {
+            document.getElementById("myAccountnav").style.width = "0";
+            document.getElementsByClassName("container").style.marginLeft= "0";
+}
 </script>
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 <!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
-    <style>
-        .jumbotron{
-            margin-top: 5%;
-        }
-        .overview_active{
-            width: 25%;
-            height: 35%;
-            background: #ff7a24;
-            color: #fff;
-            padding: 40px 20px 10px 20px;
-            text-align: center;
-            padding-top:40px;
-            margin-top: 0;
-        }
-        .page-footers{
-            text-align: center;
-            margin: 0 auto;
-            font-size: medium;
-            padding-top: 10px;
-            display: inline-block;
-
-        }
-        .pages{
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
-            border: 1px solid #2B2B2B;
-            margin: 0 4px;
-        }
-        .center{
-            text-align: center;
-        }
-        .curPage {
-            background-color: #ff7a24;
-            color: white;
-            border: 1px solid #ff7a24;
-        }
-        .table_view{
-            height: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="mika/about.css" type="text/css">
+    <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
+    
+    
 </head>
 
 <body>
@@ -74,20 +45,44 @@ session_start();
     $_SESSION["selected"]="none";
 
 ?>
+    
+<div id="myAccountnav" class="accnav" style="top:70px;">
+  <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
+            <?php
+            include 'connect.php';
+            $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
+            $res = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($res);
+            $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
+            $res1 = mysqli_query($con, $sql1);
+            $row1 = mysqli_fetch_array($res1);
+            $username = $_SESSION['username'];
+            ?>
+            <div class="center"> <img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="border-radius: 100%; max-height: 90px;">
+            <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
+            <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
+            <hr>
+            <a class="hoverable" href="user_account.php">Account Info</a> 
+                <a class="hoverable" href="#">Change Password</a>
+                  <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
+            </div>
+          
+</div>
+    
 <div class="sidebar">
     <ul>
-        <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
+        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
+        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
+        <li><div class="selected"><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>
+        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
         <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-        <li><a href="user_account.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
         <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
-        <li><a onclick="return logout()" href="login_page.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Log Out</span></a></li>
     </ul>
 </div>
 <div class="container">
     <div class="jumbotron">
 <!--Edit Mar-->
-        <h1>Room Reservation App <?php echo $_SESSION['username'] ?></h1>
+        <h1>Room Reservation App</h1>
         <p>Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
         <p>Just click <a href="addsched.php">here</a> to reserve!</p>
     </div>
