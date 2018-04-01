@@ -17,12 +17,16 @@ if ($count == 1)
     if ($row['acc_type'] == 'admin'){
     session_start();
     $_SESSION['username'] = $un;
+     $_SESSION['acctype'] = 'admin';
     header('location:homepage.php');
+   
     }
     else if ($row['acc_type'] == 'user'){
     session_start();
     $_SESSION['username'] = $un;
+     $_SESSION['acctype'] = 'user';
     header('location:userpage.php');
+   
     }
   }
   else

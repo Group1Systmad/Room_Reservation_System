@@ -203,16 +203,36 @@ session_start();
             </div>
 </div>
     
-<div class="sidebar">
-    <ul>
-        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
-        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
-        <li><div class="selected"><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>
-        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
-        <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
-    </ul>
-</div>
+<?php 
+if ($_SESSION['acctype'] == 'user') {
+    $sidebar = '<div class="sidebar">';
+  
+    $sidebar .= '<ul>';
+    $sidebar .= ' <li> <img src =' . 'logo3.png'.  ' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>';
+   $sidebar .= '<li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>';
+    $sidebar .= ' <li><div class="selected"><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>';
+    $sidebar .= '<li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>';
+    $sidebar .= '<li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>';
+    $sidebar .= '<li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>';
+    $sidebar .= '</ul>';
+    $sidebar .= '</div>';
+    echo $sidebar;
+}else{
+    
+      $sidebar =  '<div class="sidebar">';
+    $sidebar .= '<ul>';
+    $sidebar .= ' <li> <img src =' . 'logo3.png'.  ' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>';
+    $sidebar .= '<li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></li>';
+   $sidebar .= ' <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>';
+    $sidebar .= '<li><a href="aboutusadmin.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>';
+     $sidebar .= '<li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>';
+    $sidebar .= '<li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>';
+    $sidebar .= '</ul>';
+    $sidebar .= '</div>';
+    echo $sidebar;
+}
+
+?>
     
 <!--     <div class="profnav">
          <div class="t1 col-md-6"><p><img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="; max-width: 260px; max-height: 360px;"></p></div>
