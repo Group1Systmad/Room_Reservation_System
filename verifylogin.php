@@ -17,6 +17,7 @@ if ($count == 1)
     if ($row['acc_type'] == 'admin'){
     session_start();
     $_SESSION['username'] = $un;
+    $_SESSION['username_name'] = $un;
     $_SESSION['eid'] = "";
     $_SESSION['rid'] = "";
     $_SESSION['timein'] = "";
@@ -29,6 +30,7 @@ if ($count == 1)
     else if ($row['acc_type'] == 'user'){
     session_start();
     $_SESSION['username'] = $un;
+    $_SESSION['username_name'] = $un;
     $_SESSION['urid'] = "";
     $_SESSION['utimein'] = "";
     $_SESSION['utimeout'] = "";

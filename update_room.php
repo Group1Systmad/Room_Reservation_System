@@ -21,6 +21,14 @@ $nInterval = strtotime($time_out_f) - strtotime($time_in_f);
 $millis_time = $nInterval * 1000;
 $SQL1 = "INSERT INTO tbl_room(room_id,emp_id,time_in,time_out,date,u_code,Status,time_millis) VALUES ('$roomid','$empid','$timein','$timeout','$date','$ucode','$status','$millis_time')";
 $res1 = mysqli_query($con,$SQL1);
+if($_SESSION['acctype'] == 'admin'){
+    $_SESSION['admin'] = true;
+    $_SESSION['user'] = false;
+}
+else{
+     $_SESSION['admin'] = false;
+    $_SESSION['user'] = true;
+}
 if ($_SESSION['admin'] == true){
 header('location:schedtable.php');
 $_SESSION['admin'] = false;

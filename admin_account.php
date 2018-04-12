@@ -161,14 +161,15 @@ if (isset($_SESSION["count"])){
      <div class="profnav col-md-5">
          <div class="t1 col-md-6"><p><img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="; max-width: 260px; max-height: 360px;"></p></div>
          <div class="t1 col-md-6"><p style="font-size:12px; color:white; margin-left: 10px; margin-top: 280px"> Change your avatar</p>
-         <form action="" method="post" enctype="multipart/form-data" style="color: #ebebe0;margin-left: 10px; margin-top:10px">
-        <input type="file" name="profile"> 
+         <form action="" method="post" enctype="multipart/form-data" style="color: #000033;margin-left: 10px; margin-top:10px">
+        <input type="file" name="profile" style="color:black"> 
         <input type="submit" name="submit" style="color:black">
       </form>        
          </div>
      </div>
     <div class="center"> 
-             <?php     
+             <?php
+            include 'connect.php';
             $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
@@ -177,17 +178,24 @@ if (isset($_SESSION["count"])){
             $row1 = mysqli_fetch_array($res1);
             function changeimage($empno,  $file_temp, $file_extn){
             include 'connect.php';
-            $con = mysqli_connect("localhost","root","");
-            $file_path = 'C:/xampp/htdocs/Room_Reservation_System/' . substr(md5(time()), 0, 10) . '.' . $file_extn;
+            $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
+            $res = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($res);
+            $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
+            $res1 = mysqli_query($con, $sql1);
+            $row1 = mysqli_fetch_array($res1);
+            $file_path = 'E:/xampp/htdocs/Room_Reservation_System/' . substr(md5(time()), 0, 10) . '.' . $file_extn;
+            $file_photo = substr(md5(time()), 0, 10) . '.' . $file_extn;
             if (move_uploaded_file($file_temp, $file_path)) {
                 echo "<P>Profile picture updated successfully!</P>";
+                $SQL= "UPDATE employee SET Emp_Photo='$file_photo' WHERE Employee_ID='".$row['Employee_ID']."'";
+                echo $SQL;
+                    mysqli_query($con,$SQL)or die('Error:'.mysqli_error($con));
+                    mysqli_close($con);
                 }
             else {
                echo "<P>Upload failed! Please select a file lower than 2MB</P>";}
-                 $SQL= "update `employee` set `profile`='$file_path' WHERE Employee_ID='$empno'";
-                    mysqli_query($con,$SQL)or die('Error:'.mysqli_error($con));
-                    mysqli_close($con);
-                    header('location:admin_account.php');
+                 
        }
      
       
@@ -198,7 +206,10 @@ if (isset($_SESSION["count"])){
           else {
               $allowed = array('jpg','jpeg','gif', 'png');
                       $file_name = $_FILES['profile']['name'];
-                      $file_extn = strtolower (end(explode('.', $file_name)));
+                      $explode = explode('.', $file_name);
+                      $end = end($explode);
+                      
+                      $file_extn = strtolower($end);
                       $file_temp = $_FILES['profile']['tmp_name'];
                       
                       if (in_array($file_extn, $allowed) === true){
