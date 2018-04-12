@@ -57,6 +57,7 @@ session_start();
                 height: 150px;
                 top: 0px;
                 left: 35px; 
+                border-radius: 100%;
             }
             .form_container{
                 text-align: center;
@@ -103,7 +104,7 @@ session_start();
         <div class="parent">
             <div class="child">
                 <div class="container">
-                    <img src="man.png" class="avatar">
+                    <div class="emblem"><img src="logo3.png" class="avatar"></div>
                     <form class="form_container" action="verifylogin.php" method="post">
                     <input class="input-child text-input" type="text" name="uname" placeholder="Username" required = "true">
                     <input class="input-child password-input" type="password" name="pword" placeholder="Password" required = "true">

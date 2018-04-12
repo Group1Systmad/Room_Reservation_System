@@ -3,25 +3,36 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/schedtable.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/add_user.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/bren/side_bar.css</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/user_account.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/user_schedtable.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/addsched.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/add.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/login_page.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/userpage.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/employee_edit.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/addsched_user.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/user_reservation.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/employees.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/question.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/forgot_redirect.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/verifylogin.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/homepage.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/forgotpassword.php</file>
-            <file>file:/D:/xampp/htdocs/Room_Reservation_System/connect.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/admin_account.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/chpass.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/employee_edit.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/userpage.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/homepage.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/add.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/employees.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/index.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/checkavail.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/editsched.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/aboutususer.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/change_pass.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/Mika/about.css</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/update_room.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/connect.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/user_reservation.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/schedtable.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/verifylogin.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/arduino_bridge.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/addsched_user.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/user_schedtable.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/cell_edit.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/aboutusadmin.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/.git/config</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/login_page.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/addsched.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/addemp.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/update__reservation.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/user_account.php</file>
+            <file>file:/E:/xampp/htdocs/Room_Reservation_System/saverec.php</file>
         </group>
     </open-files>
 </project-private>

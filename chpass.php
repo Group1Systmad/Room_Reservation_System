@@ -11,7 +11,7 @@
             if ($count == 0)
             {   
                 mysqli_close($con);
-                $_SESSION["username"] = 0;
+                $_SESSION["username_ch"] = 0;
                 header('location:change_pass.php');
             }
             else

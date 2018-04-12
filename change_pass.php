@@ -89,7 +89,7 @@ session_start();
             <div class="child">
                 <div class="container">
                     <form class="form_container" action="chpass.php" method="post">
-                    <input class="input-child text-input" type="text" name="uname" placeholder="Username" required="true">
+                        <input class="input-child text-input" type="text" name="uname" placeholder="Username" required="true" value="<?php echo $_SESSION['username_name'];?>">
                     <input class="input-child password-input" type="password" name="opword" placeholder="Old Password" required="true">
                     <input class="input-child password-input" type="password" name="npword" placeholder="New Password" required="true">
                     <input class="input-child password-input" type="password" name="cnpword" placeholder="Confirm Password" required="true">
@@ -101,13 +101,14 @@ session_start();
         </div>
         
         <?php
-        if ($_SESSION["username"] == 0){
-            echo '<script type="text/javascript" language="JavaScript">';
-            echo 'alert("Username not found! Try Again!")';
-            echo '</script>';
-            $_SESSION["username"] = 1;
-        }
-        else if ($_SESSION["oldpass"] == 0){
+//        if ($_SESSION["username_ch"] == 0){
+//            echo '<script type="text/javascript" language="JavaScript">';
+//            echo 'alert("Username not found! Try Again!")';
+//            echo '</script>';
+//            $_SESSION["username_ch"] = 1;
+//        }
+//        else 
+            if ($_SESSION["oldpass"] == 0){
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("Old password dont match! Try Again!")';
             echo '</script>';

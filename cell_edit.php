@@ -46,14 +46,14 @@ if($_SESSION["previous"] == $_SESSION["selected"]){
         $SQL = "UPDATE tbl_sched SET room_id='$r_id',emp_id='$e_id',time_in='$ti',time_out='$to',date='$date',u_code='$unique_code',Status='$room_status' WHERE id='$id'";
         echo $SQL;
         mysqli_query($con,$SQL)or die('Error:'.mysqli_error());
-
+        
         mysqli_close($con);
         echo "SESSION IS 3";
 
         $_SESSION["count"] = 1;
         $_SESSION["selected"] = "none";
-//save
-        header('location:schedtable.php');
+//save  
+        header('location:update_room.php');
     }
     else if ($_SESSION["count"] == 2){
         echo " if 2 Selected=".$_SESSION["selected"]. " ". "Previous=". $_SESSION["previous"];
