@@ -13,27 +13,32 @@
             date_default_timezone_set('Asia/Manila');
             $date_current = date('Y-m-d');
             $time_current = date('H:i:s');
+            $time_plus = date('H:i:s', strtotime("+30 minutes", $time_current));
             $SQL = "SELECT * FROM tbl_sched WHERE room_id='$roomid'";
             $res = mysqli_query($con, $SQL);
             $count = mysqli_num_rows($res);
             $i = -1;
             if ($date < $date_current){
                     $_SESSION['uerror']= 'wrongdate';   
-                    header('location:addsched.php');
+                    header('location:addsched_user.php');
                     }
             else if ($date == $date_current){
                 if ($time_in < $time_current OR $time_out < $time_current){
                     $_SESSION['uerror']= 'wrongtime'; 
-                    header('location:addsched.php');
+                    header('location:addsched_user.php');
                     }
-                    else if ($time_out < $time_in){
+                else if ($time_out < $time_in){
                     $_SESSION['uerror']= 'wrongtime';  
-                    header('location:addsched.php');
+                    header('location:addsched_user.php');
+                    }
+                else if ($time_in >= $time_current OR $time_in <= $time_plus){
+                    $_SESSION['error']= 'wrongtime';  
+                    header('location:addsched_user.php');
                     }
             }
             else if ($time_out < $time_in){
                     $_SESSION['uerror']= 'wrongtime';  
-                    header('location:addsched.php');
+                    header('location:addsched_user.php');
                     }
             else{      
             while($row = mysqli_fetch_array($res))
