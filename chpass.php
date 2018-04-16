@@ -45,7 +45,7 @@
                         }
                         else
                         {
-                        $SQL = "UPDATE accounts SET Acc_Pass='$newpass' WHERE Acc_Uname='$user'";
+                        $SQL = "UPDATE accounts SET Acc_Pass='$newpass',count='0' WHERE Acc_Uname='$user'";
                         $res = mysqli_query($con, $SQL);
                         mysqli_close($con);
                         $_SESSION['changed'] = 1;

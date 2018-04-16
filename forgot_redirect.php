@@ -60,6 +60,22 @@
                     
                     <div class="form_container">
                         <p class="text">Please check your email for the password.</p>
+                        <?php
+                        session_start();
+                        include 'connect.php';
+                        $email = $_SESSION['user_email'];
+                        $SQL = "SELECT * FROM employee WHERE Emp_Email = '$email'";
+                        $result_set = mysqli_query($con,$SQL);
+                        $row = mysqli_fetch_array($result_set);
+                        $emp_id = $row['Employee_ID'];
+                        $SQL1 = "UPDATE accounts SET count='1' WHERE Employee_ID = '$emp_id'";
+                        $result_set1 = mysqli_query($con,$SQL1);
+                        
+                        $SQL2 = "SELECT * FROM accounts WHERE Employee_ID = '$emp_id'";
+                        $result_set2 = mysqli_query($con,$SQL2);
+                        $row1 = mysqli_fetch_array($result_set2);
+                        $_SESSION['counter'] = $row1['count'];
+                        ?>
                         <a href = "login_page.php" class="button btn btn-primary"  name="login_redirect">Login</a>
                         <a href = "forgotpassword.php" class="button btn btn-danger"  name="resend_button">Resend  </a>
                     </div>

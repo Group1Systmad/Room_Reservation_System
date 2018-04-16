@@ -14,6 +14,7 @@ ini_set("smtp_port","465");
      
      if ($numrows == 1) {
          //insert code to email here
+         
          $password = generatePassword();
          $mailcontent = "<html><body><center><p>Your password has been reset. Please use the following code as your temporary password</p><h1>$password</h1></center></body></html>";
          $subject = "Password Reset Email";
