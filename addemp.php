@@ -129,7 +129,7 @@ session_start();
                 </div>
                 <div class="col-md-2">
                     <label for="gender_input">Gender</label>
-                    <SELECT class="form-control" id="gender_input" NAME="gender">
+                    <SELECT class="form-control" id="gender" NAME="gender">
                         <OPTION>Male
                         <OPTION>Female
                     </SELECT>
@@ -138,7 +138,7 @@ session_start();
             <div class="form-group row">
                 <div class="col-md-4">
                     <label for="input_address">Address</label>
-                    <INPUT class="form-control" TYPE="text" NAME="txtAddress" ID="txtAdress">
+                    <INPUT class="form-control" TYPE="text" NAME="txtAddress" ID="txtAddress">
                 </div>
                 <div class="col-md-4">
                     <label for="contact_number">Contact Number</label>
