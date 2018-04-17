@@ -57,6 +57,9 @@ session_start();
     .btn{
         width: 100%;
     }
+    label{
+        color: #fff;
+    }
 </style>
 </head>
 <body>
@@ -96,26 +99,31 @@ session_start();
             <div class="child">    
             <div class="form-group row">
                 <div class="col-md-12">
+                    <label for="txtrid">Room Number</label>
                     <input class="form-control" type="text" name="txtrid" value="<?php echo $_SESSION['rid'];?>" id="txtrid" placeholder="Room Number">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
+                    <label for="txteid">Employee ID</label>
                     <input class="form-control" type="text" name="txteid" value="<?php echo $_SESSION['eid'];?>" id="txteid" placeholder="Employee ID" required="true">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
+                    <label for="txtti">Time In</label>
                     <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['timein'];?>" id="txtti">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
+                    <label for="txtto">Time Out</label>
                     <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['timeout'];?>" id="txtto">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
+                    <label for="txtd">Date</label>
                     <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['date'];?>" id="txtd">
                 </div>
             </div>
@@ -125,8 +133,8 @@ session_start();
                     <?php
                         $random = rand(10000,99999); 
                     ?>
+                    <label for="txtuc">Unique Code</label>
                     <input class="form-control" id="txtuc" name="txtuc" value=<?php echo $random;?>  readonly>
-                   
                 </div>
             </div>
             <div class="form-group row">

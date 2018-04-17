@@ -152,7 +152,7 @@ abnav {
         <p class="title" style="color:  #ff7a24;font-size: 11px;">Back End Programmer</p>
                 <div style="margin: 10px; text-decoration: none;font-size: 10px;color: black;">
                      <a href="http://twitter.com/APaciteng" target="_blank"><i class="fa fa-twitter"></i></a>  
-                     <a href="http://facebook.com/"><i class="fa fa-facebook"></i></a> 
+                     <a href="http://facebook.com/alain.paciteng"><i class="fa fa-facebook"></i></a> 
                         </div>
         <p><button style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;">Email</button></p>
                 </div>
@@ -174,7 +174,7 @@ abnav {
         <p class="title" style="color:  #ff7a24;font-size: 11px;">Database & Hardware Developer</p>
                 <div style="margin: 10px; text-decoration: none;font-size: 10px;color: black;">
                      <<a href="http://twitter.com/loriaffe" target="_blank"><i class="fa fa-twitter"></i></a>  
-                     <a href="http://facebook.com/"><i class="fa fa-facebook"></i></a> 
+                     <a href="http://facebook.com/loriaffe"><i class="fa fa-facebook"></i></a> 
                         </div>
         <p><button style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;">Email</button></p>
                 </div>
@@ -184,8 +184,8 @@ abnav {
         <div class="ourname" style="padding-top: 10px; font-family: Lucida Console, fantasy; color: #000000; font-size: 24px;"> Mar Serrano</div>
         <p class="title" style="color:  #ff7a24;font-size: 11px;">Software Developer</p>
                 <div style="margin: 10px; text-decoration: none;font-size: 10px;color: black;">
-                     <a href="http://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>  
-                     <a href="http://facebook.com/"><i class="fa fa-facebook"></i></a> 
+                     <a href="http://twitter.com/MCFSOfficial" target="_blank"><i class="fa fa-twitter"></i></a>  
+                     <a href="http://facebook.com/marchristian.serrano"><i class="fa fa-facebook"></i></a> 
                         </div>
         <p><buttona style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;">Email</buttona></p>
                 </div>
@@ -196,7 +196,7 @@ abnav {
         <p class="title" style="color:  #ff7a24;font-size: 11px;">Scrum Master & Project Manager</p>
                <div style="margin: 10px; text-decoration: none;font-size: 10px;color: black;">
                      <a href="http://twitter.com/MarjayGab" target="_blank"><i class="fa fa-twitter"></i></a>  
-                     <a href="http://facebook.com/"><i class="fa fa-facebook"></i></a> 
+                     <a href="http://facebook.com/frozenpenofmind"><i class="fa fa-facebook"></i></a> 
                         </div>
         <p><button style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;"> Email</button></p>
                 </div>
