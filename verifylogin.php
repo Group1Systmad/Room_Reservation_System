@@ -24,7 +24,7 @@ if ($count == 1)
     $_SESSION['timeout'] = "";
     $_SESSION['date'] = "";
     $_SESSION['acctype'] = 'admin';
-        if ($_SESSION['counter'] == 1){
+        if ($row['count'] == 1){
             header('location:change_pass.php');
         }
         else {
@@ -41,13 +41,13 @@ if ($count == 1)
     $_SESSION['udate'] = "";
     $_SESSION['username'] = $un;
      $_SESSION['acctype'] = 'user';
-     if ($_SESSION['counter'] == 1){
+     if ($row['count'] == 1){
             header('location:change_pass.php');
         }
         else {
             header('location:userpage.php');
         }
-    }
+   
     }
         
   else
@@ -55,6 +55,6 @@ if ($count == 1)
       $_SESSION["incorrect"] = true;
      header('location:login_page.php');
   }
-  
+  }
   mysqli_close($con);
 ?>
