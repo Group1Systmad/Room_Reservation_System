@@ -105,19 +105,19 @@ if (isset($_SESSION["count"])){
 }
 ?>
 
-<div class="sidebar">
+<<div class="sidebar">
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
-        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></li>
-        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
-        <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
-        <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
-        <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
+        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
+        <li><div class="selected"><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>
+        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
+        <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
     </ul>
 </div>
     
 <div class="container">
-        <form class="form_container" name="addroomlist" method="post" action="addroom.php">
+        <form class="form_container" name="addroomlist_user" method="post" action="addroom.php">
             <div class="child">    
             <div class="form-group row">
                 <div class="col-md-6">
@@ -127,11 +127,10 @@ if (isset($_SESSION["count"])){
             </div>
             
             <div class="form-group row">
-                
+                <?php
+                    $_SESSION['type'] = 'user';
+                ?>
                 <div class="col-md-3">
-                    <?php
-                    $_SESSION['type'] = 'admin';
-                    ?>
                     <input class="btn btn-primary" type="submit" value="Save">
                 </div>
                 <div class="col-md-3">

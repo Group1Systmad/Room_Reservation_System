@@ -8,16 +8,18 @@ $res = mysqli_query($con, $SQL);
 $count = mysqli_num_rows($res);
     if ($count == 1){
         $_SESSION['same'] = true;
-        header('location:addroomlist.php');
+        if ($_SESSION['type']=='admin'){
+        header('location:addroomlist.php');}
+        else if ($_SESSION['type']=='user'){
+        header('location:addroomlist_user.php');}
     }
     else {
         $SQL1 = "INSERT INTO tbl_roomlist(room_id) VALUES('$room_id')";
         mysqli_query($con, $SQL1);
-        $SQL3 = "SELECT * FROM tbl_roomlist";
-        $res3 = mysqli_query($con, $SQL3);
-        $nr = mysqli_num_rows($res3);
-        $_SESSION['numrooms'] = $nr;
-        header('location:homepage.php');
+        if ($_SESSION['type']=='admin'){
+        header('location:homepage.php');}
+        else if ($_SESSION['type']=='user'){
+        header('location:userpage.php');}
     }
 
         mysqli_close($con);
