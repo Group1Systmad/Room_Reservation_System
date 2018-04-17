@@ -34,7 +34,7 @@ session_start();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
      <link rel="stylesheet" href="mika/about.css" type="text/css">
-
+     
 <style>
     .container{
         width: 50%;
@@ -59,6 +59,9 @@ session_start();
     .btn{
         width: 100%;
     }
+    label{
+        color: #fff;
+    }
 </style>
 </head>
 <body>
@@ -82,8 +85,10 @@ session_start();
             <div class="center"> <img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="border-radius: 100%; max-height: 90px;">
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
-            <a href="admin_account.php">Account Info</a> 
-             <div class="logoutbtn"> <a onclick="return logout()" href="login_page.php">Logout</a></div>
+            <hr>
+            <a class="hoverable" href="user_account.php">Account Info</a> 
+            <a class="hoverable" href="change_pass.php">Change Password</a> 
+            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
 </div>
     
@@ -103,6 +108,7 @@ session_start();
             <div class="child">
             <div class="form-group row">
                 <div class="col-md-12">
+                    <label for="txtrid">Room Number</label>
                     <input class="form-control" type="text" name="txtrid" value="<?php echo $_SESSION['urid'];?>" id="txtrid" placeholder="Room Number">
                 </div>
             </div>
@@ -114,30 +120,34 @@ session_start();
                     $res = mysqli_query($con, $SQL);
                     $row= mysqli_fetch_array($res);
                     ?>
+                    <label for="txteid">Employee ID</label>
                     <input class="form-control" id="txteid" name="txteid" value=<?php echo $row['Employee_ID'];?>  readonly>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
+                    <label for="txtti">Time In</label>
                      <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['utimein'];?>" id="txtti">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
+                    <label for="txtto">Time Out</label>
                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['utimeout'];?>" id="txtto">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
+                    <label for="txtd">Date</label>
                     <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['udate'];?>" id="txtd">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-
                     <?php
                         $random = rand(10000,99999); 
                     ?>
+                    <label for="txtuc">Unique Code</label>
                     <input class="form-control" id="txtuc" name="txtuc" value=<?php echo $random;?>  readonly>
                     
                 </div>
