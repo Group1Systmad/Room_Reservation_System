@@ -47,7 +47,7 @@ if ($count == 1)
         else {
             header('location:userpage.php');
         }
-   
+    }
     }
         
   else
@@ -55,6 +55,6 @@ if ($count == 1)
       $_SESSION["incorrect"] = true;
      header('location:login_page.php');
   }
-  }
+  
   mysqli_close($con);
 ?>

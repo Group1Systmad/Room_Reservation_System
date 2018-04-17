@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2018 at 04:44 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Generation Time: Apr 17, 2018 at 07:31 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,17 +33,20 @@ CREATE TABLE `accounts` (
   `Employee_ID` int(11) NOT NULL,
   `Acc_Uname` varchar(50) NOT NULL,
   `Acc_Pass` varchar(50) NOT NULL,
-  `acc_type` varchar(5) NOT NULL
+  `acc_type` varchar(5) NOT NULL,
+  `count` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`Account_ID`, `Employee_ID`, `Acc_Uname`, `Acc_Pass`, `acc_type`) VALUES
-(1, 2122, 'marserrano', '12345', 'admin'),
-(3, 123, 'marjaygab1', '123456', 'user'),
-(4, 678, 'mishelkate', '12345', '');
+INSERT INTO `accounts` (`Account_ID`, `Employee_ID`, `Acc_Uname`, `Acc_Pass`, `acc_type`, `count`) VALUES
+(1, 2122, 'marserrano', '1234', 'admin', 0),
+(3, 123, 'marjaygab1', '123456', 'user', 0),
+(4, 678, 'mishelkate', '12345', '', 0),
+(5, 2014164791, 'alaindannpaciteng', 'nexus777esports', '', 0),
+(123456, 1234567890, 'user', 'password', 'user', 0);
 
 -- --------------------------------------------------------
 
@@ -70,7 +73,8 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`Employee_ID`, `Emp_FN`, `Emp_LN`, `Emp_Address`, `Emp_Age`, `Emp_Department`, `Emp_Email`, `Emp_Gender`, `Emp_CNumber`, `Emp_Photo`) VALUES
 (2122, 'Mar', 'Serrano', 'Sampaguita', 20, 'CpE', 'mar@gmail.com', 'Male', '639208434262', '59641db9ac.jpg'),
-(123, 'Marjay', 'Tapay', '085,', 19, 'Technical', 'tapaymarjay@gmail.com', 'Male', '639153591108', '87f599d129.jpg');
+(123, 'Marjay', 'Tapay', '085,', 19, 'Technical', 'tapaymarjay@gmail.com', 'Male', '639153591108', '87f599d129.jpg'),
+(1234567890, 'alain', 'dann', 'alaindannpaciteng@gmail.com', 20, '', 'alaindannpaciteng@gmail.com', 'men', '', '');
 
 -- --------------------------------------------------------
 
@@ -144,7 +148,7 @@ ALTER TABLE `tbl_sched`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `Account_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Account_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123457;
 --
 -- AUTO_INCREMENT for table `tbl_sched`
 --
