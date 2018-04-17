@@ -12,7 +12,7 @@ $pass = $_POST['txtPass'];
 $contact = $_POST['txtContactNumber'];
 include 'connect.php';
 
-$SQL = "INSERT INTO employee(Employee_ID,Emp_FN,Emp_LN,Emp_Address,Emp_Age,Emp_Department,Emp_Email,Emp_Gender,Emp_CNumber)VALUES('$idno','$fn','$ln','$add','$age','$dept','$email','$gen','$contact')";
+$SQL = "INSERT INTO employee(Employee_ID,Emp_FN,Emp_LN,Emp_Address,Emp_Age,Emp_Department,Emp_Email,Emp_Gender,Emp_CNumber) VALUES('$idno','$fn','$ln','$add','$age','$dept','$email','$gen','$contact')";
 $SQL2 = "INSERT INTO accounts(Employee_ID,Acc_Uname,Acc_Pass) VALUES('$idno','$uname','$pass')";
 
 mysqli_query($con,$SQL);
