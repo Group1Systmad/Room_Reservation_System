@@ -5,11 +5,9 @@ session_start();
 <head>
     <title>Home Page</title>
     <script type="text/javascript">
-
         function logout()
         {
 	     var confirmdel = confirm("Confirm Log Out?");
-
 	     if (confirmdel==true)
 	     {
 	     	return true;
@@ -19,7 +17,6 @@ session_start();
 	     	return false;
 	     }
         }
-        
    function openaccNav() {
              document.getElementById("myAccountnav").style.width = "250px";
              document.getElementById("myAccountnav").style.border = "1px solid black";
@@ -54,6 +51,7 @@ session_start();
         <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></li>
     </ul>
 </div>
     
