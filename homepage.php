@@ -102,7 +102,8 @@ session_start();
                 ?>
             </h1>
             <p>rooms are reserved</p>
-            <a href="addroomlist.php">Add New Room</a>
+            <a href="addroomlist.php">Add New Room</a><br>
+            <a href="roomlist.php">View Rooms<a/>
         </div>
         <div class="table_view col-md-9">
             <table class="table">

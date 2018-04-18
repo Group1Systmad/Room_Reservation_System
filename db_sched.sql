@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2018 at 07:31 AM
+-- Generation Time: Apr 18, 2018 at 05:18 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -99,6 +99,20 @@ CREATE TABLE `tbl_room` (
 
 INSERT INTO `tbl_room` (`room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`, `time_millis`) VALUES
 ('699', '1234', '09:00:00', '09:01:00', '2018-04-03', '17074', 1, 60000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_roomlist`
+--
+
+CREATE TABLE `tbl_roomlist` (
+  `room_id` varchar(5) NOT NULL,
+  `room_name` varchar(30) NOT NULL,
+  `room_bldg` varchar(30) NOT NULL,
+  `room_floor` varchar(30) NOT NULL,
+  `mac_address` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
