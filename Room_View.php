@@ -123,6 +123,15 @@ session_start();
 </div>
         
         <div class="container cont">
+            <tr>
+		<td COLSPAN=8>
+		<form NAME="searchArea" METHOD="POST" ACTION="">
+			<label>Search by Room ID:</label>
+			<input TYPE="text" ID="txtSearchLN" NAME="txtSearchLN">
+                        <input TYPE="submit" VALUE=" Search ">
+		</form>
+		</td>
+	</tr>
             <table class="table">
                 <tr class="headers" style="color:#00b3b3">
                     <td id="delete">Delete</td>
@@ -133,8 +142,64 @@ session_start();
                     <td id="room_flr">Room Floor</td>
                     <td id="room_mac">MAC Address</td>
             </tr>
-            </table>
-        </div>
+            <?php
+                include 'connect.php';
+
+                if (!isset($_POST['txtSearchLN']))
+                  {
+                     $_POST['txtSearchLN'] = "undefined";
+                  }
+
+                $searchLN = $_POST['txtSearchLN'];
+
+
+                if ($searchLN=="undefined")
+                 {
+                   $SQL = mysqli_query($con,"SELECT * FROM tbl_roomlist ORDER BY room_id");
+
+                 }
+                else 
+                 {
+                   $SQL=mysqli_query($con,"SELECT * FROM tbl_roomlist WHERE room_id LIKE '$searchLN%'");
+                 }
+
+                while($row=mysqli_fetch_array($SQL))
+                        {
+                 ?><!--end of first php -->
+                        <tr>
+                                <td ALIGN="CENTER"><a onclick="return Del()" href="delete_room.php?SID=<?php echo $row['room_id']; ?>">Delete</a></td>
+                                <td ALIGN="CENTER"><a href="edit_room.php?SID=<?php echo $row['room_id']; ?>">Edit</a></td>
+                                <td><?php echo $row['room_id']; ?></td>
+                                <td><?php echo $row['room_name']; ?></td>
+                                <td><?php echo $row['room_bldg']; ?></td>
+                                <td><?php echo $row['room_floor']; ?></td>
+                                <td><?php echo $row['mac_address']; ?></td>
+
+                        </tr>
+
+                        <?php //open of second php
+                        }//close of while
+
+
+                        mysqli_close($con);
+
+  
+
+                        ?><!-- close of second php -->
+                        </table>
+        <a href="addroomlist.php"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Room</button></a><br>
+                            <font size="4" face="arial"  color="blue">
+                            <?php
+                           include 'connect.php';
+
+                            $result = mysqli_query($con,"SELECT * FROM tbl_roomlist ");
+                          $rows = mysqli_num_rows($result);
+                           echo "<br>";
+                            echo "There are " . $rows . " record(s) in the table. ";
+                                  mysqli_close($con);
+                              ?>
+                              </font>
+                </div>
         
         
         

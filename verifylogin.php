@@ -1,9 +1,9 @@
 <?php
 session_start();
 include 'connect.php';
-$_SESSION['incorrect'] = $un;
 $un = $_POST['uname'];
 $pw = $_POST['pword'];
+$_SESSION['incorrect'] = $un;
 
 $SQL ="SELECT * FROM accounts WHERE Acc_Uname='$un' AND Acc_Pass='$pw'";
 

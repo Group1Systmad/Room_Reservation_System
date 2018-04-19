@@ -19,7 +19,7 @@
 </head>
 <body>
 <center>
-<table WIDTH=50% BORDER=1>
+<table>
 	<tr>
 		<td COLSPAN=8 ALIGN="CENTER">List of Rooms</td>
 	</tr>

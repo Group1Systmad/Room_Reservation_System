@@ -179,8 +179,10 @@ session_start();
                 <?php }?>
                 
             </div>
+            </div>
         </form>
 
+</div>
 </div>
              <?php
                 if ($_SESSION['error']== 'wrongdate'){

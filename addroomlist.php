@@ -112,7 +112,8 @@ if (isset($_SESSION["count"])){
         <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
         <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
-        <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
+        <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li><div class="selected"><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></div></li>
     </ul>
 </div>
     
@@ -120,28 +121,52 @@ if (isset($_SESSION["count"])){
         <form class="form_container" name="addroomlist" method="post" action="addroom.php">
             <div class="child">    
             <div class="form-group row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label for="txtrid">Room ID:</label>
                     <input class="form-control" type="text" name="txtrid" id="txtrid" placeholder="Room Number">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <label for="txtrn">Room Name:</label>
+                    <input class="form-control" type="text" name="txtrn" id="txtrn" placeholder="Room Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <label for="txtrb">Room Building:</label>
+                    <input class="form-control" type="text" name="txtrb" id="txtrb" placeholder="Room Building">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <label for="txtrf">Room Floor:</label>
+                    <input class="form-control" type="text" name="txtrf" id="txtrf" placeholder="Room Floor">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <label for="txtrma">Room MAC Address:</label>
+                    <input class="form-control" type="text" name="txtrma" id="txtrma" placeholder="Room MAC Address">
                 </div>
             </div>
             
             <div class="form-group row">
                 
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <?php
                     $_SESSION['type'] = 'admin';
                     ?>
                     <input class="btn btn-primary" type="submit" value="Save">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <input class="btn btn-danger" type="submit" value="Cancel">
                 </div>
                 
             </div>
-        </form>
 
 </div> 
+</form>
             
 </div> 
             <?php

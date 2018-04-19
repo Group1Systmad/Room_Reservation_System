@@ -14,6 +14,6 @@ mysqli_query($con,$SQL)or die('Error:'.mysqli_error($con));
 
 mysqli_close($con);
 
-header('location:roomlist.php');
+header('location:Room_View.php');
 ?>
 

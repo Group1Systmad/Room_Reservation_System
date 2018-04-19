@@ -134,6 +134,13 @@ session_start();
                         <OPTION>Female
                     </SELECT>
                 </div>
+                <div class="col-md-2">
+                    <label for="type_input">Type</label>
+                    <SELECT class="form-control" id="type" NAME="type">
+                        <OPTION>User
+                        <OPTION>Admin
+                    </SELECT>
+                </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-4">
