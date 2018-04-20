@@ -7,5 +7,5 @@ mysqli_query($con,$SQL);
 
 mysqli_close($con);
 
-header('location:roomlist.php');
+header('location:Room_View.php');
 ?>

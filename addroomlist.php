@@ -120,21 +120,48 @@ if (isset($_SESSION["count"])){
         <form class="form_container" name="addroomlist" method="post" action="addroom.php">
             <div class="child">    
             <div class="form-group row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label for="txtrid">Room ID:</label>
                     <input class="form-control" type="text" name="txtrid" id="txtrid" placeholder="Room Number">
                 </div>
             </div>
-            
             <div class="form-group row">
-                
-                <div class="col-md-3">
+                        <div class="col-md-12">
+                            <label for="roomid">Room Name</label>
+                            <input class="form-control" TYPE="text" NAME="roomname" ID="roomname">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="roomid">Room Building</label>
+                            <input class="form-control" TYPE="text" NAME="roombldg" ID="roombldg">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="roomid">Room Floor</label>
+                            <input class="form-control" TYPE="text" NAME="roomfloor" ID="roomfloor">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="roomid">MAC Address</label>
+                            <input class="form-control" TYPE="text" NAME="macaddr" ID="macaddr">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                          <input TYPE="hidden" ID="hid" NAME="hid" VALUE="<?php echo $rid; ?>">
+                        </div>
+                    </div>
+            <div class="form-group row">
+                <div class="col-md-6">
                     <?php
                     $_SESSION['type'] = 'admin';
                     ?>
                     <input class="btn btn-primary" type="submit" value="Save">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <input class="btn btn-danger" type="submit" value="Cancel">
                 </div>
                 

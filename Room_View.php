@@ -17,6 +17,9 @@ session_start();
         text-align: center;
    
     }
+    #headers{
+        border: 0px;
+    }
     .cont{
              margin-right: 2%;
         margin-left: 10%;
@@ -30,6 +33,9 @@ session_start();
         text-align: center;
        
     }
+    #addroom{
+        display: block;
+    }
     #delete,#edit{
         width: 50px;
     }
@@ -37,6 +43,12 @@ session_start();
         width: 100px;
     }
     #room_bldg{
+        width: 200px;
+    }
+    #container-table{
+        margin-top: 3%;
+    }
+    #room_name{
         width: 200px;
     }
     .glyphicon-remove{
@@ -52,7 +64,7 @@ session_start();
         text-align: center;
     }
      #room_id{
-        width: 50px;
+        width: 100px;
     }
     #emp_id{
         width: 80px;
@@ -122,8 +134,24 @@ session_start();
             </div>
 </div>
         
-        <div class="container cont">
+        <div class="container cont" id="container-table">
             <table class="table">
+            
+             <tr>
+                 <td id="headers" COLSPAN=8>	
+                    Not in the List?
+                    <a href="addroomlist.php" id="addroom"><button class="btn btn-danger">Add Room</button></a>
+		</td>
+            </tr>       
+                 <tr>
+		<td id="headers" COLSPAN=8>
+		<form NAME="searchArea" METHOD="POST" ACTION="">
+			<label>Search by Room ID:</label>
+			<input TYPE="text" ID="txtSearchLN" NAME="txtSearchLN">
+                        <input class="btn btn-primary search_button" TYPE="submit" VALUE=" Search ">
+		</form>
+		</td>
+            </tr>   
                 <tr class="headers" style="color:#00b3b3">
                     <td id="delete">Delete</td>
                     <td id="edit">Edit</td>
@@ -133,6 +161,38 @@ session_start();
                     <td id="room_flr">Room Floor</td>
                     <td id="room_mac">MAC Address</td>
             </tr>
+            <?php
+include 'connect.php';
+if (!isset($_POST['txtSearchLN']))
+  {
+     $_POST['txtSearchLN'] = "undefined";
+  }
+$searchLN = $_POST['txtSearchLN'];
+if ($searchLN=="undefined")
+ {
+   $SQL = mysqli_query($con,"SELECT * FROM tbl_roomlist ORDER BY room_id");  
+ }
+else 
+ {
+   $SQL=mysqli_query($con,"SELECT * FROM tbl_roomlist WHERE room_id LIKE '$searchLN%'");
+ }
+while($row=mysqli_fetch_array($SQL))
+	{
+ ?>
+	<tr>
+		<td ALIGN="CENTER"><a onclick="return Del()" href="delete_room.php?SID=<?php echo $row['room_id']; ?>">Delete</a></td>
+		<td ALIGN="CENTER"><a href="edit_room.php?SID=<?php echo $row['room_id']; ?>">Edit</a></td>
+		<td><?php echo $row['room_id']; ?></td>
+		<td><?php echo $row['room_name']; ?></td>
+		<td><?php echo $row['room_bldg']; ?></td>
+		<td><?php echo $row['room_floor']; ?></td>
+		<td><?php echo $row['mac_address']; ?></td>
+               
+	</tr>
+	<?php //open of second php
+	}//close of while
+	mysqli_close($con);
+	?><!-- close of second php -->
             </table>
         </div>
         
