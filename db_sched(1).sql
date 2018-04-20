@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2018 at 08:05 AM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Generation Time: Apr 18, 2018 at 05:18 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -98,7 +98,7 @@ CREATE TABLE `tbl_room` (
 --
 
 INSERT INTO `tbl_room` (`room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`, `time_millis`) VALUES
-('208', '2122', '13:40:00', '13:57:00', '2018-04-20', '21882', 1, 1020000);
+('699', '1234', '09:00:00', '09:01:00', '2018-04-03', '17074', 1, 60000);
 
 -- --------------------------------------------------------
 
@@ -108,20 +108,11 @@ INSERT INTO `tbl_room` (`room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_c
 
 CREATE TABLE `tbl_roomlist` (
   `room_id` varchar(5) NOT NULL,
-  `room_name` varchar(100) NOT NULL,
-  `room_bldg` varchar(100) NOT NULL,
-  `room_floor` varchar(50) NOT NULL,
-  `mac_address` varchar(100) NOT NULL
+  `room_name` varchar(30) NOT NULL,
+  `room_bldg` varchar(30) NOT NULL,
+  `room_floor` varchar(30) NOT NULL,
+  `mac_address` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_roomlist`
---
-
-INSERT INTO `tbl_roomlist` (`room_id`, `room_name`, `room_bldg`, `room_floor`, `mac_address`) VALUES
-('208', 'CpE Lab', 'Mabini Building', '2', 'DEAD:BEEF:FEED'),
-('510', 'Computer Laboratory', 'Mabini Building', '5', 'FFFF:ED23:WQPR'),
-('509', 'Mobile Laboratory', 'Mabini Building', '5', 'DDDD:1234:CBDA');
 
 -- --------------------------------------------------------
 
@@ -145,7 +136,7 @@ CREATE TABLE `tbl_sched` (
 --
 
 INSERT INTO `tbl_sched` (`id`, `room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`) VALUES
-(30, '208', '2122', '13:40:00', '13:57:00', '2018-04-20', '21882', 1);
+(29, '699', '1234', '09:00:00', '09:01:00', '2018-04-03', '17074', 1);
 
 --
 -- Indexes for dumped tables
@@ -176,7 +167,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `tbl_sched`
 --
 ALTER TABLE `tbl_sched`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
