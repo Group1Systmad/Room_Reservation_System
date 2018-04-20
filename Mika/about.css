@@ -4,11 +4,11 @@
     position: fixed;
     align-content: center;
     z-index: 1;
-    left: 4%;
+    left: 4.5%;
     background-color: #2d4483;
     overflow-x: hidden;
     transition: 1s;
-    padding-top: 45px;
+    padding-top: 15px;
 }
 
 .accnav .hoverable {

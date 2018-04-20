@@ -1,15 +1,15 @@
 <?php
 session_start();
 include 'connect.php';
-$_SESSION['incorrect'] = $un;
 $un = $_POST['uname'];
 $pw = $_POST['pword'];
-
+$_SESSION['incorrect'] = $un;
+ 
 $SQL ="SELECT * FROM accounts WHERE Acc_Uname='$un' AND Acc_Pass='$pw'";
-
+ 
 $result = mysqli_query($con,$SQL);
 $row= mysqli_fetch_array($result);
-
+ 
 $count = mysqli_num_rows($result); //recordcount
 //verifylogin.php
 if ($count == 1)
@@ -22,7 +22,7 @@ if ($count == 1)
     $_SESSION['rid'] = "";
     $_SESSION['timein'] = "";
     $_SESSION['timeout'] = "";
-    $_SESSION['date'] = "";
+     $_SESSION['date'] = "";
     $_SESSION['acctype'] = 'admin';
         if ($row['count'] == 1){
             header('location:change_pass.php');
@@ -44,7 +44,7 @@ if ($count == 1)
      if ($row['count'] == 1){
             header('location:change_pass.php');
         }
-        else {
+         else {
             header('location:userpage.php');
         }
    

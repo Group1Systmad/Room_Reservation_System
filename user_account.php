@@ -74,6 +74,7 @@ session_start();
         padding: 0 0;
 
     }*/
+    * {box-sizing: border-box;}
     
     .portrait{
                 margin: 0 auto;
@@ -82,14 +83,14 @@ session_start();
                 position: absolute;
                 padding-bottom: 50px;
             }
-            .icon_portrait{
-                margin-top: 50px;
-                border-radius: 100%;
-                height: 200px;
-/*                width: 200px;*/
-                max-height: 200px;
-                border: 5px solid #fff;
-            }
+            
+            .imgcont{
+                position: relative;
+                margin: auto;
+                padding-top: 90px;
+                width:200px;
+                }
+            
             .cover{
                 width: 100%;
                 height: 150px;
@@ -128,9 +129,57 @@ session_start();
             #account_type{
                 text-transform: capitalize;
             }
+            .overlay {
+            position:absolute;
+            width: 200px;
+            border-radius: 0 0 200px 200px;
+            height: 100px;
+            bottom:0;
+            background: rgb(0, 0, 0);
+            background: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1; 
+            padding:20px;
+            transition: .5s ease;
+            opacity:0;
+            color: white;
+            font-size: 15px;
+            padding-top: 50px;
+            }
+
+            .imgcont:hover .overlay {
+            opacity: 1;
+}
+        
 </style>
 <script type="text/javascript">
-	function del()
+     window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var n= today.getMonth();
+    var o= today.getDate();
+    if (h>12){h= h-12; }
+    h = checkTime(h);
+    m = checkTime(m);
+    n = n+1;
+    n = checkTime(n);
+    o = checkTime(o);
+     document.getElementById('time').innerHTML =
+     h + ":" + m 
+     document.getElementById('date').innerHTML =
+     n + "/" + o 
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}	
+	
+    function del()
 	  {
 	     var confirmdel = confirm("Confirm Delete?");
 
@@ -168,9 +217,26 @@ session_start();
             document.getElementById("myAccountnav").style.border = "none";
 }
 
+function PopupCenter(url, title, w, h) {  
+    // Fixes dual-screen position                         Most browsers      Firefox  
+    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
+    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;  
+              
+    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
+    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
+              
+    var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
+    var top = ((height / 2) - (h / 2)) + dualScreenTop;  
+    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
+  
+    // Puts focus on the newWindow  
+    if (window.focus) {  
+        newWindow.focus();  
+    }  
+}  
 </script>
 </head>
-<body>
+<body onload="startTime()">
 
 //<?php
 //if (isset($_SESSION["count"])){
@@ -214,7 +280,8 @@ if ($_SESSION['acctype'] == 'user') {
     $sidebar .= '<li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>';
     $sidebar .= '<li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>';
     $sidebar .= '<li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>';
-    $sidebar .= '</ul>';
+    $sidebar .= '<li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>';
+    $sidebar .='<li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>';
     $sidebar .= '</div>';
     echo $sidebar;
 }else{
@@ -227,7 +294,8 @@ if ($_SESSION['acctype'] == 'user') {
     $sidebar .= '<li><a href="aboutusadmin.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>';
      $sidebar .= '<li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>';
     $sidebar .= '<li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>';
-    $sidebar .= '</ul>';
+    $sidebar .= '<li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>';
+    $sidebar .='<li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>';
     $sidebar .= '</div>';
     echo $sidebar;
 }
@@ -243,65 +311,7 @@ if ($_SESSION['acctype'] == 'user') {
         </form>         
          
      </div>-->
-    
- <div class="center"> 
-             <?php
-            include 'connect.php';
-            $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
-            $res = mysqli_query($con, $sql);
-            $row = mysqli_fetch_array($res);
-            $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
-            $res1 = mysqli_query($con, $sql1);
-            $row1 = mysqli_fetch_array($res1);
-            function changeimage($empno,  $file_temp, $file_extn){
-            include 'connect.php';
-            $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
-            $res = mysqli_query($con, $sql);
-            $row = mysqli_fetch_array($res);
-            $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
-            $res1 = mysqli_query($con, $sql1);
-            $row1 = mysqli_fetch_array($res1);
-            $file_path = 'E:/xampp/htdocs/Room_Reservation_System/' . substr(md5(time()), 0, 10) . '.' . $file_extn;
-            $file_photo = substr(md5(time()), 0, 10) . '.' . $file_extn;
-            if (move_uploaded_file($file_temp, $file_path)) {
-                echo "<P>Profile picture updated successfully!</P>";
-                $SQL= "UPDATE employee SET Emp_Photo='$file_photo' WHERE Employee_ID='".$row['Employee_ID']."'";
-                echo $row['Employee_ID'];
-                echo $SQL;
-                    mysqli_query($con,$SQL)or die('Error:'.mysqli_error($con));
-                    mysqli_close($con);
-                }
-            else {
-               echo "<P>Upload failed! Please select a file lower than 2MB</P>";}
-                 
-       }
-     
-       
-      if (isset($_FILES['profile']) === TRUE){
-          if (empty($_FILES['profile']['name']) === TRUE){
-              echo 'Please choose a file';
-          }
-          else {
-              $allowed = array('jpg','jpeg','gif', 'png');
-                      $file_name = $_FILES['profile']['name'];
-                      $explode = explode('.', $file_name);
-                      $end = end($explode);
-                      
-                      $file_extn = strtolower($end);
-                      $file_temp = $_FILES['profile']['tmp_name'];
-                      
-                      if (in_array($file_extn, $allowed) === true){
-                           changeimage($row['Employee_ID'],  $file_temp, $file_extn);
-                      }
-                     else {                          
-                         echo 'Incorrect file type! Allowed: ';
-                         echo implode(', ', $allowed);                        
-                     }            
-          }
-      }
-
-       ?>
- </div>
+ 
      
         <?php
             include 'connect.php';
@@ -319,23 +329,20 @@ if ($_SESSION['acctype'] == 'user') {
 
      <div class="cover-container">
             <div class="portrait">
-                <img class="icon_portrait" src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" alt="User Portrait">
-            </div>
-           
+              <div class="imgcont">
+                    <img src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" alt="User Portrait" style=" display: block; border-radius: 100%;width: 200px; max-height: 200px;border: 5px solid #fff;">
+                    <div class="overlay"><a onclick="return PopupCenter('uploadpicture.php','Update Profile ','350','400');  " style="color: white;">Edit</a></div>   
+              </div>
+              </div>
              <div class="cover"> </div>
         </div>
           
     
-    <div class="container">
+<div class="container" style="padding-top: 50px">
         <div class="user-identity">
             <h3 class="userfullname"><?php echo $fullname?></h3>
             <p>ID: <span class="userid"><?php echo $row['Employee_ID'];?></span></p>
         </div>
-        <div class="edit"><p style="font-size:12px; color:white; margin-left: 10px; margin-top: 10px"> Change your avatar</p>
-         <form action="" method="post" enctype="multipart/form-data" style="color: #ebebe0;margin-left: 10px; margin-top:10px">
-        <input type="file" name="profile"> 
-        <input type="submit" name="submit" style="color:black">
-      </form> 
         </div>
         
         

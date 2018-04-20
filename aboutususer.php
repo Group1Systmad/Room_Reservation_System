@@ -22,7 +22,7 @@ abnav {
     padding: 10px 12px;
     height: 72.5px;
     font-size: 14px;
-    width: 24.5%;
+    width: 24%;
 }
 
 .tablink:hover {
@@ -49,7 +49,28 @@ abnav {
 </style>
 
     <script type="text/javascript">
-	
+        function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var n= today.getMonth();
+    var o= today.getDate();
+    if (h>12){h= h-12; }
+    h = checkTime(h);
+    m = checkTime(m);
+    n = n+1;
+    n = checkTime(n);
+    o = checkTime(o);
+     document.getElementById('time').innerHTML =
+     h + ":" + m 
+     document.getElementById('date').innerHTML =
+     n + "/" + o 
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}	
         function logout()
         {
 	     var confirmdel = confirm("Confirm Log Out?");
@@ -84,7 +105,7 @@ abnav {
     
 </head>
 
-<body>
+<body onload="startTime()">
 <?php
     $_SESSION["count"]=1;
     $_SESSION["selected"]="none";
@@ -117,11 +138,12 @@ abnav {
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
         <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
-        <li><div><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>
+        <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
         <li><a href="aboutususer.php" class="selected"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
         <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
-    </ul>
+        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
 </div>
 <div class="container">
 

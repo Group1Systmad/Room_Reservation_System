@@ -20,9 +20,9 @@ abnav {
     outline: none;
     cursor: pointer;
     padding: 10px 12px;
-    height: 72.5px;
+    height: 50.5px;
     font-size: 14px;
-    width: 23.5%;
+    width: 24%;
 }
 
 .tablink:hover {
@@ -49,7 +49,29 @@ abnav {
 </style>
 
     <script type="text/javascript">
-	
+    function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var n= today.getMonth();
+    var o= today.getDate();
+    if (h>12){h= h-12; }
+    h = checkTime(h);
+    m = checkTime(m);
+    n = n+1;
+    n = checkTime(n);
+    o = checkTime(o);
+     document.getElementById('time').innerHTML =
+     h + ":" + m 
+     document.getElementById('date').innerHTML =
+     n + "/" + o 
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}	
+
         function logout()
         {
 	     var confirmdel = confirm("Confirm Log Out?");
@@ -84,7 +106,7 @@ abnav {
     
 </head>
 
-<body>
+<body onload="startTime()">
 <?php
     $_SESSION["count"]=1;
     $_SESSION["selected"]="none";
@@ -107,7 +129,7 @@ abnav {
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
             <hr>
-            <a class="hoverable" href="user_account.php">Account Info</a> 
+            <a class="hoverable" href="admin_account.php">Account Info</a>  
             <a class="hoverable" href="change_pass.php">Change Password</a> 
             <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
@@ -121,7 +143,8 @@ abnav {
         <li><div class="selected"><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></div></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-    </ul>
+        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
 </div>
 <div class="container">
 

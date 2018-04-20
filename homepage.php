@@ -3,8 +3,37 @@ session_start();
 ?>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <script type="text/javascript">
+    function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    var n= today.getMonth();
+    var o= today.getDate();
+    var p= today.getFullYear();
+    if (h>=13){h= h-12; }
+    h = checkTime(h);
+    m = checkTime(m);
+    s = checkTime(s);
+    n = n+1;
+    n = checkTime(n);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    document.getElementById('da').innerHTML =
+    n + "/" + o + "/" + p;
+     document.getElementById('hour').innerHTML =
+    h;
+     document.getElementById('min').innerHTML =
+    m;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
 
         function logout()
         {
@@ -28,6 +57,25 @@ session_start();
             document.getElementById("myAccountnav").style.width = "0";
             document.getElementById("myAccountnav").style.border = "none";
 }
+
+
+function PopupCenter(url, title, w, h) {  
+    // Fixes dual-screen position                         Most browsers      Firefox  
+    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
+    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;  
+              
+    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
+    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
+              
+    var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
+    var top = ((height / 2) - (h / 2)) + dualScreenTop;  
+    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
+  
+    // Puts focus on the newWindow  
+    if (window.focus) {  
+        newWindow.focus();  
+    }  
+}  
  </script>
  
 
@@ -39,7 +87,7 @@ session_start();
      <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
 </head>
 
-<body>
+<body onload="startTime()">
 <?php
     $_SESSION['changed'] = 0;
     $_SESSION["count"]=1;
@@ -54,8 +102,8 @@ session_start();
         <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-    </ul>
-</div>
+        </ul>
+    </div>
     
 
 <div id="myAccountnav" class="accnav" style="top:70px;">
@@ -73,7 +121,7 @@ session_start();
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
             <hr>
-            <a class="hoverable" href="user_account.php">Account Info</a> 
+            <a class="hoverable" href="admin_account.php">Account Info</a> 
             <a  class="hoverable" href="change_pass.php">Change Password</a> 
             <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
@@ -82,15 +130,40 @@ session_start();
     
 
 <div class="container">
-    <div class="jumbotron">
-        <!--Edit Mar-->
-        <span class="h1"> Room Reservation App</span>
-        <p>Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
-        <p>Just click <a href="addsched.php">here</a> to reserve!</p>
-         </div>
+    <div class="row" style="margin-left: 0%; text-align: center; ">
+     <div class="time" div style="border-radius: 8px; height: 80px; width: 93%; padding-top: 1%; position: relative">
+         <span class="h1" style="font-size: 45px; color: #22315d;font-family: Book Antiqua; "> <div id="txt"></div></span>
+        <p style="font-size: 16px"><div id="da"></div></p>
+     </div> </div>
     
-    <div class="row">
-        <div class="jumbotron overview_active col-md-3">
+    <div class="row" style=" padding-top: 1%; margin-left: 25px">
+    <div class="table_view col-lg-7" div style="height: 40%; border-radius: 8px; vertical-align: middle;">
+        <img src="office.jfif" style="width: 102%; margin-left: 1px; height:235px ">
+        <div class="black" style="position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: auto; padding: 10px;">
+        <!--Edit Mar-->
+        <span class="h1" style="font-size: 40px; "> Room Reservation App</span>
+        <p style="font-size: 18px">Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
+        <p style="font-size: 16px">Just click <a href="addsched.php" style="color: #ff7a24">here</a> to reserve!</p>
+        </div>
+        </div>
+    <div class="table_view col-md-3" style="width: 34%; background-color: #304582; margin-left: 1%; border-radius: 8px; height: 40%; ">
+     <span style="font-size: 17px; color: white;">Announcements </span> 
+     <a onclick="return PopupCenter('announce.php','Post Announcements ','500','400');  "style="font-size: 12px; color: white;padding-left: 10px; cursor: pointer">edit</a>
+     <hr>
+     <span style="color:white; font-size: 12px; margin-left: 36px">
+         <?php 
+            include 'connect.php';
+            $sql ="select announcements from announcements where ID='1'";
+            $res = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($res);
+            echo $row['announcements'];
+            ?>
+         </span>
+
+    </div></div>
+    
+    <div class="row" style="padding-top: 1%; margin-left: 40px">
+        <div class="jumbotron overview_active col-md-5">
             <h1>
                 <?php
                 include 'connect.php';
@@ -102,7 +175,7 @@ session_start();
             </h1>
             <p>rooms are reserved</p>
         </div>
-        <div class="table_view col-md-9">
+        <div class="table_view col-md-8" style="background-color: #e6e6ff; margin-left: 1%; border-radius: 8px">
             <table class="table">
                 <tr class="headers">
                     <td>Room ID</td>

@@ -3,9 +3,38 @@ session_start();
 ?>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <script type="text/javascript">
-	
+    function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    var n= today.getMonth();
+    var o= today.getDate();
+    var p= today.getFullYear();
+    if (h>=13){h= h-12; }
+    h = checkTime(h);
+    m = checkTime(m);
+    s = checkTime(s);
+    n = n+1;
+    n = checkTime(n);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    document.getElementById('da').innerHTML =
+    n + "/" + o + "/" + p;
+     document.getElementById('hour').innerHTML =
+    h;
+     document.getElementById('min').innerHTML =
+    m;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
         function logout()
         {
 	     var confirmdel = confirm("Confirm Log Out?");
@@ -19,34 +48,65 @@ session_start();
 	     	return false;
 	     }
         }
-            
-          function openaccNav() {
+        
+   function openaccNav() {
              document.getElementById("myAccountnav").style.width = "250px";
-             document.getElementsByClassName("container").style.marginLeft = "250px";
+             document.getElementById("myAccountnav").style.border = "1px solid black";
 }
         function closeaccNav() {
             document.getElementById("myAccountnav").style.width = "0";
-            document.getElementsByClassName("container").style.marginLeft= "0";
+            document.getElementById("myAccountnav").style.border = "none";
 }
-</script>
+
+
+function PopupCenter(url, title, w, h) {  
+    // Fixes dual-screen position                         Most browsers      Firefox  
+    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
+    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;  
+              
+    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
+    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
+              
+    var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
+    var top = ((height / 2) - (h / 2)) + dualScreenTop;  
+    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
+  
+    // Puts focus on the newWindow  
+    if (window.focus) {  
+        newWindow.focus();  
+    }  
+}  
+ </script>
+ 
+
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 <!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
     <link rel="stylesheet" href="mika/about.css" type="text/css">
-    <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
-    
-    
+     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
 </head>
 
-<body>
+<body onload="startTime()">
 <?php
     $_SESSION['changed'] = 0;
     $_SESSION["count"]=1;
     $_SESSION["selected"]="none";
-
-?>
     
+?>
+<div class="sidebar">
+    <ul>
+        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
+        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
+        <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
+        <li> <div class="selected"><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
+        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
+        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
+</div>
+    
+
 <div id="myAccountnav" class="accnav" style="top:70px;">
   <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
             <?php
@@ -57,38 +117,53 @@ session_start();
             $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
             $res1 = mysqli_query($con, $sql1);
             $row1 = mysqli_fetch_array($res1);
-            $username = $_SESSION['username'];
             ?>
             <div class="center"> <img src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" style="border-radius: 100%; max-height: 90px;">
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
             <hr>
-            <a class="hoverable" href="user_account.php">Account Info</a> 
-            <a class="hoverable" href="change_pass.php">Change Password</a>
-                  <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
+            <a class="hoverable" href="admin_account.php">Account Info</a> 
+            <a  class="hoverable" href="change_pass.php">Change Password</a> 
+            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
-          
 </div>
+
     
-<div class="sidebar">
-    <ul>
-        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
-        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
-        <li><div class="selected"><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>
-        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
-        <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
-    </ul>
-</div>
+
 <div class="container">
-    <div class="jumbotron">
-<!--Edit Mar-->
-        <h1>Room Reservation App</h1>
-        <p>Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
-        <p>Just click <a href="addsched.php">here</a> to reserve!</p>
-    </div>
-    <div class="row">
-        <div class="jumbotron overview_active col-md-3">
+    <div class="row" style="margin-left: 0%; text-align: center; ">
+     <div class="time" div style="border-radius: 8px; height: 80px; width: 93%; padding-top: 1%; position: relative">
+         <span class="h1" style="font-size: 45px; color: #22315d;font-family: Book Antiqua; "> <div id="txt"></div></span>
+        <p style="font-size: 16px"><div id="da"></div></p>
+     </div> </div>
+    
+    <div class="row" style=" padding-top: 1%; margin-left: 25px">
+    <div class="table_view col-lg-7" div style="height: 40%; border-radius: 8px; vertical-align: middle;">
+        <img src="office.jfif" style="width: 102%; margin-left: 1px; height:235px ">
+        <div class="black" style="position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: auto; padding: 10px;">
+        <!--Edit Mar-->
+        <span class="h1" style="font-size: 40px; "> Room Reservation App</span>
+        <p style="font-size: 18px">Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
+        <p style="font-size: 16px">Just click <a href="addsched.php" style="color: #ff7a24">here</a> to reserve!</p>
+        </div>
+        </div>
+    <div class="table_view col-md-3" style="width: 34%; background-color: #304582; margin-left: 1%; border-radius: 8px; height: 40%; ">
+     <span style="font-size: 17px; color: white;">Announcements </span> 
+     <hr>
+     <span style="color:white; font-size: 12px; margin-left: 36px">
+         <?php 
+            include 'connect.php';
+            $sql ="select announcements from announcements where ID='1'";
+            $res = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($res);
+            echo $row['announcements'];
+            ?>
+         </span>
+
+    </div></div>
+    
+    <div class="row" style="padding-top: 1%; margin-left: 40px">
+        <div class="jumbotron overview_active col-md-5">
             <h1>
                 <?php
                 include 'connect.php';
@@ -100,7 +175,7 @@ session_start();
             </h1>
             <p>rooms are reserved</p>
         </div>
-        <div class="table_view col-md-9">
+        <div class="table_view col-md-8" style="background-color: #e6e6ff; margin-left: 1%; border-radius: 8px">
             <table class="table">
                 <tr class="headers">
                     <td>Room ID</td>
@@ -154,13 +229,14 @@ session_start();
 
                         echo ">".$i."</a> ";
                     };
+                    //edit ni bren
                     ?>
                     
                 </div>
             </div>
-
         </div>
     </div>
+</div>
 
 </body>
 
