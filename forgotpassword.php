@@ -107,7 +107,9 @@ ini_set("smtp_port","465");
                         <input class="form-control text-center" type="email" name="email" placeholder="Your Email Here" 
                             <?php echo (isset($_SESSION['user_email'])) ? 'value = \'' . $_SESSION['user_email'].'\'' : ""; ?>>
                        <input class="button btn btn-primary" type="submit" name="submit_button">
+                       
                     </form>
+                    <a href="login_page.php"> <button class="btn btn-danger">Back</button></a><br>
                 </div>   
             </div>
         </div>

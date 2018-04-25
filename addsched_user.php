@@ -57,7 +57,24 @@ session_start();
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txtrid">Room Number</label>
-                    <input class="form-control" type="text" name="txtrid" value="<?php echo $_SESSION['urid'];?>" id="txtrid" placeholder="Room Number">
+                    <SELECT class="form-control" id="txtrid" NAME="txtrid">
+                        <?php
+                        $SQL = "SELECT * FROM tbl_roomlist";
+                        $res = mysqli_query($con, $SQL);
+                        $i = -1;
+                        while($row = mysqli_fetch_array($res))
+                        {
+                            $i++;
+                            $col[$i]['room_id']=$row['room_id'];
+
+                        }       
+                        for ($j=0;$j<=$i;$j++){
+                        ?>
+                        <OPTION><?php echo $col[$j]['room_id'];
+                        }
+                            ?>
+                        
+                    </SELECT>
                 </div>
             </div>
             <div class="form-group row">

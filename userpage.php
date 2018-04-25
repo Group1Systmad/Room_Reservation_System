@@ -174,6 +174,7 @@ function PopupCenter(url, title, w, h) {
                 ?>
             </h1>
             <p>rooms are reserved</p>
+            <a href="addroomlist_user.php">Add New Room</a>
         </div>
         <div class="table_view col-md-8" style="background-color: #e6e6ff; margin-left: 1%; border-radius: 8px">
             <table class="table">

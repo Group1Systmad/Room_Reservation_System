@@ -38,7 +38,6 @@ function checkTime(i) {
         function logout()
         {
 	     var confirmdel = confirm("Confirm Log Out?");
-
 	     if (confirmdel==true)
 	     {
 	     	return true;
@@ -48,7 +47,6 @@ function checkTime(i) {
 	     	return false;
 	     }
         }
-        
    function openaccNav() {
              document.getElementById("myAccountnav").style.width = "250px";
              document.getElementById("myAccountnav").style.border = "1px solid black";
@@ -84,7 +82,7 @@ function PopupCenter(url, title, w, h) {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
     <link rel="stylesheet" href="mika/about.css" type="text/css">
-     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
+    <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
 </head>
 
 <body onload="startTime()">
@@ -171,9 +169,12 @@ function PopupCenter(url, title, w, h) {
                 $rows = mysqli_num_rows($result);
                 echo $rows . "/10 ";
                 mysqli_close($con);
+                $_SESSION['same'] = false;
                 ?>
             </h1>
             <p>rooms are reserved</p>
+            <a href="addroomlist.php">Add New Room</a><br>
+            <a href="roomlist.php">View Rooms<a/>
         </div>
         <div class="table_view col-md-8" style="background-color: #e6e6ff; margin-left: 1%; border-radius: 8px">
             <table class="table">

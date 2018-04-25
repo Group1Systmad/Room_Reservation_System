@@ -152,6 +152,8 @@ if (isset($_SESSION["count"])){
         <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
         <li><div id="time" style="padding-top:180px; font-size: 18px; color:white; text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
+        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></li>
+    </ul>
 </div>
     
     <div id="myAccountnav" class="accnav"  style="top:70px;">
