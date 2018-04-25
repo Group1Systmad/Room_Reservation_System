@@ -331,7 +331,7 @@ if ($_SESSION['acctype'] == 'user') {
             <div class="portrait">
               <div class="imgcont">
                     <img src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" alt="User Portrait" style=" display: block; border-radius: 100%;width: 200px; max-height: 200px;border: 5px solid #fff;">
-                    <div class="overlay"><a onclick="return PopupCenter('uploadpicture.php','Update Profile ','350','400');  " style="color: white;">Edit</a></div>   
+                    <div class="overlay"><a onclick="return PopupCenter('uploadpicture.php','Update Profile ','500','700');  " style="color: white;">Edit</a></div>   
               </div>
               </div>
              <div class="cover"> </div>

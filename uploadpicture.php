@@ -71,7 +71,7 @@ session_start();
             $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
             $res1 = mysqli_query($con, $sql1);
             $row1 = mysqli_fetch_array($res1);
-            $file_path = 'C:/xampp/htdocs/Room_Reservation_System/' . substr(md5(time()), 0, 10) . '.' . $file_extn;
+            $file_path = 'D:/xampp/htdocs/Room_Reservation_System/' . substr(md5(time()), 0, 10) . '.' . $file_extn;
             $file_photo = substr(md5(time()), 0, 10) . '.' . $file_extn;
             if (move_uploaded_file($file_temp, $file_path)) {
                 echo '<script language="javascript">';
