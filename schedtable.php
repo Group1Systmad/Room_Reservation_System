@@ -16,7 +16,7 @@ session_start();
         margin: 0 auto;
     }
     .container{
-        margin-top: 7%;
+        margin-top: 5%;
         text-align: center;
         margin-right: 2%;
     }
@@ -49,6 +49,10 @@ session_start();
     .save{
         padding: 0 0;
 
+    }
+    #main-container{
+        
+        margin-left: 13%;
     }
 </style>
 <script type="text/javascript">
@@ -133,14 +137,6 @@ function PopupCenter(url, title, w, h) {
 </head>
 <body onload="startTime()">
 
-<?php
-if (isset($_SESSION["count"])){
-    echo "Count: ".$_SESSION["count"];
-    echo "Selected ".$_SESSION["selected"];
-}else{
-    echo "Session is not set";
-}
-?>
 
 <div class="sidebar">
     <ul>
@@ -150,9 +146,10 @@ if (isset($_SESSION["count"])){
         <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
+         <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
         <li><div id="time" style="padding-top:180px; font-size: 18px; color:white; text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
-        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></li>
+       
     </ul>
 </div>
     
@@ -177,7 +174,7 @@ if (isset($_SESSION["count"])){
             </div>
 </div>
 
-<div class="container">
+    <div class="container" id="main-container">
         <table class="table">
             <tr class="headers" style="color:#00b3b3">
                 <td>Remove</td>

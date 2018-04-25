@@ -87,6 +87,9 @@ function PopupCenter(url, title, w, h) {
         #jumbo-header{
             color: #FFF;
         }
+        #room-preview{
+            height: 40%;
+        }
     </style>
 </head>
 
@@ -105,6 +108,7 @@ function PopupCenter(url, title, w, h) {
         <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
         </ul>
     </div>
     
@@ -178,10 +182,9 @@ function PopupCenter(url, title, w, h) {
                 ?>
             </h1>
             <p>rooms are reserved</p>
-            <a href="addroomlist.php">Add New Room</a><br>
-            <a href="roomlist.php">View Rooms<a/>
+          
         </div>
-        <div class="table_view col-md-8" style="background-color: #e6e6ff; margin-left: 1%; border-radius: 8px">
+        <div class="table_view col-md-8" style="background-color: #e6e6ff; margin-left: 1%; border-radius: 8px" id="room-preview">
             <table class="table">
                 <tr class="headers">
                     <td>Room ID</td>

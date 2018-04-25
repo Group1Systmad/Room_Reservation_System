@@ -98,9 +98,9 @@ function PopupCenter(url, title, w, h) {
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
         <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
-        <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><div class="selected"><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>
         <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
-        <li> <div class="selected"><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
+        <li> <a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
         <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
@@ -142,7 +142,7 @@ function PopupCenter(url, title, w, h) {
         <img src="office.jfif" style="width: 102%; margin-left: 1px; height:235px ">
         <div class="black" style="position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: auto; padding: 10px;">
         <!--Edit Mar-->
-        <span class="h1" style="font-size: 40px; "> Room Reservation App</span>
+        <span class="h1" style="font-size: 40px; color: #FFF;"> Room Reservation App</span>
         <p style="font-size: 18px">Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
         <p style="font-size: 16px">Just click <a href="addsched.php" style="color: #ff7a24">here</a> to reserve!</p>
         </div>
@@ -153,7 +153,7 @@ function PopupCenter(url, title, w, h) {
      <span style="color:white; font-size: 12px; margin-left: 36px">
          <?php 
             include 'connect.php';
-            $sql ="select announcements from announcements where ID='1'";
+            $sql ="select announcements from announcement_table where ID='1'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
             echo $row['announcements'];
@@ -174,9 +174,9 @@ function PopupCenter(url, title, w, h) {
                 ?>
             </h1>
             <p>rooms are reserved</p>
-            <a href="addroomlist_user.php">Add New Room</a>
+           
         </div>
-        <div class="table_view col-md-8" style="background-color: #e6e6ff; margin-left: 1%; border-radius: 8px">
+        <div class="table_view col-md-8" style="background-color: #e6e6ff; margin-left: 1%; border-radius: 8px; height: 40%;">
             <table class="table">
                 <tr class="headers">
                     <td>Room ID</td>
