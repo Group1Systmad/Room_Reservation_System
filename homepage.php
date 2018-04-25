@@ -83,6 +83,11 @@ function PopupCenter(url, title, w, h) {
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
     <link rel="stylesheet" href="mika/about.css" type="text/css">
     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
+    <style>
+        #jumbo-header{
+            color: #FFF;
+        }
+    </style>
 </head>
 
 <body onload="startTime()">
@@ -139,7 +144,7 @@ function PopupCenter(url, title, w, h) {
         <img src="office.jfif" style="width: 102%; margin-left: 1px; height:235px ">
         <div class="black" style="position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: auto; padding: 10px;">
         <!--Edit Mar-->
-        <span class="h1" style="font-size: 40px; "> Room Reservation App</span>
+        <span class="h1" style="font-size: 40px; " id="jumbo-header"> Room Reservation App</span>
         <p style="font-size: 18px">Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
         <p style="font-size: 16px">Just click <a href="addsched.php" style="color: #ff7a24">here</a> to reserve!</p>
         </div>
@@ -151,7 +156,7 @@ function PopupCenter(url, title, w, h) {
      <span style="color:white; font-size: 12px; margin-left: 36px">
          <?php 
             include 'connect.php';
-            $sql ="select announcements from announcements where ID='1'";
+            $sql ="select announcements from announcement_table where ID='1'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
             echo $row['announcements'];

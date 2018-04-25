@@ -36,7 +36,7 @@
             <textarea name="message" rows="10" cols="30" style="width: 350px; color: #304582; font-size: 15px"/>
             <?php
             include 'connect.php';
-            $sql ="select announcements from announcements where ID='1'";
+            $sql ="select announcements from announcement_table where ID='1'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
             echo $row['announcements'];
