@@ -58,13 +58,13 @@
                     $time_in_f = date("H:i", $time_in_stamp);
                     $time_out_f = date("H:i", $time_out_stamp);
                     if ($col[$j]['date'] == $date){
-                        if (($time_in_f <= $time_in AND $time_out_f >= $time_in))
+                        if (($time_in_f <= $time_in AND $time_out_f > $time_in))
                         {
                         $_SESSION['error']= 'notavail';   
                         $j=$i;
                         header('location:addsched.php');
                         }
-                        else if (($time_in_f <= $time_out AND $time_out_f >= $time_out))
+                        else if (($time_in_f < $time_out AND $time_out_f >= $time_out))
                         {
                         $_SESSION['error']= 'notavail';   
                         $j=$i;
@@ -78,7 +78,7 @@
                         } 
                         else
                         {
-                        $_SESSION['error']= 'notavail'; 
+                        $_SESSION['error']= 'avail'; 
                         header('location:addsched.php');
                         }
                     }
