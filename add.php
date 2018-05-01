@@ -14,6 +14,6 @@ $SQL = "INSERT INTO tbl_sched(room_id,emp_id,time_in,time_out,date,u_code,Status
 mysqli_query($con,$SQL);
 $_SESSION['users'] = false;
 $_SESSION['admin'] = true;
-header('location:update_room.php');
+echo "<script>window.close();</script>";
 mysqli_close($con);
 ?>

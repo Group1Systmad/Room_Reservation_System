@@ -14,7 +14,7 @@ session_start();
 
 <style>
     .container{
-        width: 50%;
+        width: 100%;
         background: #27698d;
         margin: 0 auto;
         margin-top: 10%;
@@ -36,11 +36,14 @@ session_start();
     label{
         color: #fff;
     }
+    #popup{
+        margin: 0;
+    }
 </style>
 </head>
 <body>
 
-<div class="container">
+    <div class="container" id="popup">
         <form class="form_container" name="addsched" method="post">
             <div class="child">    
             <div class="form-group row">
@@ -48,6 +51,7 @@ session_start();
                     <label for="txtrid">Room Number</label>
                     <SELECT class="form-control" id="txtrid" NAME="txtrid">
                         <?php
+                        include 'connect.php';
                         $SQL = "SELECT * FROM tbl_roomlist";
                         $res = mysqli_query($con, $SQL);
                         $i = -1;
@@ -69,7 +73,7 @@ session_start();
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txteid">Employee ID</label>
-                    <input class="form-control" type="text" name="txteid" value="<?php echo $_SESSION['eid'];?>" id="txteid" placeholder="Employee ID" required="true">
+                    <input class="form-control" type="text" name="txteid" value="<?php echo $_SESSION['eid'];?>" id="txteid" placeholder="Employee ID" required="true" readonly>
                 </div>
             </div>
             <div class="form-group row">
@@ -148,5 +152,6 @@ session_start();
                 $_SESSION['error']='no';
                 }
                 ?>
+            </div>
 </body>
 </html>

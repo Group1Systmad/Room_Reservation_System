@@ -254,7 +254,7 @@ function PopupCenter(url, title, w, h) {
         mysqli_close($con);
         ?><!-- close of second php -->
     </TABLE>
-    <a onclick="return PopupCenter('addemp.php','Update Profile ','900','500');  "><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>
+    <a onclick="return PopupCenter('addemp.php','Update Profile ','500','500');  "><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>
 
     <font size="4" face="arial"  color="#ff7a24">
         <?php

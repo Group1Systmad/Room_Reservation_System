@@ -177,7 +177,7 @@ function PopupCenter(url, title, w, h) {
     <div class="container" id="main-container">
         <table class="table">
             <tr class="headers" style="color:#00b3b3">
-                <td>Remove</td>
+                <td>Cancel</td>
                 <td>Edit</td>
                 <td>ReservationID</td>
                 <td>RoomID</td>
@@ -220,14 +220,15 @@ function PopupCenter(url, title, w, h) {
             ?><!-- close of second php -->
         </table>
     <?php
-    $_SESSION['eid'] = "";
+   
+    $_SESSION['eid'] = $_SESSION['employee_num'];
     $_SESSION['rid'] = "";
     $_SESSION['timein'] = "";
     $_SESSION['timeout'] = "";
     $_SESSION['date'] = "";
     $_SESSION['error'] = 'no';
             ?>
-    <a onclick="return PopupCenter('addsched.php','Update Profile ','900','500');  " style="color: white;"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br>
+    <a onclick="return PopupCenter('addsched.php','Update Profile ','700','800');  " style="color: white;"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br>
 
         <font size="4" face="arial"  color="#ff7a24">
             <?php

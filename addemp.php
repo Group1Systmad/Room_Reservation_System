@@ -11,11 +11,11 @@ session_start();
      <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
     <style>
         .container{
-            width: 50%;
+            width: 100%;
             background: #27698d;
             margin: 0 auto;
             margin-top: 10%;
-            padding: 5px;
+            padding: 50px;
             border-radius: 10px;
         }
         .btn-primary{
@@ -26,11 +26,14 @@ session_start();
             color: #fff;
             font-size: small;
         }
+        #popup{
+            margin: 0;
+        }
     </style>
 </head>
 <body>
     
-    <div class="container">
+    <div class="container" id="popup">
         <form name="addemp" method="POST" action="saverec.php">
             <div class="form-group row">
                 <div class="col-md-2 id_input">

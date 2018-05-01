@@ -28,6 +28,13 @@ session_start();
         }
 
         </script>
+        <style>
+            
+            .controls{
+                text-align: center;
+            }
+            
+        </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Icon</title>
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
@@ -117,10 +124,10 @@ session_start();
  </div>
 <div class="container" style="padding-top: 50px; background-color: #3A539B; width: 100%; height: 100%;">
      <div class="center"> <img id="blah" src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" alt="User Portrait" style=" display: block; border-radius: 100%;width: 200px; max-height: 200px;border: 5px solid #fff;margin-left:60px">  </div>
-     <div class=><p style="font-size:12px; color:white; margin-left: 70px; "> Change your avatar</p>
+     <div class="controls"><p style="font-size:12px; color:white; margin-left: 70px; "> Change your avatar</p>
          <form action=""  method="post" enctype="multipart/form-data" style="color: #ebebe0;margin: auto; margin-left:60px" runat="server">
         <input type="file" name="profile" onchange="readURL(this);"> 
-        <input onclick="window.location.href = 'user_account.php';" type="submit" name="submit" style="color:black;">
+        <input onclick="window.location.href = 'user_account.php';" type="submit" name="submit" style="color:black; text-align: center;">
       </form> 
      </div>
          </div> 
