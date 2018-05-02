@@ -1,6 +1,7 @@
 <?php
-session_start();
-?>
+
+ $ID = $_GET['SID'];
+ ?>
 <html>
 <head>
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
@@ -108,8 +109,7 @@ function PopupCenter(url, title, w, h) {
 </script>
 </head>
 <body onload="startTime()">
-
-<?php
+    <?php
 if (isset($_SESSION["count"])){
     echo "Count: ".$_SESSION["count"];
     echo "Selected ".$_SESSION["selected"];
@@ -130,8 +130,7 @@ if (isset($_SESSION["count"])){
         <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
 </div>
-    
-    
+
 <div id="myAccountnav" class="accnav"style="top:70px;">
   <a href="javascript:void(0)" class="closebtn" onclick="closeaccNav()">&times;</a>
             <?php
@@ -152,80 +151,58 @@ if (isset($_SESSION["count"])){
             <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
 </div>
-
 <div class="container">
-        <table class="table">
-            <tr class="headers" style="color:#00b3b3">
-                <td>Remove</td>
-                <td>Edit</td>
-                <td>ReservationID</td>
-                <td>RoomID</td>
-                <td>EmployeeID</td>
-                <td>TimeIn</td>
-                <td>TimeOut</td>
-                <td>Date</td>
-                <td>UniqueCode</td>
-                <td>Status</td>
-            </tr>
-            <?php
-            include 'connect.php';
-            $SQL ="SELECT * FROM accounts WHERE Acc_Uname='".$_SESSION['username']."'";
-            $res = mysqli_query($con, $SQL);
-            $row1= mysqli_fetch_array($res);
-            $sql1 ="select * from tbl_sched WHERE emp_id='".$row1['Employee_ID']."'";
-            $res1 = mysqli_query($con, $sql1);
-            $_SESSION["result_set"] = $res1;
-            while($row= mysqli_fetch_array($res1))
-            {
-            ?>
-            <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'cell_edit_user.php\'' : '' ?>>
-            <tr>
-                <td align="center"><a onclick="return del()" href="delsched_user.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
-<!--                <td align="center"><a href="editsched.php?SID=--><?php //echo $row['id']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
-                <td align="center"><a href="cell_edit_user.php?SID=<?php echo $row['id']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? 'button name=\'save_button\' type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php
-                        echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? '<span class="glyphicon glyphicon-floppy-disk"></span></button>' : '</span>';
-                        ?></a></td>
-<!--                <td>--><?php //echo $row['id']; ?><!--</td>-->
-                    <td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="reserv_id" id="reserv_id" value=<?php echo $row['id']; ?> readonly></td>
-                <td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="room_id" id="room_id" value=<?php echo $row['room_id']; ?> <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>> </td>
-                <td><input class="table_cell <?php echo 'cell'.$row['id']?>" name="emp_id" id="emp_id" value=<?php echo $row['emp_id']; ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
-                <td><input type="time" class="table_cell <?php echo 'cell'.$row['id']?>" name="time_in" value="<?php echo $row['time_in']; ?>"  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
-                <td><input type="time" class="table_cell <?php echo 'cell'.$row['id']?>" name="time_out" value=<?php echo $row['time_out']; ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
-                <td><input type="date" class="table_cell <?php echo 'cell'.$row['id']?>" name="date" value=<?php echo $row['date']; ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
-                <td><input type="text" class="table_cell <?php echo 'cell'.$row['id']?>" name="unique" id="unique" value=<?php echo $row['u_code']; ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
-                <td><input type="checkbox" class="table_cell <?php echo 'cell'.$row['id']?>" name="status" <?php echo ($row['Status'] == TRUE) ? "checked" : "";?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "disabled = \"disabled\"" : ""?>></td>
-                <td align="center"><a href="user_reserv_details.php?SID=<?php echo $row['id']; ?>"><IMG SRC="edit.png" style="width:16px;height:16px"></a></td>
-		
-            </tr>
-            </form>
-            <?php //open of second php
-            }//close of while
-            mysqli_close($con);
-            ?><!-- close of second php -->
-        </table> 
-            <?php
-    $_SESSION['urid'] = "";
-    $_SESSION['utimein'] = "";
-    $_SESSION['utimeout'] = "";
-    $_SESSION['udate'] = "";
-    $_SESSION['uerror'] = 'no';
-    ?>
-     <a onclick="return PopupCenter('addsched_user.php','Update Profile ','900','500');  "> <button class="btn btn-primary" style="margin-top: 45px">Add Reservation</button></a><br>
+    <?php
+  include 'connect.php';
 
-        <font size="4" face="arial"  color="#ff7a24">
-            <?php
-            include 'connect.php';
-            $SQL ="SELECT * FROM accounts WHERE Acc_Uname='".$_SESSION['username']."'";
-            $res2 = mysqli_query($con, $SQL);
-            $row2= mysqli_fetch_array($res2);
-            $sql1 ="select * from tbl_sched WHERE emp_id='".$row2['Employee_ID']."'";
-            $res3 = mysqli_query($con, $sql1);
-            $rows = mysqli_num_rows($res3);
-            echo "<br>";
-            echo "You have " . $rows . " reservation(s). ";
-            mysqli_close($con);
-            ?>
-        </font>
-</div>
-</body>
-</html>
+   $SQL = "SELECT * FROM tbl_sched WHERE id='$ID'";
+   $result = mysqli_query($con,$SQL);
+
+   $num = mysqli_num_rows($result); //recordcount
+
+   while($num = mysqli_fetch_assoc($result)) {
+        $roomid = $num['room_id'];
+     	$empid = $num['emp_id'];
+     	$ti = $num['time_in'];
+     	$to = $num['time_out'];
+     	$date = $num['date'];
+        $ucode = $num['u_code'];
+        $status = $num['Status'];
+}
+
+$SQL1 ="SELECT * FROM tbl_roomlist WHERE room_id='$roomid'";
+$res1 = mysqli_query($con, $SQL1);
+$row= mysqli_fetch_array($res1);
+	
+    ?>
+
+   <table class="table">
+	<tr>
+            <td>Room ID :</td>
+            <td><?php echo $roomid; ?></td>
+        </tr>
+        <tr>
+            <td>Room Name :</td>
+            <td><?php echo $row['room_name']; ?></td>
+        </tr>
+        <tr>
+            <td>Room Building :</td>
+            <td><?php echo $row['room_bldg']; ?></td>
+        </tr>
+        <tr>
+            <td>Room Floor :</td>
+            <td><?php echo $row['room_floor']; ?></td>
+        </tr>
+        
+        <tr>
+            <td>Device MAC Address :</td>
+            <td><?php echo $row['mac_address']; ?></td>
+        </tr>
+        <tr>
+            <td>Other Details :</td>
+            <td></td>
+        </tr>
+</table>
+<?php
+        
+?>

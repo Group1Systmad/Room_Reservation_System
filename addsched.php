@@ -69,6 +69,9 @@ session_start();
                         
                     </SELECT>
                 </div>
+                <div class="col-md-6">
+                    <input class="btn btn-primary" type="submit" value="Room Details" formaction="roomdetails.php">
+                </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">

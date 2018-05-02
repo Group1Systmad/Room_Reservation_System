@@ -1,6 +1,5 @@
 <?php
 session_start();
-$id = $_POST['txtid'];
 $r_id = $_POST['txtrid'];
 $e_id = $_POST['txteid'];
 $ti = $_POST['txtti'];
