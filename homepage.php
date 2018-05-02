@@ -3,7 +3,6 @@ session_start();
 ?>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <script type="text/javascript">
     function startTime() {
@@ -24,10 +23,6 @@ session_start();
     h + ":" + m + ":" + s;
     document.getElementById('da').innerHTML =
     n + "/" + o + "/" + p;
-     document.getElementById('hour').innerHTML =
-    h;
-     document.getElementById('min').innerHTML =
-    m;
     var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
@@ -94,6 +89,7 @@ function PopupCenter(url, title, w, h) {
 </head>
 
 <body onload="startTime()">
+    
 <?php
     $_SESSION['changed'] = 0;
     $_SESSION["count"]=1;
@@ -139,14 +135,14 @@ function PopupCenter(url, title, w, h) {
 
 <div class="container">
     <div class="row" style="margin-left: 0%; text-align: center; ">
-     <div class="time" div style="border-radius: 8px; height: 80px; width: 93%; padding-top: 1%; position: relative">
+     <div class="clock" div style="border-radius: 8px; height: 80px; width: 93%; padding-top: 1%; position: relative">
          <span class="h1" style="font-size: 45px; color: #22315d;font-family: Book Antiqua; "> <div id="txt"></div></span>
         <p style="font-size: 16px"><div id="da"></div></p>
      </div> </div>
     
     <div class="row" style=" padding-top: 1%; margin-left: 25px">
     <div class="table_view col-lg-7" div style="height: 40%; border-radius: 8px; vertical-align: middle;">
-        <img src="office.jfif" style="width: 102%; margin-left: 1px; height:235px ">
+        <img src="office.jfif" style="width: 102%; margin-left: 1px; height:auto ">
         <div class="black" style="position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: auto; padding: 10px;">
         <!--Edit Mar-->
         <span class="h1" style="font-size: 40px; " id="jumbo-header"> Room Reservation App</span>
@@ -161,13 +157,12 @@ function PopupCenter(url, title, w, h) {
      <span style="color:white; font-size: 12px; margin-left: 36px">
          <?php 
             include 'connect.php';
-            $sql ="select announcements from announcement_table where ID='1'";
+            $sql ="select announcements from announcements where ID='1'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
             echo $row['announcements'];
             ?>
          </span>
-
     </div></div>
     
     <div class="row" style="padding-top: 1%; margin-left: 40px">

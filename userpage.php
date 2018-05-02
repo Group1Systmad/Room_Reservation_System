@@ -3,10 +3,9 @@ session_start();
 ?>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <script type="text/javascript">
-    function startTime() {
+       function startTime() {
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();
@@ -20,14 +19,11 @@ session_start();
     s = checkTime(s);
     n = n+1;
     n = checkTime(n);
-    document.getElementById('txt').innerHTML =
+    o = checkTime(o);
+    document.getElementById('time').innerHTML =
     h + ":" + m + ":" + s;
-    document.getElementById('da').innerHTML =
+    document.getElementById('date').innerHTML =
     n + "/" + o + "/" + p;
-     document.getElementById('hour').innerHTML =
-    h;
-     document.getElementById('min').innerHTML =
-    m;
     var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
@@ -70,12 +66,7 @@ function PopupCenter(url, title, w, h) {
     var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
     var top = ((height / 2) - (h / 2)) + dualScreenTop;  
     var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
-  
-    // Puts focus on the newWindow  
-    if (window.focus) {  
-        newWindow.focus();  
     }  
-}  
  </script>
  
 
@@ -102,8 +93,6 @@ function PopupCenter(url, title, w, h) {
         <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
         <li> <a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
-        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
-        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
 </div>
     
 
@@ -133,8 +122,8 @@ function PopupCenter(url, title, w, h) {
 <div class="container">
     <div class="row" style="margin-left: 0%; text-align: center; ">
      <div class="time" div style="border-radius: 8px; height: 80px; width: 93%; padding-top: 1%; position: relative">
-         <span class="h1" style="font-size: 45px; color: #22315d;font-family: Book Antiqua; "> <div id="txt"></div></span>
-        <p style="font-size: 16px"><div id="da"></div></p>
+         <span class="h1" style="font-size: 45px; color: #22315d;font-family: Book Antiqua; "> <div id="time"></div></span>
+        <p style="font-size: 16px"><div id="date"></div></p>
      </div> </div>
     
     <div class="row" style=" padding-top: 1%; margin-left: 25px">
@@ -153,7 +142,7 @@ function PopupCenter(url, title, w, h) {
      <span style="color:white; font-size: 12px; margin-left: 36px">
          <?php 
             include 'connect.php';
-            $sql ="select announcements from announcement_table where ID='1'";
+            $sql ="select announcements from announcements where ID='1'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
             echo $row['announcements'];
