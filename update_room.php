@@ -30,7 +30,7 @@ else{
     $_SESSION['user'] = true;
 }
 if ($_SESSION['admin'] == true){
-$_SESSION['admin'] = false;
+    $_SESSION['admin'] = false;
     if($_SESSION['deleted'] == true){
         $_SESSION['deleted'] = false;
         header('location:schedtable.php');
