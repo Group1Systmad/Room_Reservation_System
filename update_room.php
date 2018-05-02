@@ -30,13 +30,21 @@ else{
     $_SESSION['user'] = true;
 }
 if ($_SESSION['admin'] == true){
-header('location:schedtable.php');
 $_SESSION['admin'] = false;
+    if($_SESSION['deleted'] == true){
+        $_SESSION['deleted'] = false;
+        header('location:schedtable.php');
+        
+    }
+    else{
+        echo "<script>window.close(); </script>";
+    }
+ 
 mysqli_close($con);
 }
 else if ($_SESSION['users'] == true){
-header('location:user_schedtable.php');
 $_SESSION['users'] = false;
+ echo "<script>window.close(); </script>";
 mysqli_close($con);
 }
 ?>

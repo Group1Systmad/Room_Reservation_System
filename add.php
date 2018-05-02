@@ -15,6 +15,6 @@ mysqli_query($con,$SQL);
 $_SESSION['users'] = false;
 $_SESSION['admin'] = true;
 $_SESSION['error'] = 'no';
-echo "<script>window.close();</script>";
+header('location:update_room.php');
 mysqli_close($con);
 ?>
