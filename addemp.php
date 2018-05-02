@@ -14,9 +14,14 @@ session_start();
             width: 100%;
             background: #27698d;
             margin: 0 auto;
+<<<<<<< Updated upstream
             margin-top: 10%;
             padding: 50px;
             border-radius: 10px;
+=======
+            margin-top: 0;
+            padding: 30px 100px 30px 100px;
+>>>>>>> Stashed changes
         }
         .btn-primary{
             color: #27698d;

@@ -105,7 +105,7 @@ $rows = mysqli_num_rows($result);
   	mysqli_close($con);
     ?>
     </font>
-    <br><a href="homepage.php">Return to Hompage</a></br>
+    <br><a href="homepage.php">Return to Homepage</a></br>
 <center>
 </body>
 </html>

@@ -88,7 +88,7 @@ function PopupCenter(url, title, w, h) {
      <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
     <style>
         .table{
-            width: 20%;
+            width: 60%;
             margin: 0 auto;
         }
         .container{
@@ -162,7 +162,7 @@ function PopupCenter(url, title, w, h) {
         <li><div class="selected"><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></div></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
          <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
-        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white; text-align: center"></div> </li>
+        <li><div id="time" style="padding-top:150px; font-size: 18px; color:white; text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
        
     </ul>
@@ -254,7 +254,11 @@ function PopupCenter(url, title, w, h) {
         mysqli_close($con);
         ?><!-- close of second php -->
     </TABLE>
+<<<<<<< Updated upstream
     <a onclick="return PopupCenter('addemp.php','Update Profile ','500','500');  "><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>
+=======
+    <a onclick="return PopupCenter('addemp.php','Update Profile ','600','500');  "><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>
+>>>>>>> Stashed changes
 
     <font size="4" face="arial"  color="#ff7a24">
         <?php

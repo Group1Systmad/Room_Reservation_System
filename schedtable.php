@@ -12,7 +12,7 @@ session_start();
 <title>Add Reservation</title>
 <style>
     .table{
-        width: 30%;
+        width: 55%;
         margin: 0 auto;
     }
     .container{
@@ -41,7 +41,7 @@ session_start();
     }
     <?php echo ($_SESSION["count"]==2) ? $_SESSION["classname"].'{background:white;border:1px solid;}' : ''?>
     #room_id{
-        width: 50px;
+        width: 90px;
     }
     #emp_id{
         width: 80px;
@@ -147,7 +147,7 @@ function PopupCenter(url, title, w, h) {
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
          <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
-        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white; text-align: center"></div> </li>
+        <li><div id="time" style="padding-top:150px; font-size: 18px; color:white; text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
        
     </ul>
@@ -228,7 +228,11 @@ function PopupCenter(url, title, w, h) {
     $_SESSION['date'] = "";
     $_SESSION['error'] = 'no';
             ?>
+<<<<<<< Updated upstream
     <a onclick="return PopupCenter('addsched.php','Update Profile ','700','800');  " style="color: white;"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br>
+=======
+    <a onclick="return PopupCenter('addsched.php','Update Profile ','600','520');  " style="color: white;"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br>
+>>>>>>> Stashed changes
 
         <font size="4" face="arial"  color="#ff7a24">
             <?php

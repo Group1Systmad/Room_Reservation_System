@@ -14,18 +14,26 @@ session_start();
 
 <style>
     .container{
+<<<<<<< Updated upstream
         width: 100%;
         background: #27698d;
         margin: 0 auto;
         margin-top: 10%;
         padding: 5px;
         border-radius: 10px;
+=======
+            width: 100%;
+            background: #27698d;
+            margin: 0 auto;
+            margin-top: 0;
+            padding: 0 100px 30px 100px;
+>>>>>>> Stashed changes
     }
 
     .child{
-        width: 50%;
+        width: 90%;
         margin: 0 auto;
-        margin-top: 10%;
+        margin-top: 5%;
         padding: 20px;
         display: flex;
         flex-flow: column;
