@@ -1,6 +1,7 @@
 <?php
 session_start();
 $rid = $_POST['txtrid'];
+ //code here to get data from database using $rid;
 
 ?>
 <html>
@@ -16,7 +17,7 @@ $rid = $_POST['txtrid'];
 <style>
     .container{
         width: 100%;
-        background: #27698d;
+        background: #fff;
         margin: 0 auto;
         margin-top: 10%;
         padding: 5px;
@@ -40,103 +41,143 @@ $rid = $_POST['txtrid'];
     #popup{
         margin: 0;
     }
+     * {box-sizing: border-box;}
+    
+    .portrait{
+                margin: 0 auto;
+                text-align: center;
+                width: 100%;
+                position: absolute;
+                padding-bottom: 50px;
+            }
+            
+            .imgcont{
+                position: relative;
+                margin: auto;
+                padding-top: 90px;
+                width:200px;
+                }
+            
+            .cover{
+                width: 100%;
+                height: 150px;
+                background: #1b6d85;
+                
+            }
+            .cover-container{
+                position: relative;
+                margin-bottom: 100px; 
+                margin-top: -20px;
+            }
+            .user-identity{
+                text-align: center;
+            }
+            .userfullname{
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+            .half{
+                
+                background: #f7f7f7;
+                padding: 20px;
+                border: 2px solid white;
+            }
+            .table{
+                margin-top: 20px;
+                border: 1px solid #e4e4e4;
+            }
+            .table td{
+                background: #fff;
+            }
+            .change-pass-link{
+                text-align: right;
+                margin-left: 50px;
+            }
+            #account_type{
+                text-transform: capitalize;
+            }
+            .overlay {
+            position:absolute;
+            width: 200px;
+            border-radius: 0 0 200px 200px;
+            height: 100px;
+            bottom:0;
+            background: rgb(0, 0, 0);
+            background: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1; 
+            padding:20px;
+            transition: .5s ease;
+            opacity:0;
+            color: white;
+            font-size: 15px;
+            padding-top: 50px;
+            }
+
+            .imgcont:hover .overlay {
+            opacity: 1;
+}
 </style>
 </head>
 <body>
 
-    <div class="container" id="popup">
-        <form class="form_container" name="roomdetails">
-            <div class="child">    
-            <div class="form-group row">
-                <div class="col-md-12">
-                    Room Number : <?php echo $rid; ?>
+    
+    
+      <div class="container">
+          <div class="row">
+              <div class="col-md-3 half">
+                  <a href="addsched.php"><button class="btn btn-primary">Back</button></a>
+              </div>
+          </div>
+            <div class="row">
+                <div class="col-md-6 half">
+                Location
+                <table class="table">
+                    <tr>
+                        <td>Room Name:</td>
+<!--                        replace code below to get data from a variable stored when the system connected-->
+                        <td>CpELab</td>
+                    </tr>
+                    <tr>
+                        <td>Room Bldg:</td>
+                        <!--  replace code below to get data from a variable stored when the system connected-->
+                        <td>Mabini Building</td>
+                    </tr>
+                    <tr>
+                         <td>Room Floor</td>
+                         <!--  replace code below to get data from a variable stored when the system connected-->
+                        <td>2</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6 half">
+                Features
+                <table class="table">
+                    <tr>
+                        <td>Amenities</td>
+                        <!--  replace code below to get data from a variable stored when the system connected-->
+                        <td>Lights,Aircon,One Table,Chairs,Projector</td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 half">
+                   Accommodation
+                    <table class="table">
+                        <tr>
+                        <td>Max Pax</td>
+                        <!-- replace code below to get data from a variable stored when the system connected-->
+                        <td>40</td>
+                        </tr>
+                    </table>
                     
                 </div>
-                
+               
             </div>
-            
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <label for="txteid">Employee ID</label>
-                    <input class="form-control" type="text" name="txteid" value="<?php echo $_SESSION['eid'];?>" id="txteid" placeholder="Employee ID" required="true" readonly>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <label for="txtti">Time In</label>
-                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['timein'];?>" id="txtti">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <label for="txtto">Time Out</label>
-                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['timeout'];?>" id="txtto">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <label for="txtd">Date</label>
-                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['date'];?>" id="txtd">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-
-                    <?php
-                        $random = rand(10000,99999); 
-                    ?>
-                    <label for="txtuc">Unique Code</label>
-                    <input class="form-control" id="txtuc" name="txtuc" value=<?php echo $random;?>  readonly>
-                </div>
-            </div>
-            <div class="form-group row">
-                <?php 
-                if ($_SESSION['error'] != 'avail'){ ?>
-                <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail.php">
-                </div>   
-                <div class="col-md-6">
-                    <input class="btn btn-danger" type="reset" value="Clear">
-                </div>   
-                <?php }
-                else if ($_SESSION['error']=='avail'){
-                
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Room Available.")';
-                echo '</script>';  
-                ?>
-                <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Save" formaction="add.php">
-                </div>
-                <div class="col-md-6">
-                    <input class="btn btn-danger" type="submit" value="Cancel" formaction="schedtable.php">
-                </div>
-                <?php }?>
-                
-            </div>
-        </form>
-
-</div>
-             <?php
-                if ($_SESSION['error']== 'wrongdate'){
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Wrong input of date.")';
-                echo '</script>'; 
-                $_SESSION['error']='no';
-                }
-                else if ($_SESSION['error']== 'wrongtime'){
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Wrong input of time.")';
-                echo '</script>'; 
-                $_SESSION['error']='no';
-                }
-                else if ($_SESSION['error']== 'notavail'){
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Room not available. Input another room or time and date")';
-                echo '</script>'; 
-                $_SESSION['error']='no';
-                }
-                ?>
-            </div>
+        </div>
+    
+    
+    
+    
 </body>
 </html>

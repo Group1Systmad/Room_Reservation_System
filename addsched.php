@@ -11,7 +11,26 @@ session_start();
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
      <link rel="stylesheet" href="mika/about.css" type="text/css">
     <link rel="stylesheet" href="mika/aboutus.css" type="text/css">
+<script type="text/javascript">
+    function PopupCenter(url, title, w, h) {  
+        // Fixes dual-screen position                         Most browsers      Firefox  
+        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
+        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;  
 
+        width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
+        height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
+
+        var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
+        var top = ((height / 2) - (h / 2)) + dualScreenTop;  
+        var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
+
+        // Puts focus on the newWindow  
+        if (window.focus) {  
+            newWindow.focus();  
+        }  
+    }  
+
+</script>
 <style>
     .container{
         width: 100%;
@@ -70,6 +89,7 @@ session_start();
                     </SELECT>
                 </div>
                 <div class="col-md-6">
+<!--                    <a href = "roomdetails.php"><button class="btn btn-primary">Room Details</button>></a>-->
                     <input class="btn btn-primary" type="submit" value="Room Details" formaction="roomdetails.php">
                 </div>
             </div>
