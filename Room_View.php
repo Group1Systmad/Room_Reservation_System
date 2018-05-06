@@ -130,7 +130,8 @@ session_start();
             <hr>
             <a class="hoverable" href="user_account.php">Account Info</a> 
             <a  class="hoverable" href="change_pass.php">Change Password</a> 
-            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
+            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php 
+                $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>
             </div>
 </div>
         
@@ -160,6 +161,8 @@ session_start();
                     <td id="room_bldg">Room Building</td>
                     <td id="room_flr">Room Floor</td>
                     <td id="room_mac">MAC Address</td>
+                    <td id="timeframe_in">Opening Time</td>
+                    <td id="timeframe_out">Closing Time</td>
             </tr>
             <?php
 include 'connect.php';
@@ -180,13 +183,15 @@ while($row=mysqli_fetch_array($SQL))
 	{
  ?>
 	<tr>
-		<td ALIGN="CENTER"><a onclick="return Del()" href="delete_room.php?SID=<?php echo $row['room_id']; ?>">Delete</a></td>
-		<td ALIGN="CENTER"><a href="edit_room.php?SID=<?php echo $row['room_id']; ?>">Edit</a></td>
+		<td ALIGN="CENTER"><a onclick="return Del()" href="delete_room.php?SID=<?php echo $row['room_id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
+		<td ALIGN="CENTER"><a href="edit_room.php?SID=<?php echo $row['room_id']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 		<td><?php echo $row['room_id']; ?></td>
 		<td><?php echo $row['room_name']; ?></td>
 		<td><?php echo $row['room_bldg']; ?></td>
 		<td><?php echo $row['room_floor']; ?></td>
 		<td><?php echo $row['mac_address']; ?></td>
+                <td><?php echo $row['timeframe_in']; ?></td>
+                <td><?php echo $row['timeframe_out']; ?></td>
                
 	</tr>
 	<?php //open of second php

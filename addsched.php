@@ -148,6 +148,12 @@ session_start();
                 echo '</script>'; 
                 $_SESSION['error']='no';
                 }
+                else if ($_SESSION['error']== 'wrongrange'){
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Room is not available at that time. Check Rooms for details.")';
+                echo '</script>'; 
+                $_SESSION['error']='no';
+                }
                 else if ($_SESSION['error']== 'notavail'){
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Room not available. Input another room or time and date")';

@@ -34,19 +34,20 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
 }
-
-        function logout()
-        {
-	     var confirmdel = confirm("Confirm Log Out?");
-	     if (confirmdel==true)
-	     {
+//LOG OUT FUNCTION
+function logout()
+    {
+	var confirmdel = confirm("Confirm Log Out?");
+	if (confirmdel==true)
+	    {
 	     	return true;
-	     }
-	     else
-	     {
+	    }
+	else
+	    {
 	     	return false;
-	     }
-        }
+	    }
+    }
+//END OF LOG OUT FUNCTION
    function openaccNav() {
              document.getElementById("myAccountnav").style.width = "250px";
              document.getElementById("myAccountnav").style.border = "1px solid black";
@@ -131,7 +132,8 @@ function PopupCenter(url, title, w, h) {
             <hr>
             <a class="hoverable" href="admin_account.php">Account Info</a> 
             <a  class="hoverable" href="change_pass.php">Change Password</a> 
-            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
+            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php 
+                $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>
             </div>
 </div>
 

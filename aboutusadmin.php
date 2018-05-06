@@ -131,7 +131,8 @@ function checkTime(i) {
             <hr>
             <a class="hoverable" href="admin_account.php">Account Info</a>  
             <a class="hoverable" href="change_pass.php">Change Password</a> 
-            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
+           <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php 
+                $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>
             </div>
 </div>
     

@@ -3,7 +3,6 @@ session_start();
 include 'connect.php';
 $un = $_POST['uname'];
 $pw = $_POST['pword'];
-$_SESSION['incorrect'] = $un;
  
 $SQL ="SELECT * FROM accounts WHERE Acc_Uname='$un' AND Acc_Pass='$pw'";
  
@@ -22,7 +21,7 @@ if ($count == 1)
     $_SESSION['rid'] = "";
     $_SESSION['timein'] = "";
     $_SESSION['timeout'] = "";
-     $_SESSION['date'] = "";
+    $_SESSION['date'] = "";
     $_SESSION['acctype'] = 'admin';
         if ($row['count'] == 1){
             header('location:change_pass.php');
@@ -49,12 +48,17 @@ if ($count == 1)
         }
    
     }
-        
+    else
+    {
+      $_SESSION["login"] = 'failed';
+     header('location:login_page.php');
+    }
+  
+  }
   else
   {
-      $_SESSION["incorrect"] = true;
+      $_SESSION["login"] = 'failed';
      header('location:login_page.php');
-  }
   }
   mysqli_close($con);
 ?>
