@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2018 at 01:10 PM
+-- Generation Time: Apr 20, 2018 at 08:05 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -47,25 +47,6 @@ INSERT INTO `accounts` (`Account_ID`, `Employee_ID`, `Acc_Uname`, `Acc_Pass`, `a
 (4, 678, 'mishelkate', '12345', '', 0),
 (5, 2014164791, 'alaindannpaciteng', 'nexus777esports', '', 0),
 (123456, 1234567890, 'user', 'password', 'user', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `announcement_table`
---
-
-CREATE TABLE `announcement_table` (
-  `ID` int(11) NOT NULL,
-  `announcements` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `announcement_table`
---
-
-INSERT INTO `announcement_table` (`ID`, `announcements`) VALUES
-(1, 'Server Maintenance on May 3, 2018.'),
-(2, 'Please contact your Server Administrator for any inconvenience.');
 
 -- --------------------------------------------------------
 
@@ -117,7 +98,7 @@ CREATE TABLE `tbl_room` (
 --
 
 INSERT INTO `tbl_room` (`room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`, `time_millis`) VALUES
-('', '', '00:00:00', '00:00:00', '0000-00-00', '', 0, 0);
+('208', '2122', '13:40:00', '13:57:00', '2018-04-20', '21882', 1, 1020000);
 
 -- --------------------------------------------------------
 
@@ -130,21 +111,17 @@ CREATE TABLE `tbl_roomlist` (
   `room_name` varchar(100) NOT NULL,
   `room_bldg` varchar(100) NOT NULL,
   `room_floor` varchar(50) NOT NULL,
-  `mac_address` varchar(100) NOT NULL,
-  `Amenities` varchar(1000) NOT NULL,
-  `Pax` int(200) NOT NULL,
-  `Room_Status` varchar(100) NOT NULL
+  `mac_address` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_roomlist`
 --
 
-INSERT INTO `tbl_roomlist` (`room_id`, `room_name`, `room_bldg`, `room_floor`, `mac_address`, `Amenities`, `Pax`, `Room_Status`) VALUES
-('208', 'CpE Lab', 'Mabini Building', '2', 'DEAD:BEEF:FEED', 'Lights,Table,Chairs,Projector', 20, 'FREE'),
-('510', 'Computer Laboratory', 'Mabini Building', '5', 'FFFF:ED23:WQPR', 'Lights,Table,Chairs,Projector', 40, 'FREE'),
-('509', 'Mobile Laboratory', 'Mabini Building', '5', 'DDDD:1234:CBDA', 'Lights,Table,Chairs,Projector', 60, 'FREE'),
-('101', 'Mobile Room', 'Mabini Building', '1', 'CCCC:DDDD:AAAA', 'Lights,Table,Chairs,Projector', 20, 'FREE');
+INSERT INTO `tbl_roomlist` (`room_id`, `room_name`, `room_bldg`, `room_floor`, `mac_address`) VALUES
+('208', 'CpE Lab', 'Mabini Building', '2', 'DEAD:BEEF:FEED'),
+('510', 'Computer Laboratory', 'Mabini Building', '5', 'FFFF:ED23:WQPR'),
+('509', 'Mobile Laboratory', 'Mabini Building', '5', 'DDDD:1234:CBDA');
 
 -- --------------------------------------------------------
 
@@ -168,7 +145,7 @@ CREATE TABLE `tbl_sched` (
 --
 
 INSERT INTO `tbl_sched` (`id`, `room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`) VALUES
-(39, '208', '2122', '13:00:00', '23:59:00', '2018-05-03', '98297', 0);
+(30, '208', '2122', '13:40:00', '13:57:00', '2018-04-20', '21882', 1);
 
 --
 -- Indexes for dumped tables
@@ -179,12 +156,6 @@ INSERT INTO `tbl_sched` (`id`, `room_id`, `emp_id`, `time_in`, `time_out`, `date
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`Account_ID`);
-
---
--- Indexes for table `announcement_table`
---
-ALTER TABLE `announcement_table`
-  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `tbl_sched`
@@ -202,15 +173,10 @@ ALTER TABLE `tbl_sched`
 ALTER TABLE `accounts`
   MODIFY `Account_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123457;
 --
--- AUTO_INCREMENT for table `announcement_table`
---
-ALTER TABLE `announcement_table`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
 -- AUTO_INCREMENT for table `tbl_sched`
 --
 ALTER TABLE `tbl_sched`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
