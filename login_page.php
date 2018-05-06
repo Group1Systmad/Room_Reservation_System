@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <?php
 session_start();
 ?>
@@ -112,7 +107,7 @@ session_start();
                     <div class="links">
                         <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me</label>
                         <a href="#" name="signup" class = "sign-up">Sign up</a>
-<!--                        <?php
+<!--                    <?php
                         $_SESSION["username"] = 1;
                         $_SESSION["oldpass"] = 1;
                         $_SESSION["newpass"] = 1;
@@ -129,11 +124,17 @@ session_start();
         </div>
 
     <?php
-        if ($_SESSION["incorrect"]==true){
+        if ($_SESSION["login"]=='failed'){
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("Login failed. Please try again")';
             echo '</script>';
-            $_SESSION["incorrect"] = false;
+            $_SESSION["login"] = '';
+        }
+        else if ($_SESSION["login"]=='logout'){
+            echo '<script type="text/javascript" language="JavaScript">';
+            echo 'alert("Log Out Successful!")';
+            echo '</script>';
+            $_SESSION["login"] = '';
         }
         if ($_SESSION['changed'] == 1){
             echo '<script type="text/javascript" language="JavaScript">';

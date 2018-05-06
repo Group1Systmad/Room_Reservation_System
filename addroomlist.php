@@ -151,6 +151,18 @@ if (isset($_SESSION["count"])){
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
+                            <label for="roomid">Opening Time</label>
+                            <input class="form-control" TYPE="time" NAME="timeframe_in" ID="timeframe_in">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="roomid">Closing Time</label>
+                            <input class="form-control" TYPE="time" NAME="timeframe_out" ID="timeframe_out">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
                           <input TYPE="hidden" ID="hid" NAME="hid" VALUE="<?php echo $rid; ?>">
                         </div>
                     </div>

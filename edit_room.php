@@ -16,6 +16,8 @@
      	$rbldg = $row["room_bldg"];
      	$rfloor = $row["room_floor"];
      	$macaddr = $row["mac_address"];
+        $timeopen = $row["timeframe_in"];
+        $timeclose = $row["timeframe_out"];
      }
 ?>
 <html>
@@ -110,7 +112,8 @@
             <hr>
             <a class="hoverable" href="user_account.php">Account Info</a> 
             <a  class="hoverable" href="change_pass.php">Change Password</a> 
-            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
+             <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php 
+                $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>
             </div>
 </div>
         <div class="cont">
@@ -144,6 +147,18 @@
                         <div class="col-md-12">
                             <label for="roomid">MAC Address</label>
                             <input TYPE="text" NAME="macaddr" ID="macaddr" VALUE="<?php echo $macaddr; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="roomid">Opening Time</label>
+                            <input TYPE="time" NAME="timeframe_in" ID="timeframe_in" VALUE="<?php echo $time_open; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="roomid">Closing Time</label>
+                            <input TYPE="time" NAME="timeframe_out" ID="timeframe_out" VALUE="<?php echo $time_close; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
