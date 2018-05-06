@@ -147,7 +147,7 @@ function PopupCenter(url, title, w, h) {
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
          <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
-        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white; text-align: center"></div> </li>
+        <li><div id="time" style="padding-top:20px; font-size: 18px; color:white; text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
        
     </ul>
@@ -177,6 +177,7 @@ function PopupCenter(url, title, w, h) {
     <div class="container" id="main-container">
         <table class="table">
             <tr class="headers" style="color:#00b3b3">
+                <td>More Info</td>
                 <td>Cancel</td>
                 <td>Edit</td>
                 <td>ReservationID</td>
@@ -198,6 +199,7 @@ function PopupCenter(url, title, w, h) {
             ?>
             <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'cell_edit.php\'' : '' ?>>
             <tr>
+                <td><a onclick="return PopupCenter('reservation_details.php?SID=<?php echo $row['id']; ?>','Update Profile ','700','800');"><span class="glyphicon glyphicon-info-sign"></span></a></td>
                 <td align="center"><a onclick="return del()" href="delsched.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
 <!--                <td align="center"><a href="editsched.php?SID=--><?php //echo $row['id']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
                 <td align="center"><a href="cell_edit.php?SID=<?php echo $row['id']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? 'button name=\'save_button\' type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php

@@ -13,7 +13,7 @@ session_start();
   
      $SQL = "SELECT * FROM tbl_room";
   $result = mysqli_query($con,$SQL3);
-  $data = mysqli_fetch_assoc($result);
+  $data = mysqli_fetch_assoc(   $result);
   while ($row= mysqli_fetch_assoc($result)) {
     $id = $row['room_id'];
     $unique = $row['u_code'];

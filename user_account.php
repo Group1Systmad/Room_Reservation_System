@@ -6,9 +6,9 @@ session_start();
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 <!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
 <!--    <link rel="stylesheet" href="bootstrap.min.css" type="text/css">-->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
-    <link rel="stylesheet" href="mika/about.css" type="text/css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
+        <link rel="stylesheet" href="mika/about.css" type="text/css">
 <title>Reservations' List</title>
 <style>
 /*    .table{
@@ -344,8 +344,6 @@ if ($_SESSION['acctype'] == 'user') {
             <p>ID: <span class="userid"><?php echo $row['Employee_ID'];?></span></p>
         </div>
         </div>
-        
-        
         <div class="container">
             <div class="row">
                 <div class="col-md-6 half">
@@ -425,8 +423,7 @@ if ($_SESSION['acctype'] == 'user') {
                             <td>Employed Since</td>
                             <td>03/01/2018</td>
                         </tr>
-                    </table>
-                    
+                    </table>            
                 </div>
             </div>
         </div>
