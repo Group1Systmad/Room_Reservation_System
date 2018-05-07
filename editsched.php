@@ -117,6 +117,12 @@
             $time_out = $row['time_out'];
             $date = $row['date'];
             $ucode = $row['u_code'];
+            $_SESSION['o_rid'] = $rid;
+            $_SESSION['o_eid'] = $eid;
+            $_SESSION['o_timein'] = $time_in;
+            $_SESSION['o_timeout'] = $time_out;
+            $_SESSION['o_date'] = $date;
+            $_SESSION['o_code'] = $ucode;
             $_SESSION['counter'] = 1;
         }
         else if ($_SESSION['counter'] == 1){
@@ -129,12 +135,7 @@
           }
           
           $_SESSION['id'] = $id;
-          $_SESSION['o_rid'] = $rid;
-          $_SESSION['o_eid'] = $eid;
-          $_SESSION['o_timein'] = $time_in;
-          $_SESSION['o_timeout'] = $time_out;
-          $_SESSION['o_date'] = $date;
-          $_SESSION['o_code'] = $ucode;
+          
           $_SESSION['ucode'] = $ucode;
           
           ?>

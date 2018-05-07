@@ -17,8 +17,8 @@ mysqli_close($con);
 $_SESSION['eid'] = $e_id;
 $_SESSION['rid'] = $r_id;
 $_SESSION['timein'] = $ti;
-$_SESSION['imeout'] = $to;
+$_SESSION['timeout'] = $to;
 $_SESSION['date'] = $date;
-$_SESSION['ucode'] = $ucode;
+$_SESSION['ucode'] = $u_code;
 header('location:sendupdate.php');
 ?>
