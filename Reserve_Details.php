@@ -306,7 +306,7 @@ function logout()
 <!--                    Cancel button must appear if the reservation status is Active-->
 <!--                    Delete Alert Pop up before deleting-->
                     <h2 id="cancel_header">Do you want to cancel your reservation?</h2>
-                    <a href="cancelreservation.php"><button class="btn btn-danger">Cancel Reservation</button></a>
+                    <a href="delsched.php?SID=<?php echo $sid;?>"><button class="btn btn-danger">Cancel Reservation</button></a>
                 </div>
             </div>
          
