@@ -154,6 +154,7 @@ session_start();
 		</td>
             </tr>   
                 <tr class="headers" style="color:#00b3b3">
+                    <td>More Info</td>
                     <td id="delete">Delete</td>
                     <td id="edit">Edit</td>
                     <td id="room_id">Room ID</td>
@@ -183,6 +184,7 @@ while($row=mysqli_fetch_array($SQL))
 	{
  ?>
 	<tr>
+                <td><a href="room_details.php?SID=<?php echo $row['room_id']; ?>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
 		<td ALIGN="CENTER"><a onclick="return Del()" href="delete_room.php?SID=<?php echo $row['room_id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
 		<td ALIGN="CENTER"><a href="edit_room.php?SID=<?php echo $row['room_id']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 		<td><?php echo $row['room_id']; ?></td>
