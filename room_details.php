@@ -1,6 +1,6 @@
 <?php
 session_start();
-$rid = $_POST['txtrid'];
+$rid = $_GET['SID'];
 
 ?>
 <html>
@@ -131,7 +131,7 @@ $rid = $_POST['txtrid'];
       <div class="container">
           <div class="row">
               <div class="col-md-3 half">
-                  <a href="addsched.php"><button class="btn btn-primary">Back</button></a>
+                  <a href="Room_View.php"><button class="btn btn-primary">Back</button></a>
               </div>
           </div>
             <div class="row">

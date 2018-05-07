@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2018 at 01:10 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Generation Time: May 07, 2018 at 01:44 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -117,7 +117,7 @@ CREATE TABLE `tbl_room` (
 --
 
 INSERT INTO `tbl_room` (`room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`, `time_millis`) VALUES
-('', '', '00:00:00', '00:00:00', '0000-00-00', '', 0, 0);
+('208', '2122', '09:00:00', '10:00:00', '2018-05-08', '93701', 1, 3600000);
 
 -- --------------------------------------------------------
 
@@ -133,18 +133,20 @@ CREATE TABLE `tbl_roomlist` (
   `mac_address` varchar(100) NOT NULL,
   `Amenities` varchar(1000) NOT NULL,
   `Pax` int(200) NOT NULL,
-  `Room_Status` varchar(100) NOT NULL
+  `Room_Status` varchar(100) NOT NULL,
+  `timeframe_in` time NOT NULL DEFAULT '08:00:00',
+  `timeframe_out` time NOT NULL DEFAULT '17:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_roomlist`
 --
 
-INSERT INTO `tbl_roomlist` (`room_id`, `room_name`, `room_bldg`, `room_floor`, `mac_address`, `Amenities`, `Pax`, `Room_Status`) VALUES
-('208', 'CpE Lab', 'Mabini Building', '2', 'DEAD:BEEF:FEED', 'Lights,Table,Chairs,Projector', 20, 'FREE'),
-('510', 'Computer Laboratory', 'Mabini Building', '5', 'FFFF:ED23:WQPR', 'Lights,Table,Chairs,Projector', 40, 'FREE'),
-('509', 'Mobile Laboratory', 'Mabini Building', '5', 'DDDD:1234:CBDA', 'Lights,Table,Chairs,Projector', 60, 'FREE'),
-('101', 'Mobile Room', 'Mabini Building', '1', 'CCCC:DDDD:AAAA', 'Lights,Table,Chairs,Projector', 20, 'FREE');
+INSERT INTO `tbl_roomlist` (`room_id`, `room_name`, `room_bldg`, `room_floor`, `mac_address`, `Amenities`, `Pax`, `Room_Status`, `timeframe_in`, `timeframe_out`) VALUES
+('208', 'CpE Lab', 'Mabini Building', '2', 'DEAD:BEEF:FEED', 'Lights,Table,Chairs,Projector', 20, 'FREE', '04:00:00', '23:00:00'),
+('510', 'Computer Laboratory', 'Mabini Building', '5', 'FFFF:ED23:WQPR', 'Lights,Table,Chairs,Projector', 40, 'FREE', '04:00:00', '23:00:00'),
+('509', 'Mobile Laboratory', 'Mabini Building', '5', 'DDDD:1234:CBDA', 'Lights,Table,Chairs,Projector', 60, 'FREE', '04:00:00', '23:00:00'),
+('101', 'Mobile Room', 'Mabini Building', '1', 'CCCC:DDDD:AAAA', 'Lights,Table,Chairs,Projector', 20, 'FREE', '04:00:00', '23:00:00');
 
 -- --------------------------------------------------------
 
@@ -168,7 +170,8 @@ CREATE TABLE `tbl_sched` (
 --
 
 INSERT INTO `tbl_sched` (`id`, `room_id`, `emp_id`, `time_in`, `time_out`, `date`, `u_code`, `Status`) VALUES
-(39, '208', '2122', '13:00:00', '23:59:00', '2018-05-03', '98297', 0);
+(42, '208', '2122', '09:00:00', '10:00:00', '2018-05-08', '93701', 1),
+(43, '101', '2122', '09:00:00', '10:00:00', '2018-05-08', '42146', 1);
 
 --
 -- Indexes for dumped tables
@@ -210,7 +213,7 @@ ALTER TABLE `announcement_table`
 -- AUTO_INCREMENT for table `tbl_sched`
 --
 ALTER TABLE `tbl_sched`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

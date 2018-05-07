@@ -68,6 +68,8 @@ session_start();
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txtrid">Room Number</label>
+                   <?php 
+                   if ($_SESSION['error'] != 'avail'){ ?>
                     <SELECT class="form-control" id="txtrid" NAME="txtrid">
                         <?php
                         include 'connect.php';
@@ -87,6 +89,19 @@ session_start();
                             ?>
                         
                     </SELECT>
+                    <?php } 
+                    else if ($_SESSION['error'] == 'avail') { ?>
+                    <SELECT class="form-control" id="txtrid" NAME="txtrid" disabled>
+                        
+                        <OPTION><?php echo $_SESSION['rid'];
+                        
+                            ?>
+                        
+                    </SELECT>    
+                    <?php
+                    }
+                    ?>
+                    
                 </div>
                 <div class="col-md-6">
 <!--                    <a href = "roomdetails.php"><button class="btn btn-primary">Room Details</button>></a>-->

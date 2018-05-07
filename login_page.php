@@ -128,13 +128,13 @@ session_start();
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("Login failed. Please try again")';
             echo '</script>';
-            $_SESSION["login"] = '';
+            $_SESSION["login"] = 'no';
         }
         else if ($_SESSION["login"]=='logout'){
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("Log Out Successful!")';
             echo '</script>';
-            $_SESSION["login"] = '';
+            $_SESSION["login"] = 'no';
         }
         if ($_SESSION['changed'] == 1){
             echo '<script type="text/javascript" language="JavaScript">';
