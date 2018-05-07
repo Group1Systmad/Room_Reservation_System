@@ -1,7 +1,6 @@
 <?php
 session_start();
 $rid = $_POST['txtrid'];
- //code here to get data from database using $rid;
 
 ?>
 <html>
@@ -119,7 +118,14 @@ $rid = $_POST['txtrid'];
 </style>
 </head>
 <body>
-
+        <?php
+        //code here to get data from database using $rid;
+        include 'connect.php';
+        $SQL = "SELECT * FROM tbl_roomlist WHERE room_id='$rid'";
+        $res = mysqli_query($con, $SQL);
+        $row = mysqli_fetch_array($res);
+        
+        ?>
     
     
       <div class="container">
@@ -135,17 +141,17 @@ $rid = $_POST['txtrid'];
                     <tr>
                         <td>Room Name:</td>
 <!--                        replace code below to get data from a variable stored when the system connected-->
-                        <td>CpELab</td>
+                        <td><?php echo $row['room_name']; ?></td>
                     </tr>
                     <tr>
                         <td>Room Bldg:</td>
                         <!--  replace code below to get data from a variable stored when the system connected-->
-                        <td>Mabini Building</td>
+                        <td><?php echo $row['room_bldg']; ?></td>
                     </tr>
                     <tr>
                          <td>Room Floor</td>
                          <!--  replace code below to get data from a variable stored when the system connected-->
-                        <td>2</td>
+                        <td><?php echo $row['room_floor']; ?></td>
                     </tr>
                 </table>
             </div>
@@ -155,7 +161,7 @@ $rid = $_POST['txtrid'];
                     <tr>
                         <td>Amenities</td>
                         <!--  replace code below to get data from a variable stored when the system connected-->
-                        <td>Lights,Aircon,One Table,Chairs,Projector</td>
+                        <td><?php echo $row['Amenities']; ?></td>
                     </tr>
                 </table>
             </div>
@@ -167,7 +173,7 @@ $rid = $_POST['txtrid'];
                         <tr>
                         <td>Max Pax</td>
                         <!-- replace code below to get data from a variable stored when the system connected-->
-                        <td>40</td>
+                        <td><?php echo $row['Pax']; ?></td>
                         </tr>
                     </table>
                     
