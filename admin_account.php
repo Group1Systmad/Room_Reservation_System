@@ -251,45 +251,40 @@ function PopupCenter(url, title, w, h) {
 //}
 //?>
   
-<div id="myAccountnav" class="accnav" style="top:70px;">
+ <div class="sidebar">
+    <ul>
+        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li> 
+        <li><div class="selected"><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></div></li>
+        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
+        <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
+        <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></li>
+        <li><div id="time" style="padding-top:150px; font-size: 18px; color:white; text-align: center"></div> </li>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li>
+    </ul>
+    </div>
+       
+        <div id="myAccountnav" class="accnav" style="top:70px;">
   <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
             <?php
             include 'connect.php';
             $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
-            $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";    
+            $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
             $res1 = mysqli_query($con, $sql1);
             $row1 = mysqli_fetch_array($res1);
-            $username = $_SESSION['username'];
             ?>
-            <div class="center"> <img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="border-radius: 100%; max-height: 90px;">
+            <div class="center"> <img src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" style="border-radius: 100%; max-height: 90px;">
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
             <hr>
             <a class="hoverable" href="user_account.php">Account Info</a> 
-            <a class="hoverable" href="user_account.php">Change Password</a> 
+            <a  class="hoverable" href="change_pass.php">Change Password</a> 
             <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
 </div>
-    
-<?php 
-
-    
-      $sidebar =  '<div class="sidebar">';
-    $sidebar .= '<ul>';
-    $sidebar .= ' <li> <img src =' . 'logo3.png'.  ' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>';
-    $sidebar .= '<li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></li>';
-   $sidebar .= ' <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>';
-    $sidebar .= '<li><a href="aboutusadmin.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>';
-     $sidebar .= '<li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>';
-    $sidebar .= '<li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>';
-    $sidebar .= '<li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>';
-    $sidebar .='<li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>';
-    $sidebar .= '</div>';
-    echo $sidebar;
-
-?>
     
 <!--     <div class="profnav">
          <div class="t1 col-md-6"><p><img src= "<?php  if (empty($row1['profile'])){ echo "Male User_96px.png";} else {echo $row1['profile'];}?>"style="; max-width: 260px; max-height: 360px;"></p></div>

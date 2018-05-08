@@ -12,13 +12,13 @@ session_start();
 <title>Add Reservation</title>
 <style>
     .table{
-        width: 55%;
-        margin: 0 auto;
+        width: 100%;
+        margin: auto;
+        padding-right: 10%;
     }
     .container{
-        margin-top: 5%;
+        margin-top: 15%;
         text-align: center;
-        margin-right: 2%;
     }
     .headers{
         text-align: center;
@@ -115,24 +115,6 @@ function checkTime(i) {
             document.getElementById("myAccountnav").style.width = "0";
             document.getElementById("myAccountnav").style.border = "none";
 }
-
-function PopupCenter(url, title, w, h) {  
-    // Fixes dual-screen position                         Most browsers      Firefox  
-    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
-    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;  
-              
-    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
-    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
-              
-    var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
-    var top = ((height / 2) - (h / 2)) + dualScreenTop;  
-    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
-  
-    // Puts focus on the newWindow  
-    if (window.focus) {  
-        newWindow.focus();  
-    }  
-}  
 </script>
 </head>
 <body onload="startTime()">
@@ -148,7 +130,7 @@ function PopupCenter(url, title, w, h) {
         <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
          <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
         <li><div id="time" style="padding-top:150px; font-size: 18px; color:white; text-align: center"></div> </li>
-        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li>
        
     </ul>
 </div>
@@ -228,12 +210,8 @@ function PopupCenter(url, title, w, h) {
     $_SESSION['date'] = "";
     $_SESSION['error'] = 'no';
             ?>
-<<<<<<< Updated upstream
-    <a onclick="return PopupCenter('addsched.php','Update Profile ','700','800');  " style="color: white;"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br>
-=======
-    <a onclick="return PopupCenter('addsched.php','Update Profile ','600','520');  " style="color: white;"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br>
->>>>>>> Stashed changes
 
+    <a href="addsched.php"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br> 
         <font size="4" face="arial"  color="#ff7a24">
             <?php
             include 'connect.php';

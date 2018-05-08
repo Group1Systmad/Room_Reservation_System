@@ -19,10 +19,13 @@ session_start();
     s = checkTime(s);
     n = n+1;
     n = checkTime(n);
+    o = checkTime(o);
     document.getElementById('txt').innerHTML =
     h + ":" + m + ":" + s;
     document.getElementById('da').innerHTML =
     n + "/" + o + "/" + p;
+    document.getElementById('current').innerHTML =
+    p + "-" + n + "/" + o;
     var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
@@ -69,6 +72,33 @@ function PopupCenter(url, title, w, h) {
         newWindow.focus();  
     }  
 }  
+
+var countDownDate = new Date(reservationtime).getTime();
+
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+}, 1000);
  </script>
  
 
@@ -157,10 +187,46 @@ function PopupCenter(url, title, w, h) {
      <span style="color:white; font-size: 12px; margin-left: 36px">
          <?php 
             include 'connect.php';
-            $sql ="select announcements from announcements where ID='1'";
+            $sql2 ="select announcements from announcements where ID='1'";
+            $res2 = mysqli_query($con, $sql2);
+            $row2 = mysqli_fetch_array($res2);
+            echo $row2['announcements'];
+            ?>
+     </span>
+     <hr>
+     <span style="font-size: 17px; color: white;">Notifications </span> 
+     <span style="color: #c0c0c0; margin-left: 36px; font-size: 12px">
+            <p></p> <p></p> <p></p> <p></p> <p></p>
+            <?php
+            $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
-            echo $row['announcements'];
+             $sql3 ="select * from tbl_sched where emp_id='".$row['Employee_ID']."'";
+            $res3 = mysqli_query($con, $sql3);
+            $row3 = mysqli_fetch_array($res3);
+            $date1 = date("Y-m-d"); 
+             $date = date("h:i:s");
+             $remaining =  $row3['time_in'] - $date;
+            $days_remaining = floor($remaining / 86400);
+            $hours_remaining = floor(($remaining % 86400) / 3600);
+            if ($date1 == $row3['date']) {
+             if($hours_remaining >=1){echo "You have a reservation at room ";
+            echo $row3['room_id'];
+            echo " in ";
+            echo $hours_remaining;
+            if ($hours_remaining == 1) {
+            echo " hour.";}
+            else { " hours.";}
+            }
+              else {echo "No notifications";}
+            }
+            else {echo "No notifications";}
+            ?>
+         </span>
+      <span style="color: #adadad; font-size: 12px; margin-left: 36px">
+         <?php 
+            include 'connect.php';
+           
             ?>
          </span>
     </div></div>

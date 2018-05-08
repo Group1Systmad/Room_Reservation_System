@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+ 
 ?>
 <HTML>
 <HEAD>
@@ -27,32 +27,32 @@ function startTime() {
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
-}	
+}  
     function Del()
-	  {
-	     var confirmDel = confirm("Are you sure?");
-
-	     if (confirmDel==true)//the user pressed the ok button
-	     {
-	     	return true;
-	     }
-	     else
-	     {
-	     	return false;
-	     }
-	  }
+    {
+       var confirmDel = confirm("Are you sure?");
+ 
+       if (confirmDel==true)//the user pressed the ok button
+       {
+         return true;
+       }
+       else
+       {
+         return false;
+}
+    }
           function logout()
         {
-	     var confirmdel = confirm("Confirm Log Out?");
-
-	     if (confirmdel==true)
-	     {
-	     	return true;
-	     }
-	     else
-	     {
-	     	return false;
-	     }
+       var confirmdel = confirm("Confirm Log Out?");
+ 
+       if (confirmdel==true)
+       {
+         return true;
+       }
+       else
+       {
+         return false;
+       }
         }
         
           function openaccNav() {
@@ -62,8 +62,8 @@ function checkTime(i) {
         function closeaccNav() {
             document.getElementById("myAccountnav").style.width = "0";
             document.getElementById("myAccountnav").style.border = "none";
-}
-
+            }
+ 
 function PopupCenter(url, title, w, h) {  
     // Fixes dual-screen position                         Most browsers      Firefox  
     var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
@@ -86,15 +86,15 @@ function PopupCenter(url, title, w, h) {
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
        <link rel="stylesheet" href="mika/about.css" type="text/css">
      <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
-    <style>
+     <style>
         .table{
-            width: 60%;
+            width: 20%;
             margin: 0 auto;
         }
         .container{
             margin-top: 10%;
             text-align: center;
-
+ 
         }
         .headers{
             text-align: center;
@@ -109,7 +109,7 @@ function PopupCenter(url, title, w, h) {
         }
          .glyphicon-pencil,.glyphicon-floppy-disk{
             font-size: medium;
-        }
+            }
         .form-control{
             height: 25px;
         }
@@ -130,7 +130,7 @@ function PopupCenter(url, title, w, h) {
     </style>
 </HEAD>
 <body onload="startTime()">
-
+ 
       
     <div id="myAccountnav" class="accnav" style="top:70px;">
   <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
@@ -149,7 +149,8 @@ function PopupCenter(url, title, w, h) {
             <hr>
             <a class="hoverable" href="admin_account.php">Account Info</a> 
             <a class="hoverable" href="change_pass.php">Change Password</a> 
-            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
+            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php
+            $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>
             </div>
 </div>
     
@@ -162,22 +163,22 @@ function PopupCenter(url, title, w, h) {
         <li><div class="selected"><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></div></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
          <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
-        <li><div id="time" style="padding-top:150px; font-size: 18px; color:white; text-align: center"></div> </li>
+        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white; text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
        
     </ul>
 </div>
    
-
+ 
 <div class="container">
     <FORM class="form-inline" NAME="searchArea" METHOD="POST" ACTION="employees.php">
-                <div class="form-group">
+        <div class="form-group">
                     <Label>Search by Last name:</Label>
                     <INPUT class="form-control form-control-xs mb-2 mr-sm-2" TYPE="text" ID="txtSearchLN" NAME="txtSearchLN">
                 </div>
         <INPUT class="btn btn-primary search_button" TYPE="submit" VALUE=" Search ">
     </FORM>
-
+ 
     <TABLE class="table">
         <TR class="headers" style="color:#00b3b3">
             <TD>Remove</TD>
@@ -194,7 +195,7 @@ function PopupCenter(url, title, w, h) {
         </TR>
         <?php
         include 'connect.php';
-
+ 
         if (isset($_POST['txtSearchLN']))
         {
             $_SESSION['current_search'] = $_POST['txtSearchLN'];
@@ -237,7 +238,7 @@ function PopupCenter(url, title, w, h) {
             <td><input class="<?php echo 'cell'.$_SESSION['row']['Employee_ID']?> table_cell" name="emp_id" id="emp_id" value=<?php echo $_SESSION['row']['Employee_ID']; ?> readonly></td>
             <td><input class="<?php echo 'cell'.$_SESSION['row']['Employee_ID']?> table_cell" name="emp_ln" id="emp_ln" value=<?php echo $_SESSION['row']['Emp_LN']; ?> <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>> </td>
             <td><input class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" name="emp_fn" id="emp_fn" value='<?php echo $_SESSION['row']['Emp_FN']; ?>'  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
-            <td><input type="text" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_add" name="emp_add" value="<?php echo $_SESSION['row']['Emp_Address']; ?>"  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
+           <td><input type="text" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_add" name="emp_add" value="<?php echo $_SESSION['row']['Emp_Address']; ?>"  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
             <td><input type="text" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_age" name="emp_age" value=<?php echo $_SESSION['row']['Emp_Age']; ?>  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
             <td><input type="text" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_dept" name="emp_dept" value=<?php echo $_SESSION['row']['Emp_Department']; ?>  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
             <td><input type="email" class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" id="emp_email" name="emp_email" value=<?php echo $_SESSION['row']['Emp_Email'];?>  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
@@ -254,18 +255,14 @@ function PopupCenter(url, title, w, h) {
         mysqli_close($con);
         ?><!-- close of second php -->
     </TABLE>
-<<<<<<< Updated upstream
     <a onclick="return PopupCenter('addemp.php','Update Profile ','500','500');  "><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>
-=======
-    <a onclick="return PopupCenter('addemp.php','Update Profile ','600','500');  "><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>
->>>>>>> Stashed changes
-
+ 
     <font size="4" face="arial"  color="#ff7a24">
         <?php
         include 'connect.php';
-
+ 
         $result = mysqli_query($con,"SELECT * FROM employee ");
-        $rows = mysqli_num_rows($result);
+         $rows = mysqli_num_rows($result);
         echo "<br>";
         echo "There are " . $rows . " record(s) in the table. ";
         mysqli_close($con);
@@ -273,10 +270,10 @@ function PopupCenter(url, title, w, h) {
     </font>
     <br></br>
 </div>
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 </BODY>
 </HTML>
