@@ -75,6 +75,28 @@ session_start();
     }
     </style>
     <script type="text/javascript">
+               function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var n= today.getMonth();
+    var o= today.getDate();
+    if (h>12){h= h-12; }
+    h = checkTime(h);
+    m = checkTime(m);
+    n = n+1;
+    n = checkTime(n);
+    o = checkTime(o);
+     document.getElementById('time').innerHTML =
+     h + ":" + m 
+     document.getElementById('date').innerHTML =
+     n + "/" + o 
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
         function logout()
         {
 	     var confirmdel = confirm("Confirm Log Out?");
@@ -100,7 +122,7 @@ session_start();
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
     <link rel="stylesheet" href="mika/about.css" type="text/css">
     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
-    <body>
+    <body onload="startTime()">
         <div class="sidebar">
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li> 
@@ -110,6 +132,8 @@ session_start();
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><div class="selected"><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></div></li>
+          <li><div id="time" style="padding-top:20px; font-size: 18px; color:white; text-align: center"></div> </li>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
     </ul>
     </div>
        
