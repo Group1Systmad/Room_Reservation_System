@@ -74,14 +74,15 @@
     <body>
         <div class="sidebar">
     <ul>
-        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li> 
-        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></li>
-        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
-        <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
-        <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
-        <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-        <li><div class="selected"><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></div></li>
-    </ul>
+        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
+        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
+        <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
+        <li> <div class="selected"><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
+        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
+        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
+        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
     </div>
         
          <div id="myAccountnav" class="accnav" style="top:70px;">
@@ -153,7 +154,7 @@
                 <div class="col-md-12">
                     <label for="txtrid">Room Number</label>
                    <?php 
-                   if ($_SESSION['error'] != 'avail'){ ?>
+                   if ($_SESSION['uerror'] != 'avail'){ ?>
                     <SELECT class="form-control" id="txtrid" NAME="txtrid">
                         <?php
                         include 'connect.php';
@@ -174,7 +175,7 @@
                         
                     </SELECT>
                     <?php } 
-                    else if ($_SESSION['error'] == 'avail') { ?>
+                    else if ($_SESSION['uerror'] == 'avail') { ?>
                     <input class="form-control" type="text" name="txtrid" value="<?php echo $rid;?>" id="txtrid" readonly>
                     
                     <?php
@@ -219,25 +220,25 @@
             </div>
             <div class="form-group row">
                 <?php 
-                if ($_SESSION['error'] != 'avail'){ ?>
+                if ($_SESSION['uerror'] != 'avail'){ ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail_edit.php">
+                    <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail_edit_user.php">
                 </div>   
                 <div class="col-md-6">
                     <input class="btn btn-danger" type="reset" value="Clear">
                 </div>   
                 <?php }
-                else if ($_SESSION['error']=='avail'){
+                else if ($_SESSION['uerror']=='avail'){
                 
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Room Available.")';
                 echo '</script>';  
                 ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Save" formaction="update__reservation.php">
+                    <input class="btn btn-primary" type="submit" value="Save" formaction="user_reservation.php">
                 </div>
                 <div class="col-md-6">
-                    <input class="btn btn-danger" type="submit" value="Cancel" formaction="schedtable.php">
+                    <input class="btn btn-danger" type="submit" value="Cancel" formaction="user_schedtable.php">
                 </div>
                 <?php }?>
                 
@@ -246,29 +247,29 @@
 
 </div>
              <?php
-                if ($_SESSION['error']== 'wrongdate'){
+                if ($_SESSION['uerror']== 'wrongdate'){
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Wrong input of date.")';
                 echo '</script>'; 
-                $_SESSION['error']='no';
+                $_SESSION['uerror']='no';
                 }
-                else if ($_SESSION['error']== 'wrongtime'){
+                else if ($_SESSION['uerror']== 'wrongtime'){
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Wrong input of time.")';
                 echo '</script>'; 
-                $_SESSION['error']='no';
+                $_SESSION['uerror']='no';
                 }
-                else if ($_SESSION['error']== 'wrongrange'){
+                else if ($_SESSION['uerror']== 'wrongrange'){
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Room is not available at that time. Check Rooms for details.")';
                 echo '</script>'; 
-                $_SESSION['error']='no';
+                $_SESSION['uerror']='no';
                 }
-                else if ($_SESSION['error']== 'notavail'){
+                else if ($_SESSION['uerror']== 'notavail'){
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Room not available. Input another room or time and date")';
                 echo '</script>'; 
-                $_SESSION['error']='no';
+                $_SESSION['uerror']='no';
                 }
                 ?>
             </div>
