@@ -18,7 +18,7 @@
             $date_current = date('Y-m-d');
             $time_current = date('H:i:s');
             //Check current time and date
-            $time_plus = date('H:i:s', strtotime("+30 minutes", $time_current));
+            $time_plus = date('H:i:s',strtotime('+ 30 minutes',strtotime($time_current)));
             //Data from tbl_sched
             $SQL = "SELECT * FROM tbl_sched WHERE room_id='$roomid'";
             $res = mysqli_query($con, $SQL);
@@ -34,7 +34,7 @@
             $time_close_f = date("H:i", $time_close_stamp);
             $count = mysqli_num_rows($res);
             $i = -1;
-            //Check if corrent input of date and time
+            //Check if correct input of date and time
             if ($date < $date_current){
                     $_SESSION['error']= 'wrongdate';   
                     header('location:addsched.php');
@@ -48,10 +48,66 @@
                     $_SESSION['error']= 'wrongtime';  
                     header('location:addsched.php');
                     }
-                else if ($time_in >= $time_current OR $time_in <= $time_plus){
+                else if ($time_in >= $time_current AND $time_in <= $time_plus){
                     $_SESSION['error']= 'wrongtime';  
                     header('location:addsched.php');
                     }
+                else {   
+            while($row = mysqli_fetch_array($res))
+            {
+                $i++;
+                $col[$i]['time_in']=$row['time_in'];
+                $col[$i]['time_out']=$row['time_out'];
+                $col[$i]['date']=$row['date'];
+
+            }       
+            //Check if conflict with other schedules
+            if ($count>=1){
+                for ($j=0;$j<=$i;$j++){
+                    $time_in_stamp = strtotime($col[$j]['time_in']);
+                    $time_out_stamp = strtotime($col[$j]['time_out']);
+                    $time_in_f = date("H:i", $time_in_stamp);
+                    $time_out_f = date("H:i", $time_out_stamp);
+                    if ($col[$j]['date'] == $date){
+                        if (($time_in_f <= $time_in AND $time_out_f > $time_in))
+                        {
+                        $_SESSION['error']= 'notavail';   
+                        $j=$i;
+                        header('location:addsched.php');
+                        }
+                        else if (($time_in_f < $time_out AND $time_out_f >= $time_out))
+                        {
+                        $_SESSION['error']= 'notavail';   
+                        $j=$i;
+                        header('location:addsched.php');
+                        }    
+                        else if (($time_in_f >= $time_in AND $time_out_f <= $time_out))
+                        {
+                        $_SESSION['error']= 'notavail';   
+                        $j=$i;
+                        header('location:addsched.php');
+                        } 
+                        else
+                        {
+                        $_SESSION['error']= 'avail'; 
+                        header('location:addsched.php');
+                        }
+                    }
+                    else
+                    {
+                    $_SESSION['error']= 'avail'; 
+                    header('location:addsched.php');
+                    }
+            }
+            }
+            else
+            {
+            $_SESSION['error']= 'avail';  
+            header('location:addsched.php');
+            }
+            }
+            //Check if conflict with other schedules
+           
             }
             else if ($time_out < $time_in){
                     $_SESSION['error']= 'wrongtime';  
