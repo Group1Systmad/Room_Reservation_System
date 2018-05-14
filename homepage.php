@@ -111,7 +111,7 @@ function PopupCenter(url, title, w, h) {
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
         </ul>
-    </div>
+</div>
     
 
 <div id="myAccountnav" class="accnav" style="top:70px;">
