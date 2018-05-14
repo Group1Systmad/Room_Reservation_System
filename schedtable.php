@@ -9,7 +9,7 @@ session_start();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
     <link rel="stylesheet" href="mika/about.css" type="text/css">
-<title>Add Reservation</title>
+<title>Reservation's List</title>
 <style>
     .table{
         width: 30%;

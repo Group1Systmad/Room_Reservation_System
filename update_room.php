@@ -44,8 +44,15 @@ mysqli_close($con);
 }
 else if ($_SESSION['users'] == true){
 $_SESSION['users'] = false;
+if($_SESSION['deleted'] == true){
+        $_SESSION['deleted'] = false;
+        header('location:user_schedtable.php');
+        
+    }
+    else{
  echo "<script>window.close(); </script>";
 mysqli_close($con);
+}
 }
 ?>
 

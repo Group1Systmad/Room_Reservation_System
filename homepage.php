@@ -52,7 +52,7 @@ function logout()
              document.getElementById("myAccountnav").style.width = "250px";
              document.getElementById("myAccountnav").style.border = "1px solid black";
 }
-        function closeaccNav() {
+    function closeaccNav() {
             document.getElementById("myAccountnav").style.width = "0";
             document.getElementById("myAccountnav").style.border = "none";
 }
