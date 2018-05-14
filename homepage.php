@@ -3,7 +3,6 @@ session_start();
 ?>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <script type="text/javascript">
     function startTime() {
@@ -20,34 +19,30 @@ session_start();
     s = checkTime(s);
     n = n+1;
     n = checkTime(n);
+    o = checkTime(o);
     document.getElementById('txt').innerHTML =
     h + ":" + m + ":" + s;
     document.getElementById('da').innerHTML =
     n + "/" + o + "/" + p;
-     document.getElementById('hour').innerHTML =
-    h;
-     document.getElementById('min').innerHTML =
-    m;
     var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
 }
-//LOG OUT FUNCTION
-function logout()
-    {
-	var confirmdel = confirm("Confirm Log Out?");
-	if (confirmdel==true)
-	    {
+
+        function logout()
+        {
+	     var confirmdel = confirm("Confirm Log Out?");
+	     if (confirmdel==true)
+	     {
 	     	return true;
-	    }
-	else
-	    {
+	     }
+	     else
+	     {
 	     	return false;
-	    }
-    }
-//END OF LOG OUT FUNCTION
+	     }
+        }
    function openaccNav() {
              document.getElementById("myAccountnav").style.width = "250px";
              document.getElementById("myAccountnav").style.border = "1px solid black";
@@ -75,6 +70,33 @@ function PopupCenter(url, title, w, h) {
         newWindow.focus();  
     }  
 }  
+
+var countDownDate = new Date(reservationtime).getTime();
+
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+}, 1000);
  </script>
  
 
@@ -95,6 +117,7 @@ function PopupCenter(url, title, w, h) {
 </head>
 
 <body onload="startTime()">
+    
 <?php
     $_SESSION['changed'] = 0;
     $_SESSION["count"]=1;
@@ -132,8 +155,7 @@ function PopupCenter(url, title, w, h) {
             <hr>
             <a class="hoverable" href="admin_account.php">Account Info</a> 
             <a  class="hoverable" href="change_pass.php">Change Password</a> 
-            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php 
-                $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>
+            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
             </div>
 </div>
 
@@ -141,14 +163,14 @@ function PopupCenter(url, title, w, h) {
 
 <div class="container">
     <div class="row" style="margin-left: 0%; text-align: center; ">
-     <div class="time" div style="border-radius: 8px; height: 80px; width: 93%; padding-top: 1%; position: relative">
+     <div class="clock" div style="border-radius: 8px; height: 80px; width: 93%; padding-top: 1%; position: relative">
          <span class="h1" style="font-size: 45px; color: #22315d;font-family: Book Antiqua; "> <div id="txt"></div></span>
         <p style="font-size: 16px"><div id="da"></div></p>
      </div> </div>
     
     <div class="row" style=" padding-top: 1%; margin-left: 25px">
     <div class="table_view col-lg-7" div style="height: 40%; border-radius: 8px; vertical-align: middle;">
-        <img src="office.jfif" style="width: 102%; margin-left: 1px; height:235px ">
+        <img src="office.jfif" style="width: 102%; margin-left: 1px; height:auto ">
         <div class="black" style="position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: auto; padding: 10px;">
         <!--Edit Mar-->
         <span class="h1" style="font-size: 40px; " id="jumbo-header"> Room Reservation App</span>
@@ -157,19 +179,53 @@ function PopupCenter(url, title, w, h) {
         </div>
         </div>
     <div class="table_view col-md-3" style="width: 34%; background-color: #304582; margin-left: 1%; border-radius: 8px; height: 40%; ">
-     <span style="font-size: 17px; color: white;">Announcements </span> 
+     <span style="font-size: 20px; color: white;">Announcements </span> 
      <a onclick="return PopupCenter('announce.php','Post Announcements ','500','400');  "style="font-size: 12px; color: white;padding-left: 10px; cursor: pointer">edit</a>
      <hr>
      <span style="color:white; font-size: 12px; margin-left: 36px">
          <?php 
             include 'connect.php';
-            $sql ="select announcements from announcement_table where ID='1'";
+            $sql2 ="select announcements from announcement_table where ID='1'";
+            $res2 = mysqli_query($con, $sql2);
+            $row2 = mysqli_fetch_array($res2);
+            echo $row2['announcements'];
+            ?>
+     </span>
+     <hr>
+     <span style="font-size: 17px; color: white;">Notifications </span> 
+     <span style="color: #fff; padding-left: 40px; font-size: 12px">
+            <p></p> <p></p> <p></p> <p></p> <p></p>
+            <?php
+            $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
-            echo $row['announcements'];
+             $sql3 ="select * from tbl_sched where emp_id='".$row['Employee_ID']."'";
+            $res3 = mysqli_query($con, $sql3);
+            $row3 = mysqli_fetch_array($res3);
+            $date1 = date("Y-m-d"); 
+            date_default_timezone_set('Asia/Manila');
+            $date = date("H:i:s");
+             $hours_remaining =  $row3['time_in'] - $date;
+            if ($date1 == $row3['date']) {
+                if($hours_remaining >=1)
+               {echo "You have a reservation at room ";
+                echo $row3['room_id'];
+                echo " in ";
+                echo $hours_remaining;
+                    if ($hours_remaining == 1) {
+                    echo " hour.   ";}
+                    if($hours_remaining > 1) { echo " hours.   ";}
+                     $notif = '<span><a href="schedtable.php" style="color: #ff7a24;">View</a></span>';
+                     echo $notif;
+            }}
+              else {echo "No notifications";}
+            
+   
             ?>
          </span>
-
+   
+            <p></p> <p></p> <p></p> <p></p> <p></p>
+            
     </div></div>
     
     <div class="row" style="padding-top: 1%; margin-left: 40px">

@@ -125,9 +125,9 @@ session_start();
 <div class="container" style="padding-top: 50px; background-color: #3A539B; width: 100%; height: 100%;">
      <div class="center"> <img id="blah" src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" alt="User Portrait" style=" display: block; border-radius: 100%;width: 200px; max-height: 200px;border: 5px solid #fff;margin-left:60px">  </div>
      <div class="controls"><p style="font-size:12px; color:white; margin-left: 70px; "> Change your avatar</p>
-         <form action=""  method="post" enctype="multipart/form-data" style="color: #ebebe0;margin: auto; margin-left:60px" runat="server">
+         <form action=""  method="post" enctype="multipart/form-data" style="color: #ebebe0;margin: auto; margin-left:220px" runat="server">
         <input type="file" name="profile" onchange="readURL(this);"> 
-        <input onclick="window.location.href = 'user_account.php';" type="submit" name="submit" style="color:black; text-align: center;">
+        <input onclick="window.location.href = 'user_account.php';" type="submit" name="submit" style="color:black; ">
       </form> 
      </div>
          </div> 

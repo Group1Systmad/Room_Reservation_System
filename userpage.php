@@ -24,10 +24,6 @@ session_start();
     h + ":" + m + ":" + s;
     document.getElementById('da').innerHTML =
     n + "/" + o + "/" + p;
-     document.getElementById('hour').innerHTML =
-    h;
-     document.getElementById('min').innerHTML =
-    m;
     var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
@@ -160,6 +156,40 @@ function PopupCenter(url, title, w, h) {
             echo $row['announcements'];
             ?>
          </span>
+     <hr>
+     <span style="font-size: 17px; color: white;">Notifications </span> 
+     <span style="color: #fff; padding-left: 40px; font-size: 12px">
+            <p></p> <p></p> <p></p> <p></p> <p></p>
+            <?php
+            $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
+            $res = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($res);
+             $sql3 ="select * from tbl_sched where emp_id='".$row['Employee_ID']."'";
+            $res3 = mysqli_query($con, $sql3);
+            $row3 = mysqli_fetch_array($res3);
+            $date1 = date("Y-m-d"); 
+            date_default_timezone_set('Asia/Manila');
+            $date = date("H:i:s");
+             $hours_remaining =  $row3['time_in'] - $date;
+            if ($date1 == $row3['date']) {
+                if($hours_remaining >=1)
+               {echo "You have a reservation at room ";
+                echo $row3['room_id'];
+                echo " in ";
+                echo $hours_remaining;
+                    if ($hours_remaining == 1) {
+                    echo " hour.   ";}
+                    if($hours_remaining > 1) { echo " hours.   ";}
+                     $notif = '<span><a href="schedtable.php" style="color: #ff7a24;">View</a></span>';
+                     echo $notif;
+            }}
+              else {echo "No notifications";}
+            
+   
+            ?>
+         </span>
+   
+            <p></p> <p></p> <p></p> <p></p> <p></p>
 
     </div></div>
     

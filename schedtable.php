@@ -13,12 +13,11 @@ session_start();
 <style>
     .table{
         width: 30%;
-        margin: 0 auto;
+        margin: auto;
     }
     .container{
-        margin-top: 5%;
+        margin-top: 12%;
         text-align: center;
-        margin-right: 2%;
     }
     .headers{
         text-align: center;
@@ -116,23 +115,6 @@ function checkTime(i) {
             document.getElementById("myAccountnav").style.border = "none";
 }
 
-function PopupCenter(url, title, w, h) {  
-    // Fixes dual-screen position                         Most browsers      Firefox  
-    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
-    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;  
-              
-    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
-    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
-              
-    var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
-    var top = ((height / 2) - (h / 2)) + dualScreenTop;  
-    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
-  
-    // Puts focus on the newWindow  
-    if (window.focus) {  
-        newWindow.focus();  
-    }  
-}  
 </script>
 </head>
 <body onload="startTime()">
@@ -231,7 +213,7 @@ function PopupCenter(url, title, w, h) {
     $_SESSION['date'] = "";
     $_SESSION['error'] = 'no';
             ?>
-    <a onclick="return PopupCenter('addsched.php','Update Profile ','700','800');  " style="color: white;"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br>
+        <a href="addsched.php"> <button class="btn btn-primary" style="margin-top: 45px; margin-bottom: 5px">Add New Schedule</button></a><br>
 
         <font size="4" face="arial"  color="#ff7a24">
             <?php

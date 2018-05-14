@@ -279,12 +279,13 @@ function PopupCenter(url, title, w, h) {
       $sidebar =  '<div class="sidebar">';
     $sidebar .= '<ul>';
     $sidebar .= ' <li> <img src =' . 'logo3.png'.  ' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>';
-    $sidebar .= '<li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></li>';
+    $sidebar .= '<li><div class="selected"><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></div></li>';
    $sidebar .= ' <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>';
     $sidebar .= '<li><a href="aboutusadmin.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>';
      $sidebar .= '<li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>';
     $sidebar .= '<li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>';
-    $sidebar .= '<li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>';
+    $sidebar .= '<li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>';
+    $sidebar .= '<li><div id="time" style="padding-top:20px; font-size: 18px; color:white;text-align: center"></div> </li>';
     $sidebar .='<li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>';
     $sidebar .= '</div>';
     echo $sidebar;

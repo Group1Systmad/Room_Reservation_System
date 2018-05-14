@@ -19,7 +19,7 @@ abnav {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 10px 12px;
+    padding: 10px 12px 0 0;
     height: 50.5px;
     font-size: 14px;
     width: 24%;
@@ -38,7 +38,7 @@ abnav {
     color: #000000;
     display: none;
     padding: 100px 20px;
-    margin-left: 6%;
+    margin-left: 4%;
     height: 100%;
 }
 
@@ -145,7 +145,7 @@ function checkTime(i) {
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
-        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
+        <li><div id="time" style="padding-top:20px; font-size: 18px; color:white;text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
         
     </ul>
@@ -229,9 +229,12 @@ function checkTime(i) {
                 </div>
                 </div>
 
-<div id="Vision" class="tabcontent">
+<div id="Vision" class="tabcontent" style="padding-top: 0; padding-left: 0;">
+    <div class="head" style=" width: 100%;"> <img src="head.jpg"> </div>
+    <div style="margin-left: 5%; margin-top: 5%;">
   <h3>Our Vision</h3>
   <p>Who we are and what we do.</p>
+  </div>
 </div>
 
 <script>

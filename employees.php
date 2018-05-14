@@ -64,23 +64,6 @@ function checkTime(i) {
             document.getElementById("myAccountnav").style.border = "none";
 }
 
-function PopupCenter(url, title, w, h) {  
-    // Fixes dual-screen position                         Most browsers      Firefox  
-    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
-    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;  
-              
-    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
-    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
-              
-    var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
-    var top = ((height / 2) - (h / 2)) + dualScreenTop;  
-    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
-  
-    // Puts focus on the newWindow  
-    if (window.focus) {  
-        newWindow.focus();  
-    }  
-}  
 </SCRIPT>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
@@ -163,7 +146,7 @@ function PopupCenter(url, title, w, h) {
         <li><div class="selected"><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></div></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
          <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
-        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white; text-align: center"></div> </li>
+        <li><div id="time" style="padding-top:20px; font-size: 18px; color:white; text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
        
     </ul>
@@ -255,7 +238,7 @@ function PopupCenter(url, title, w, h) {
         mysqli_close($con);
         ?><!-- close of second php -->
     </TABLE>
-    <a onclick="return PopupCenter('addemp.php','Update Profile ','500','500');  "><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>
+    <a href="addemp.php"><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>
 
     <font size="4" face="arial"  color="#ff7a24">
         <?php

@@ -18,6 +18,7 @@ $rid = $_GET['SID'];
         width: 85%;
         background: #fff;
         margin: 0 auto;
+        margin-top: 50px;
         margin-left: 10%;
         padding: 5px;
         border-radius: 10px;
