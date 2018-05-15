@@ -20,7 +20,7 @@
             //Check current time and date
             $time_plus = date('H:i:s',strtotime('+ 30 minutes',strtotime($time_current)));
             //Data from tbl_sched
-            $SQL = "SELECT * FROM tbl_sched WHERE room_id='$roomid'";
+            $SQL = "SELECT * FROM tbl_sched WHERE room_id='$roomid' AND Status='1'";
             $res = mysqli_query($con, $SQL);
             //Data from tbl_sched
             //Data from tbl_roomlist
