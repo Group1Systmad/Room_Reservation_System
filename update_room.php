@@ -3,7 +3,7 @@ session_start();
 include 'connect.php';
 $SQL2 = "DELETE FROM tbl_room";
 $res2 = mysqli_query($con,$SQL2);
-$SQL = "SELECT * FROM tbl_sched WHERE Status = '1' AND ORDER BY date,time_in";
+$SQL = "SELECT * FROM tbl_sched WHERE Status = '1' ORDER BY date,time_in";
 $res = mysqli_query($con,$SQL);
 $row = mysqli_fetch_array($res);
 $res_id = $row['id'];
