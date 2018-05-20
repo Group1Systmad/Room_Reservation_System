@@ -1,6 +1,10 @@
 <?php
 session_start();
-
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
+?>
 ?>
 <HTML>
 <HEAD>
@@ -30,7 +34,7 @@ function checkTime(i) {
 }	
     function Del()
 	  {
-	     var confirmDel = confirm("Are you sure?");
+	     var confirmDel = confirm("Are you sure you want to delete this record?");
 
 	     if (confirmDel==true)//the user pressed the ok button
 	     {
@@ -55,7 +59,7 @@ function checkTime(i) {
 	     }
         }
         
-          function openaccNav() {
+        function openaccNav() {
              document.getElementById("myAccountnav").style.width = "250px";
              //document.getElementById("myAccountnav").style.border = "1px solid black";
 }
@@ -84,8 +88,8 @@ function PopupCenter(url, title, w, h) {
 </SCRIPT>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
-       <link rel="stylesheet" href="mika/about.css" type="text/css">
-     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
+    <link rel="stylesheet" href="mika/about.css" type="text/css">
+    <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
     <style>
         .table{
             width: 20%;
@@ -162,8 +166,8 @@ function PopupCenter(url, title, w, h) {
         <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
         <li><div class="selected"><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></div></li>
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-         <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
-        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white; text-align: center"></div> </li>
+        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
+        <li><div id="time" style="padding-top:20px; font-size: 18px; color:white; text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
        
     </ul>
@@ -205,36 +209,22 @@ function PopupCenter(url, title, w, h) {
         }
         if (isset($_SESSION['current_search']))
         {
-            $query = "SELECT * FROM employee WHERE Emp_LN LIKE '".$_SESSION['current_search']."%"."'";
+            $query = "SELECT * FROM employee WHERE Emp_LN LIKE '".$_SESSION['current_search']."%"."' AND Emp_Status='ACTIVE'";
             
             $SQL=mysqli_query($con,$query);
            
         }
         else 
         {
-             $SQL = mysqli_query($con,"SELECT * FROM employee ORDER BY Emp_LN");
+             $SQL = mysqli_query($con,"SELECT * FROM employee WHERE Emp_Status='ACTIVE' ORDER BY Emp_LN");
         }
         while($_SESSION['row']=mysqli_fetch_assoc($SQL))
         {
         ?><!--end of first php -->
         <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'employee_edit.php\'' : '' ?>>
         <TR>
-<!--            <TD ALIGN="CENTER"><a onclick="return Del()" href="delete_employee.php?SID=--><?php //echo $row['Employee_ID']; ?><!--"><span class="glyphicon glyphicon-remove"></span></a></TD>-->
-<!--            <TD ALIGN="CENTER"><a href="editrec.php?SID=--><?php //echo $row['Employee_ID']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></TD>-->
-<!--            <TD>--><?php //echo $row['Employee_ID']; ?><!--</TD>-->
-<!--            <TD>--><?php //echo $row['Emp_LN']; ?><!--</TD>-->
-<!--            <TD>--><?php //echo $row['Emp_FN']; ?><!--</TD>-->
-<!--            <TD>--><?php //echo $row['Emp_Address']; ?><!--</TD>-->
-<!--            <TD>--><?php //echo $row['Emp_Age']; ?><!--</TD>-->
-<!--            <TD>--><?php //echo $row['Emp_Department']; ?><!--</TD>-->
-<!--            <TD>--><?php //echo $row['Emp_Email']; ?><!--</TD>-->
-<!--            <TD>--><?php //echo $row['Emp_Gender']; ?><!--</TD>-->
             <td align="center"><a onclick="return Del()" href="delete_employee.php?SID=<?php echo $_SESSION['row']['Employee_ID']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
-            <!--                <td align="center"><a href="editsched.php?SID=--><?php //echo $row['id']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
-            <td align="center"><a href="employee_edit.php?SID=<?php echo $_SESSION['row']['Employee_ID']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$_SESSION['row']['Employee_ID']) ? 'button name=\'save_button\' type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$_SESSION['row']['Employee_ID']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php
-                    echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$_SESSION['row']['Employee_ID']) ? '<span class="glyphicon glyphicon-floppy-disk"></span></button>' : '</span>';
-                    ?></a></td>
-            <!--                <td>--><?php //echo $row['id']; ?><!--</td>-->
+            <td align="CENTER"><a href="employee_edit.php?SID=<?php echo $row['Employee_ID']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
             <td><input class="<?php echo 'cell'.$_SESSION['row']['Employee_ID']?> table_cell" name="emp_id" id="emp_id" value=<?php echo $_SESSION['row']['Employee_ID']; ?> readonly></td>
             <td><input class="<?php echo 'cell'.$_SESSION['row']['Employee_ID']?> table_cell" name="emp_ln" id="emp_ln" value=<?php echo $_SESSION['row']['Emp_LN']; ?> <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>> </td>
             <td><input class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" name="emp_fn" id="emp_fn" value='<?php echo $_SESSION['row']['Emp_FN']; ?>'  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>
@@ -255,8 +245,8 @@ function PopupCenter(url, title, w, h) {
         mysqli_close($con);
         ?><!-- close of second php -->
     </TABLE>
-    <a onclick="return PopupCenter('addemp.php','Update Profile ','500','500');  "><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>
-
+<!--    <a onclick="return PopupCenter('addemp.php','Update Profile ','500','500');  "><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>-->
+    <a href="addemp.php"><button class="btn btn-primary"  style="margin-top: 45px; margin-bottom: 20px">Add another employee</button></a>;
     <font size="4" face="arial"  color="#ff7a24">
         <?php
         include 'connect.php';
