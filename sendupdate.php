@@ -23,7 +23,6 @@ $o_date = $_SESSION['o_date'];
 $o_code = $_SESSION['o_code'];
 
  $mailcontent = "<html><body><center><p>There is some changes in your schedule.</p>"
-         . "<h1>$o_eid >> $eid</h1>"
          . "<h1>$o_rid >> $rid</h1>"
          . "<h1>$o_ti >> $ti</h1>"
          . "<h1>$o_to >> $to</h1>"

@@ -1,5 +1,9 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
 ?>
 <html>
 <head>
@@ -47,7 +51,7 @@ function logout()
 	     	return false;
 	    }
     }
-//END OF LOG OUT FUNCTION
+//LOG OUT FUNCTION END
    function openaccNav() {
              document.getElementById("myAccountnav").style.width = "250px";
              document.getElementById("myAccountnav").style.border = "1px solid black";
@@ -77,9 +81,6 @@ function PopupCenter(url, title, w, h) {
 }  
  </script>
  
-
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
     <link rel="stylesheet" href="mika/about.css" type="text/css">
@@ -99,7 +100,6 @@ function PopupCenter(url, title, w, h) {
     $_SESSION['changed'] = 0;
     $_SESSION["count"]=1;
     $_SESSION["selected"]="none";
-    
 ?>
 <div class="sidebar">
     <ul>
@@ -150,7 +150,7 @@ function PopupCenter(url, title, w, h) {
     <div class="table_view col-lg-7" div style="height: 40%; border-radius: 8px; vertical-align: middle;">
         <img src="office.jfif" style="width: 102%; margin-left: 1px; height:235px ">
         <div class="black" style="position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: auto; padding: 10px;">
-        <!--Edit Mar-->
+        
         <span class="h1" style="font-size: 40px; " id="jumbo-header"> Room Reservation App</span>
         <p style="font-size: 18px">Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
         <p style="font-size: 16px">Just click <a href="addsched.php" style="color: #ff7a24">here</a> to reserve!</p>
@@ -163,10 +163,12 @@ function PopupCenter(url, title, w, h) {
      <span style="color:white; font-size: 12px; margin-left: 36px">
          <?php 
             include 'connect.php';
-            $sql ="select announcements from announcement_table where ID='1'";
+            $sql ="select announcements from announcement_table";
             $res = mysqli_query($con, $sql);
-            $row = mysqli_fetch_array($res);
+            while ($row = mysqli_fetch_array($res)){
             echo $row['announcements'];
+            echo "<br>";
+            }
             ?>
          </span>
 

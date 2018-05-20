@@ -13,30 +13,28 @@ ini_set("smtp_port","465");
      $numrows = mysqli_num_rows($result_set);
      
      if ($numrows == 1) {
-         //insert code to email here
-         
-         $password = generatePassword();
-         $mailcontent = "<html><body><center><p>Your password has been reset. Please use the following code as your temporary password</p><h1>$password</h1></center></body></html>";
-         $subject = "Password Reset Email";
-         $from = "jdc42607@gmail.com";
-         $headers = "From: " . strip_tags("jdc42607@gmail.com") . "\r\n";
+        $password = generatePassword();
+        $mailcontent = "<html><body><center><p>Your password has been reset. Please use the following code as your temporary password</p><h1>$password</h1></center></body></html>";
+        $subject = "Password Reset Email";
+        $from = "jdc42607@gmail.com";
+        $headers = "From: " . strip_tags("jdc42607@gmail.com") . "\r\n";
         $headers .= "Reply-To: ". strip_tags("jdc42607@gmail.com") . "\r\n";
         $headers .= "CC: ". $email ."\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-         $success = mail($email, $subject, $mailcontent , $headers);
+        $success = mail($email, $subject, $mailcontent , $headers);
          
-         if($success != false){
-             $SQL = "SELECT Employee_ID FROM employee WHERE Emp_Email = '$email'";
+        if($success != false){
+            $SQL = "SELECT Employee_ID FROM employee WHERE Emp_Email = '$email'";
              
-             $result = mysqli_query($con, $SQL);
+            $result = mysqli_query($con, $SQL);
              
-             $row = mysqli_fetch_assoc($result);
-             $id = $row['Employee_ID'];
-             echo $id;
-             $SQL = "UPDATE accounts SET Acc_Pass = '$password' WHERE Employee_ID = '$id'";
-             mysqli_query($con, $SQL) or die(mysqli_error($con));
-             header("location:forgot_redirect.php");
+            $row = mysqli_fetch_assoc($result);
+            $id = $row['Employee_ID'];
+            echo $id;
+            $SQL = "UPDATE accounts SET Acc_Pass = '$password' WHERE Employee_ID = '$id'";
+            mysqli_query($con, $SQL) or die(mysqli_error($con));
+            header("location:forgot_redirect.php");
          }
      }
      

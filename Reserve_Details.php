@@ -5,7 +5,7 @@ session_start();
     include 'connect.php';
     $sid = $_GET['SID'];
     
-    $SQL = " SELECT tbl_sched.id,tbl_sched.room_id,tbl_sched.emp_id,tbl_sched.time_in,tbl_sched.time_out,tbl_sched.date,
+    $SQL = "SELECT tbl_sched.id,tbl_sched.room_id,tbl_sched.emp_id,tbl_sched.time_in,tbl_sched.time_out,tbl_sched.date,
             tbl_sched.u_code,tbl_sched.Status,tbl_roomlist.room_name,tbl_roomlist.room_bldg,tbl_roomlist.room_floor,
             tbl_roomlist.Amenities,tbl_roomlist.Pax,tbl_roomlist.Room_Status,employee.Employee_ID,employee.Emp_FN,
             employee.Emp_LN,employee.Emp_Department,employee.Emp_CNumber,employee.Emp_Email 
@@ -302,12 +302,16 @@ function logout()
                         </tr>
                     </table>
                 </div>
+                 <?php 
+                    if($reservation_status == 1){ ?>
                 <div class="col-md-6 half" id="cancel_panel">
 <!--                    Cancel button must appear if the reservation status is Active-->
 <!--                    Delete Alert Pop up before deleting-->
-                    <h2 id="cancel_header">Do you want to cancel your reservation?</h2>
+                   <h2 id="cancel_header">Do you want to cancel your reservation?</h2>
                     <a href="delsched.php?SID=<?php echo $sid;?>"><button class="btn btn-danger">Cancel Reservation</button></a>
                 </div>
+                    <?php } ?>
+                
             </div>
          
         </div>
