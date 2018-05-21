@@ -89,7 +89,7 @@ session_start();
             <div class="child">
                 <div class="container">
                     <form class="form_container" action="chpass.php" method="post">
-                        <input class="input-child text-input" type="text" name="uname" placeholder="Username" required="true" value="<?php echo $_SESSION['username_name'];?>">
+                        <input class="input-child text-input" type="text" name="uname" placeholder="Username" readonly value="<?php echo $_SESSION['username_name'];?>">
                     <input class="input-child password-input" type="password" name="opword" placeholder="Old Password" required="true">
                     <input class="input-child password-input" type="password" name="npword" placeholder="New Password" required="true">
                     <input class="input-child password-input" type="password" name="cnpword" placeholder="Confirm Password" required="true">
@@ -108,23 +108,29 @@ session_start();
 //            $_SESSION["username_ch"] = 1;
 //        }
 //        else 
-            if ($_SESSION["oldpass"] == 0){
+        if ($_SESSION['cperror'] == 'oldpass'){
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("Old password dont match! Try Again!")';
             echo '</script>';
-            $_SESSION["oldpass"] = 1;
-        }
-        else if ($_SESSION["newpass"] == 0){
+            $_SESSION['cperror'] = 'no';
+            }
+        else if ($_SESSION['cperror'] == 'newpass'){
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("Old password and new password are the same! Try Again!")';
             echo '</script>';
-            $_SESSION["newpass"] = 1;
+            $_SESSION['cperror'] = 'no';
         } 
-        else if ($_SESSION["cnpass"] == 0){
+        else if ($_SESSION['cperror'] == 'cnpass'){
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("New passwords dont match! Try Again!")';
             echo '</script>';
-            $_SESSION["cnpass"] = 1;
+            $_SESSION['cperror'] = 'no';
+        }
+        else {
+            echo '<script type="text/javascript" language="JavaScript">';
+            echo 'alert("Change your password")';
+            echo '</script>';
+            $_SESSION['cperror'] = 'no';
         }
         
         ?>   

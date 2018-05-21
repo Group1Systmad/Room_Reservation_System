@@ -146,7 +146,7 @@ function PopupCenter(url, title, w, h) {
         <!--Edit Mar-->
         <span class="h1" style="font-size: 40px; color: #FFF;"> Room Reservation App</span>
         <p style="font-size: 18px">Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
-        <p style="font-size: 16px">Just click <a href="addsched.php" style="color: #ff7a24">here</a> to reserve!</p>
+        <p style="font-size: 16px">Just click <a href="user_schedtable.php" style="color: #ff7a24">here</a> to reserve!</p>
         </div>
         </div>
     <div class="table_view col-md-3" style="width: 34%; background-color: #304582; margin-left: 1%; border-radius: 8px; height: 40%; ">

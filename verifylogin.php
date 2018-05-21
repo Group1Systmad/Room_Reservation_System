@@ -13,6 +13,7 @@ if ($count == 1)
   {
     if ($row['acc_type'] == 'admin'){
     $_SESSION['username'] = $un;
+    $_SESSION['username_name'] = $un;
     $_SESSION['eid'] = "";
     $_SESSION['rid'] = "";
     $_SESSION['timein'] = "";

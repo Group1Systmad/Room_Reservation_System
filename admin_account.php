@@ -1,5 +1,9 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
 ?>
 
 <head>
@@ -269,7 +273,8 @@ function PopupCenter(url, title, w, h) {
             <hr>
             <a class="hoverable" href="user_account.php">Account Info</a> 
             <a class="hoverable" href="user_account.php">Change Password</a> 
-            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" href="login_page.php">Logout</a></div>
+           <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php 
+                $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>
             </div>
 </div>
     

@@ -133,8 +133,7 @@ session_start();
             echo 'alert("Password Changed Successfully!")';
             echo '</script>';
         }
-        $_SESSION["login"] = 'no';
-        $_SESSION['changed'] = 0;
+        
     ?>
     </body>
 </html>

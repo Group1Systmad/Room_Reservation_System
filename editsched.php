@@ -7,6 +7,10 @@
   else {
   $id = $_SESSION['id'];
   }
+  if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
   
 ?>
 <html>
