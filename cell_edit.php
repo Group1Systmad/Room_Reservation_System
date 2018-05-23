@@ -54,7 +54,7 @@ if($_SESSION["previous"] == $_SESSION["selected"]){
         $_SESSION["count"] = 1;
         $_SESSION["selected"] = "none";
 //save  
-        header('location:update_room.php');
+        header('location:update__reservation.php');
     }
     else if ($_SESSION["count"] == 2){
         echo " if 2 Selected=".$_SESSION["selected"]. " ". "Previous=". $_SESSION["previous"];

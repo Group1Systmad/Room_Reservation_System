@@ -32,10 +32,6 @@
         $emp_cnumber = $row['Emp_CNumber'];
         $emp_email = $row['Emp_Email'];
     }
-    
-    
-    
-
 ?>
 
 <html>

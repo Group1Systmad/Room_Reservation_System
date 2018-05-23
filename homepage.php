@@ -47,7 +47,7 @@ function checkTime(i) {
              document.getElementById("myAccountnav").style.width = "250px";
              document.getElementById("myAccountnav").style.border = "1px solid black";
 }
-        function closeaccNav() {
+    function closeaccNav() {
             document.getElementById("myAccountnav").style.width = "0";
             document.getElementById("myAccountnav").style.border = "none";
 }
@@ -134,7 +134,7 @@ var x = setInterval(function() {
         <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
         <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
         </ul>
-    </div>
+</div>
     
 
 <div id="myAccountnav" class="accnav" style="top:70px;">

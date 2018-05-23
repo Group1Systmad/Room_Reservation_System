@@ -23,41 +23,7 @@ $millis_time = $nInterval * 1000;
 $SQL1 = "INSERT INTO tbl_room(id,room_id,emp_id,time_in,time_out,date,u_code,Status,time_millis) VALUES ('$res_id','$roomid','$empid','$timein','$timeout','$date','$ucode','$status','$millis_time')";
 $res1 = mysqli_query($con,$SQL1);
 
-if($_SESSION['acctype'] == 'admin'){
-    $_SESSION['admin'] = true;
-    $_SESSION['user'] = false;
-}
-else{
-     $_SESSION['admin'] = false;
-    $_SESSION['user'] = true;
-}
 
-if ($_SESSION['admin'] == true){
-    $_SESSION['admin'] = false;
-    if($_SESSION['deleted'] == true){
-        $_SESSION['deleted'] = false;
-        header('location:schedtable.php');  
-    }else if($_SESSION['arduino']){
-        $_SESSION['arduino'] = false;
-        echo "Success";
-    }
-    else{
-        echo "<script>window.close(); </script>";
-    }
- 
 mysqli_close($con);
-}
-else if ($_SESSION['users'] == true){
-$_SESSION['users'] = false;
-if($_SESSION['deleted'] == true){
-        $_SESSION['deleted'] = false;
-        header('location:user_schedtable.php');
-        
-    }
-    else{
- echo "<script>window.close(); </script>";
-mysqli_close($con);
-}
-}
+
 ?>
-

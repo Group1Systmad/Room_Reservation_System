@@ -125,6 +125,7 @@ function checkTime(i) {
         <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
         <li> <div class="selected"><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
         <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
+        <li><a href="Room_View_User.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
         <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
 </div>
@@ -132,6 +133,7 @@ function checkTime(i) {
 <div class="container">
         <table class="table">
             <tr class="headers" style="color:#00b3b3">
+                <td>More Info</td>
                 <td>ReservationID</td>
                 <td>RoomID</td>
                 <td>EmployeeID</td>
@@ -150,6 +152,7 @@ function checkTime(i) {
             ?>
             <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'cell_edit.php\'' : '' ?>>
             <tr>
+                <td><a href="Reserve_Details.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
                 <td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="reserv_id" id="reserv_id" value=<?php echo $row['id']; ?> readonly></td>
                 <td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="room_id" id="room_id" value=<?php echo $row['room_id']; ?> readonly> </td>
                 <td><input class="table_cell <?php echo 'cell'.$row['id']?>" name="emp_id" id="emp_id" value=<?php echo $row['emp_id']; ?>  readonly></td>
@@ -174,6 +177,8 @@ function checkTime(i) {
         </table>
     
     <?php
+    
+    $_SESSION['ueid'] = $_SESSION['employee_num'];
     $_SESSION['urid'] = "";
     $_SESSION['utimein'] = "";
     $_SESSION['utimeout'] = "";
