@@ -22,25 +22,25 @@
                 if ($count == 0)
                 {   
                     mysqli_close($con);
-                    $_SESSION["oldpass"] = 0;
+                    $_SESSION['cperror'] = 'oldpass';
                     header('location:change_pass.php');
                 }
                 else
                 {
-                    $SQL = "SELECT * FROM accounts WHERE Acc_Pass='$newpass'";
+                    $SQL = "SELECT * FROM accounts WHERE Acc_Pass='$newpass' AND Acc_Uname='$user'";
                     $res = mysqli_query($con, $SQL);
                     $count = mysqli_num_rows($res);
                     if ($count == 1)
                     {   
                         mysqli_close($con);
-                        $_SESSION["newpass"] = 0;
+                        $_SESSION['cperror'] = 'newpass';
                         header('location:change_pass.php');
                     }
                     else
                     {
                         if ($cnpass != $newpass)
                         {   
-                            $_SESSION["cnpass"] = 0;
+                            $_SESSION['cperror'] = 'cnpass';
                             header('location:change_pass.php');
                         }
                         else

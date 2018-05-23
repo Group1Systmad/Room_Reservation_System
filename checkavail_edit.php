@@ -7,12 +7,14 @@
             $time_in = $_POST['txtti'];
             $time_out = $_POST['txtto'];
             $date = $_POST['txtd'];
+            $ucode = $_POST['txtuc'];
             //Get data from addsched.php
             $_SESSION['eid'] = $empid;
             $_SESSION['rid'] = $roomid;
             $_SESSION['timein'] = $time_in;
             $_SESSION['timeout'] = $time_out;
             $_SESSION['date'] = $date;
+            $_SESSION['ucode'] = $ucode;
             $_SESSION['counter'] = 1;
             date_default_timezone_set('Asia/Manila');
             //Check current time and date
@@ -91,20 +93,20 @@
                         else
                         {
                         $_SESSION['error']= 'avail'; 
-                        header('location:editsched.php');
+                        header('location:update__reservation.php');
                         }
                     }
                     else
                     {
                     $_SESSION['error']= 'avail'; 
-                    header('location:editsched.php');
+                    header('location:update__reservation.php');
                     }
             }
             }
             else
             {
             $_SESSION['error']= 'avail';  
-            header('location:editsched.php');
+            header('location:update__reservation.php');
             }
             }
             }
@@ -161,20 +163,20 @@
                         else
                         {
                         $_SESSION['error']= 'avail'; 
-                        header('location:editsched.php');
+                        header('location:update__reservation.php');
                         }
                     }
                     else
                     {
                     $_SESSION['error']= 'avail'; 
-                    header('location:editsched.php');
+                    header('location:update__reservation.php');
                     }
             }
             }
             else
             {
             $_SESSION['error']= 'avail';  
-            header('location:editsched.php');
+            header('location:update__reservation.php');
             }
             }
             //Check if conflict with other schedules

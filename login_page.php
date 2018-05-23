@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 ?>
@@ -95,7 +94,6 @@ session_start();
         </style>
     </head>
     <body>
-
         <div class="parent">
             <div class="child">
                 <div class="container">
@@ -103,18 +101,10 @@ session_start();
                     <form class="form_container" action="verifylogin.php" method="post">
                     <input class="input-child text-input" type="text" name="uname" placeholder="Username" required = "true">
                     <input class="input-child password-input" type="password" name="pword" placeholder="Password" required = "true">
-                    <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class="links">
                         <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me</label>
-                        <a href="#" name="signup" class = "sign-up">Sign up</a>
-<!--                    <?php
-                        $_SESSION["username"] = 1;
-                        $_SESSION["oldpass"] = 1;
-                        $_SESSION["newpass"] = 1;
-                        $_SESSION["cnpass"] = 1;
-                        ?>
-                        <a href="change_pass.php" class="change-pass">Change Password</a>-->
                     </div>
+                    <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class = "links">
                         <a href="forgotpassword.php" name="forgotpassword" class = "forgot-pass">Forgot Password</a>
                     </div>
@@ -126,7 +116,7 @@ session_start();
     <?php
         if ($_SESSION["login"]=='failed'){
             echo '<script type="text/javascript" language="JavaScript">';
-            echo 'alert("Login failed. Please try again")';
+            echo 'alert("Login failed. Incorrent username/password entered.Please try again")';
             echo '</script>';
             $_SESSION["login"] = 'no';
         }
@@ -135,12 +125,15 @@ session_start();
             echo 'alert("Log Out Successful!")';
             echo '</script>';
             $_SESSION["login"] = 'no';
+            session_unset();
+            session_destroy();
         }
         if ($_SESSION['changed'] == 1){
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("Password Changed Successfully!")';
             echo '</script>';
         }
+        
     ?>
     </body>
 </html>

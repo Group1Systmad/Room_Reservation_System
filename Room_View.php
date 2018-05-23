@@ -1,7 +1,10 @@
 <?php
 
 session_start();
-
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
 ?>
 <html>
     <head>
@@ -97,6 +100,19 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
 }
+        function Del()
+	  {
+	     var confirmdel = confirm("Confirm Delete?");
+
+	     if (confirmdel==true)
+	     {
+	     	return true;
+	     }
+	     else
+	     {
+	     	return false;
+	     }
+	  }
         function logout()
         {
 	     var confirmdel = confirm("Confirm Log Out?");

@@ -1,14 +1,14 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
+?>
 ?>
 <html>
 <head>
     <title>Add Records</title>
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
-       <link rel="stylesheet" href="mika/about.css" type="text/css">
-     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
     <style>
         .container{
             width: 55%;
@@ -154,7 +154,7 @@ function PopupCenter(url, title, w, h) {
             <div class="form-group row">
                 <div class="col-md-3 id_input">
                     <label for="txtID">ID Number:</label>
-                    <input class="form-control"  TYPE="text" NAME="txtID" id="txtID">
+                    <input class="form-control"  TYPE="text" NAME="txtID" id="txtID" required="true">
                 </div>
                 <div class="col-md-7">
                     <label for="email_input">Email:</label>
@@ -164,15 +164,15 @@ function PopupCenter(url, title, w, h) {
             <div class="form-group row">
                 <div class="col-md-3">
                     <label for="txtUser">Username:</label>
-                    <input class="form-control"  TYPE="text" NAME="txtUser" id="txtUser">
+                    <input class="form-control"  TYPE="text" NAME="txtUser" id="txtUser" required="true">
                 </div>
                 <div class="col-md-3">
                     <label for="txtPass">Password:</label>
-                    <input class="form-control"  TYPE="password" NAME="txtPass" id="txtPass">
+                    <input class="form-control"  TYPE="password" NAME="txtPass" id="txtPass" required="true">
                 </div>
                 <div class="col-md-4">
                     <label for="txtPass">Re-enter Password:</label>
-                    <input class="form-control"  TYPE="password" NAME="txtRepass" id="txtRepass">
+                    <input class="form-control"  TYPE="password" NAME="txtRepass" id="txtRepass" required="true">
                 </div>
             </div>
             <div class="form-group row">
@@ -193,6 +193,13 @@ function PopupCenter(url, title, w, h) {
                     <SELECT class="form-control" id="gender" NAME="gender">
                         <OPTION>Male
                         <OPTION>Female
+                    </SELECT>
+                </div>
+                <div class="col-md-2">
+                    <label for="type_input">Account Type</label>
+                    <SELECT class="form-control" id="type" NAME="type">
+                        <OPTION>User
+                        <OPTION>Admin
                     </SELECT>
                 </div>
             </div>

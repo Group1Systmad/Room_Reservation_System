@@ -1,5 +1,9 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
 
 ?>
 <html>
@@ -41,7 +45,6 @@ session_start();
             padding: 30px 30px 0 50px;
             border-radius: 10px;
     }
-
     .child{
         width: 85%;
         margin: 0 auto;
@@ -51,6 +54,10 @@ session_start();
     }
     .btn{
         width: 100%;
+    }
+    #btnupdate{
+        background-color: #FFF;
+        color: #337ab7;
     }
     label{
         color: #fff;
@@ -161,12 +168,13 @@ function checkTime(i) {
      <div class="title" style="color:#fff; font-size: 40px; padding-bottom: 0; padding-right: 20px;  font-family: Impact; margin-left: 390px"> Create Reservation </div>
     <div class="container">
         <form class="form_container" name="addsched" method="post">
+            
             <div class="child">    
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txtrid">Room Number</label>
-                   <?php 
-                   if ($_SESSION['error'] != 'avail'){ ?>
+                    <?php 
+                        if ($_SESSION['error'] != 'avail'){ ?>
                     <SELECT class="form-control" id="txtrid" NAME="txtrid">
                         <?php
                         include 'connect.php';
@@ -183,23 +191,19 @@ function checkTime(i) {
                         ?>
                         <OPTION><?php echo $col[$j]['room_id'];
                         }
-                            ?>
+                        ?>
                         
                     </SELECT>
                     <?php } 
-                    else if ($_SESSION['error'] == 'avail') { ?>
+                        else if ($_SESSION['error'] == 'avail'){ ?>
                     <SELECT class="form-control" id="txtrid" NAME="txtrid" disabled>
                         
                         <OPTION><?php echo $_SESSION['rid'];
-                        
+                        }
                             ?>
                         
-                    </SELECT>    
-                    <?php
-                    }
-                    ?>
-                    
-                </div>
+                    </SELECT>   
+                    </div>
                 <div class="col-md-6">
 <!--                    <a href = "roomdetails.php"><button class="btn btn-primary">Room Details</button>></a>-->
 <input class="btn btn-primary" style="background-color: #ff7a24" type="submit" value="Room Details" formaction="roomdetails.php">
@@ -209,22 +213,22 @@ function checkTime(i) {
                 <div class="col-md-12">
                     <label for="txteid">Employee ID</label>
                     <input class="form-control" type="text" name="txteid" value="<?php echo $_SESSION['eid'];?>" id="txteid" placeholder="Employee ID" required="true" readonly>
-                </div>
+            </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for="txtti">Time In</label>
-                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['timein'];?>" id="txtti">
+                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['timein'];?>" id="txtti" required="true">
                 </div>
                 <div class="col-md-6">
                     <label for="txtto">Time Out</label>
-                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['timeout'];?>" id="txtto">
+                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['timeout'];?>" id="txtto" required="true">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txtd">Date</label>
-                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['date'];?>" id="txtd">
+                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['date'];?>" id="txtd" required="true">
                 </div>
             </div>
             <div class="form-group row">
@@ -232,39 +236,36 @@ function checkTime(i) {
 
                     <?php
                         $random = rand(10000,99999); 
+                        $SQL1 = "SELECT * FROM tbl_sched";
+                        $res1 = mysqli_query($con,$SQL1);
+                        while ($row1 = mysqli_fetch_array($res1)){
+                            if ($random == $row1['u_code']){
+                                $random = rand(10000,99999);
+                            }
+                        }
+                        
                     ?>
                     <label for="txtuc">Unique Code</label>
                     <input class="form-control" id="txtuc" name="txtuc" value=<?php echo $random;?>  readonly>
                 </div>
             </div>
             <div class="form-group row">
-                <?php 
-                if ($_SESSION['error'] != 'avail'){ ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail.php">
+                    <input class="btn btn-primary" type="submit" value="Save" formaction="checkavail.php">
                 </div>   
                 <div class="col-md-6">
-                    <input class="btn btn-danger" type="reset" value="Clear">
-                </div>   
-                <?php }
-                else if ($_SESSION['error']=='avail'){
+                    <input class="btn btn-danger" type="reset" value="Clear" id=btnReset">
+                </div>  
                 
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Room Available.")';
-                echo '</script>';  
-                ?>
-                <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Save" formaction="add.php">
-                </div>
-                <div class="col-md-6">
-                    <input class="btn btn-danger" type="submit" value="Cancel" formaction="schedtable.php">
-                </div>
-                <?php }?>
-                
+                 </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <a href="schedtable.php"><button class="btn btn-primary">Back</button></a>
+              </div>
             </div>
-        </form>
-
-</div>
+            
+    </div>
+        
              <?php
                 if ($_SESSION['error']== 'wrongdate'){
                 echo '<script type="text/javascript" language="JavaScript">';
@@ -292,5 +293,9 @@ function checkTime(i) {
                 }
                 ?>
             </div>
+        </form> 
+    
+    
+    
 </body>
 </html>

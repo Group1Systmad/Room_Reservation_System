@@ -1,12 +1,12 @@
 <?php
 session_start();
 $id = $_SESSION['id'];
-$r_id = $_POST['txtrid'];
-$e_id = $_POST['txteid'];
-$ti = $_POST['txtti'];
-$to = $_POST['txtto'];
-$date = $_POST['txtd'];
-$u_code = $_POST['txtuc'];
+$r_id = $_SESSION['rid'];
+$e_id = $_SESSION['eid'];
+$ti = $_SESSION['timein'];
+$to = $_SESSION['timeout'];
+$date = $_SESSION['date'];
+$u_code = $_SESSION['ucode'];
 
 include 'connect.php';
 

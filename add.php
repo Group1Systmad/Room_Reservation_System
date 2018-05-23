@@ -1,11 +1,11 @@
 <?php
 session_start();
 $r_id = $_SESSION['rid'];
-$e_id = $_POST['txteid'];
-$ti = $_POST['txtti'];
-$to = $_POST['txtto'];
-$date = $_POST['txtd'];
-$u_code = $_POST['txtuc'];
+$e_id = $_SESSION['eid'];
+$ti = $_SESSION['timein'];
+$to = $_SESSION['timeout'];
+$date = $_SESSION['date'];
+$u_code = $_SESSION['ucode'];
 
 include 'connect.php';
 
@@ -14,6 +14,7 @@ mysqli_query($con,$SQL);
 $_SESSION['users'] = false;
 $_SESSION['admin'] = true;
 $_SESSION['error'] = 'no';
+$_SESSION['deleted'] = true;
 header('location:update_room.php');
 mysqli_close($con);
 ?>

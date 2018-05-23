@@ -1,7 +1,10 @@
 <?php
   session_start();
         $rid = $_GET['SID'];
-  
+  if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
 
   include 'connect.php';
 
@@ -147,25 +150,25 @@ function checkTime(i) {
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="roomid">Room ID</label>
-                            <input TYPE="text" NAME="roomid" ID="roomid" VALUE="<?php echo $rid; ?>">
+                            <input TYPE="text" NAME="roomid" ID="roomid" VALUE="<?php echo $rid; ?>" required='true'>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="roomid">Room Name</label>
-                            <input TYPE="text" NAME="roomname" ID="roomname" VALUE="<?php echo $rname; ?>">
+                            <input TYPE="text" NAME="roomname" ID="roomname" VALUE="<?php echo $rname; ?>" required='true'>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="roomid">Room Building</label>
-                            <input TYPE="text" NAME="roombldg" ID="roombldg" VALUE="<?php echo $rbldg; ?>">
+                            <input TYPE="text" NAME="roombldg" ID="roombldg" VALUE="<?php echo $rbldg; ?>"  required='true'>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="roomid">Room Floor</label>
-                            <input TYPE="text" NAME="roomfloor" ID="roomfloor" VALUE="<?php echo $rfloor; ?>">
+                            <input TYPE="text" NAME="roomfloor" ID="roomfloor" VALUE="<?php echo $rfloor; ?>"  required='true'>
                         </div>
                     </div>
                     <div class="form-group row">

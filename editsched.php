@@ -7,6 +7,10 @@
   else {
   $id = $_SESSION['id'];
   }
+  if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
   
 ?>
 <html>
@@ -44,6 +48,28 @@
     }
         </style>
           <script type="text/javascript">
+              function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var n= today.getMonth();
+    var o= today.getDate();
+    if (h>12){h= h-12; }
+    h = checkTime(h);
+    m = checkTime(m);
+    n = n+1;
+    n = checkTime(n);
+    o = checkTime(o);
+     document.getElementById('time').innerHTML =
+     h + ":" + m 
+     document.getElementById('date').innerHTML =
+     n + "/" + o 
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}	
         function logout()
         {
 	     var confirmdel = confirm("Confirm Log Out?");
@@ -71,7 +97,7 @@
     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
  
     </head>
-    <body>
+    <body onload="startTime()">
         <div class="sidebar">
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li> 
@@ -79,8 +105,10 @@
         <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
         <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
-        <li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
-        <li><div class="selected"><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></div></li>
+        <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
+        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
+        <li><div id="time" style="padding-top:20px; font-size: 18px; color:white; text-align: center"></div></li>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div></li>
     </ul>
     </div>
         
@@ -139,10 +167,11 @@
           $_SESSION['ucode'] = $ucode;
           
           ?>
-        
+         
         <div class="cont">
-            <form "form-container" name="edit_room" method="POST">
-                <div class="child">    
+        <form class="form_container" name="editsched" method="post">
+            
+            <div class="child">    
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txtid">Reservation ID</label>
@@ -218,33 +247,22 @@
                 </div>
             </div>
             <div class="form-group row">
-                <?php 
-                if ($_SESSION['error'] != 'avail'){ ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail_edit.php">
+                    <input class="btn btn-primary" type="submit" value="Save" formaction="checkavail_edit.php">
                 </div>   
                 <div class="col-md-6">
-                    <input class="btn btn-danger" type="reset" value="Clear">
-                </div>   
-                <?php }
-                else if ($_SESSION['error']=='avail'){
+                    <input class="btn btn-danger" type="reset" value="Clear" id=btnReset">
+                </div>  
                 
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Room Available.")';
-                echo '</script>';  
-                ?>
-                <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Save" formaction="update__reservation.php">
-                </div>
-                <div class="col-md-6">
-                    <input class="btn btn-danger" type="submit" value="Cancel" formaction="schedtable.php">
-                </div>
-                <?php }?>
-                
+                 </div>
+<!--            <div class="row">
+              <div class="col-md-12">
+                  <a href="schedtable.php"><button class="btn btn-primary">Back</button></a>
+              </div>
             </div>
-        </form>
-
-</div>
+            -->
+    </div>
+        
              <?php
                 if ($_SESSION['error']== 'wrongdate'){
                 echo '<script type="text/javascript" language="JavaScript">';
@@ -272,6 +290,7 @@
                 }
                 ?>
             </div>
+        </form> 
     </body>
 </html>
 

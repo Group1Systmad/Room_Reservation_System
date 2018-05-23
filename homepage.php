@@ -1,5 +1,9 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
 ?>
 <html>
 <head>
@@ -41,8 +45,9 @@ function checkTime(i) {
 	     else
 	     {
 	     	return false;
-	     }
-        }
+	    }
+    }
+//LOG OUT FUNCTION END
    function openaccNav() {
              document.getElementById("myAccountnav").style.width = "250px";
              document.getElementById("myAccountnav").style.border = "1px solid black";
@@ -99,9 +104,6 @@ var x = setInterval(function() {
 }, 1000);
  </script>
  
-
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="bootstrap.css" type="text/css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
     <link rel="stylesheet" href="mika/about.css" type="text/css">
@@ -122,7 +124,6 @@ var x = setInterval(function() {
     $_SESSION['changed'] = 0;
     $_SESSION["count"]=1;
     $_SESSION["selected"]="none";
-    
 ?>
 <div class="sidebar">
     <ul>
@@ -172,7 +173,7 @@ var x = setInterval(function() {
     <div class="table_view col-lg-7" div style="max-height: 40%; border-radius: 8px; vertical-align: middle;">
         <img src="office.jfif" style="width: 102%; margin-left: 1px; height: ">
         <div class="black" style="position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: auto; padding: 10px;">
-        <!--Edit Mar-->
+        
         <span class="h1" style="font-size: 40px; " id="jumbo-header"> Room Reservation App</span>
         <p style="font-size: 18px">Together with the Smart Reservation Tool (SMART), you can have no worries in booking reservations for a specific room in your organization.</p>
         <p style="font-size: 16px">Just click <a href="addsched.php" style="color: #ff7a24">here</a> to reserve!</p>

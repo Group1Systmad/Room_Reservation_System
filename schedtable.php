@@ -1,5 +1,9 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
 ?>
 <html>
 <head>
@@ -128,7 +132,7 @@ function checkTime(i) {
         <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
         <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
         <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
-         <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
+        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
         <li><div id="time" style="padding-top:20px; font-size: 18px; color:white; text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
        
@@ -136,7 +140,7 @@ function checkTime(i) {
 </div>
     
     <div id="myAccountnav" class="accnav"  style="top:70px;">
-  <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
             <?php
             include 'connect.php';
             $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
@@ -174,7 +178,10 @@ function checkTime(i) {
             </tr>
             <?php
             include 'connect.php';
-            $sql ="select * from tbl_sched order by id";
+            date_default_timezone_set('Asia/Manila');
+            $date_current = date('Y-m-d');
+//            $sql ="select * from tbl_sched where date >= '$date_current' order by id";
+            $sql ="select * from tbl_sched where date >= '2018-05-11' order by id";
             $res = mysqli_query($con, $sql);
             $_SESSION["result_set"] = $res;
             $_SESSION['counter'] = 0;
@@ -185,11 +192,6 @@ function checkTime(i) {
             <tr>
                 <td><a href="Reserve_Details.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
                 <td align="center"><a onclick="return del()" href="delsched.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
-<!--                <td align="center"><a href="editsched.php?SID=--><?php //echo $row['id']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
-<!--                <td align="center"><a href="cell_edit.php?SID=<?php echo $row['id']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? 'button name=\'save_button\' type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php
-                        echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? '<span class="glyphicon glyphicon-floppy-disk"></span></button>' : '</span>';
-                        ?></a></td>
-<!--                <td>--><?php //echo $row['id']; ?><!--</td>-->
                 <td align="CENTER"><a href="editsched.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 		<td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="reserv_id" id="reserv_id" value=<?php echo $row['id']; ?> readonly></td>
                 <td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="room_id" id="room_id" value=<?php echo $row['room_id']; ?> <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>> </td>
@@ -198,7 +200,13 @@ function checkTime(i) {
                 <td><input type="time" class="table_cell <?php echo 'cell'.$row['id']?>" name="time_out" value=<?php echo $row['time_out']; ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
                 <td><input type="date" class="table_cell <?php echo 'cell'.$row['id']?>" name="date" value=<?php echo $row['date']; ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
                 <td><input type="text" class="table_cell <?php echo 'cell'.$row['id']?>" name="unique" id="unique" value=<?php echo $row['u_code']; ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
-                <td><input type="checkbox" class="table_cell <?php echo 'cell'.$row['id']?>" name="status" <?php echo ($row['Status'] == TRUE) ? "checked" : "";?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "disabled = \"disabled\"" : ""?>></td>
+                <td><input type="text" class="table_cell <?php echo 'cell'.$row['id']?>" name="status" id="status" value=
+                <?php if ($row['Status']=='1'){
+                    echo 'ACTIVE';}
+                else {
+                    echo 'CANCELLED';}
+                    
+                    ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
             </tr>
             </form>
             <?php //open of second php
