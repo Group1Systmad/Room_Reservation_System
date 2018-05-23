@@ -51,7 +51,7 @@ if($_SESSION['deleted'] == true){
         header('location:user_schedtable.php');
     }
     else{
- echo "<script>window.close(); </script>";
+ echo header('location:user_schedtable.php');
 mysqli_close($con);
 }
 }
