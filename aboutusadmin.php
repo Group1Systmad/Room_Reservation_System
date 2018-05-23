@@ -1,5 +1,5 @@
 <?php
-ession_start();
+session_start();
 if ($_SESSION['login_name']== '')
 {
     header('location:login_page.php');

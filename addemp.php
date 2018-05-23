@@ -5,7 +5,7 @@ if ($_SESSION['login_name']== '')
     header('location:login_page.php');
 }
 ?>
-?>
+
 <html>
 <head>
     <title>Add Records</title>
@@ -29,7 +29,10 @@ if ($_SESSION['login_name']== '')
         }
 
     </style>
-    <SCRIPT TYPE="text/javascript">
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
+        <link rel="stylesheet" href="mika/about.css" type="text/css">
+    <script TYPE="text/javascript">
 function startTime() {
     var today = new Date();
     var h = today.getHours();
@@ -105,12 +108,10 @@ function PopupCenter(url, title, w, h) {
         newWindow.focus();  
     }  
 }  
-</SCRIPT>
+</script>
 
 </head>
 <body onload="startTime()" background="bg.jpg">
-
-      
     <div id="myAccountnav" class="accnav" style="top:70px;">
   <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
             <?php
