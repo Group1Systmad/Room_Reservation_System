@@ -12,12 +12,12 @@ session_start();
 <title>Add New Room</title>
 <style>
     .table{
-        width: 40%;
+        width: 60%;
         margin: 0 auto;
     }
     .container{
-            width: 55%;
-            height: 100%;
+            width: 40%;
+            height: 90%;
             background: #27698d;
             margin-top: 0;
             margin: auto;
@@ -25,9 +25,9 @@ session_start();
             border-radius: 10px;
     }
     .child{
-        width: 70%;
+        width: 90%;
         margin: 0 auto;
-        margin-top: 0;
+        margin-top: 10%;
         padding: 20px auto;
         display: flex;
         flex-flow: column;
@@ -118,7 +118,7 @@ function checkTime(i) {
 }	
 </script>
 </head>
-<body onload="startTime()">
+<body onload="startTime()" background="bg.jpg">
         <div class="sidebar">
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li> 
@@ -156,18 +156,8 @@ function checkTime(i) {
 </div>
         
 
-<?php
-if (isset($_SESSION["count"])){
-    echo "Count: ".$_SESSION["count"];
-    echo "Selected ".$_SESSION["selected"];
-}else{
-    echo "Session is not set";
-}
-?>
-
-    
+ <div class="title" style="color:#fff; font-size: 40px; padding-bottom: 0; padding-right: 20px;  font-family: Impact; margin-left: 390px"> Add Room </div>
 <div class="container">
-    <h1 style="color:#fff; font-size: 35px; padding: 0 0 30px 0; font-family: Impact;"> Create an Account </h1>
         <form class="form_container" name="addroomlist" method="post" action="addroom.php">
             <div class="child">    
             <div class="form-group row">

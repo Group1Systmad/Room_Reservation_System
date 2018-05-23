@@ -116,7 +116,7 @@ var x = setInterval(function() {
     </style>
 </head>
 
-<body onload="startTime()">
+<body onload="startTime()" >
     
 <?php
     $_SESSION['changed'] = 0;
@@ -201,7 +201,7 @@ var x = setInterval(function() {
             $row = mysqli_fetch_array($res);
              $sql3 ="select * from tbl_sched where emp_id='".$row['Employee_ID']."'";
             $res3 = mysqli_query($con, $sql3);
-            $row3 = mysqli_fetch_array($res3);
+             while($row3= mysqli_fetch_array($res3)){
             $date1 = date("Y-m-d"); 
             date_default_timezone_set('Asia/Manila');
             $date = date("H:i:s");
@@ -217,11 +217,13 @@ var x = setInterval(function() {
                     if($hours_remaining > 1) { echo " hours.   ";}
                      $notif = '<span><a href="schedtable.php" style="color: #ff7a24;">View</a></span>';
                      echo $notif;
+                     echo "<p></p>";
             }}
               else {echo "No notifications";}
-            
+            }
    
             ?>
+            
          </span>
    
             <p></p> <p></p> <p></p> <p></p> <p></p>

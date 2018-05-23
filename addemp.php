@@ -12,7 +12,7 @@ session_start();
     <style>
         .container{
             width: 55%;
-            height: 100%;
+            height: 80%;
             background: #27698d;
             margin-top: 1%;
             margin: auto;
@@ -108,7 +108,7 @@ function PopupCenter(url, title, w, h) {
 </SCRIPT>
 
 </head>
-<body onload="startTime()">
+<body onload="startTime()" background="bg.jpg">
 
       
     <div id="myAccountnav" class="accnav" style="top:70px;">
@@ -148,8 +148,8 @@ function PopupCenter(url, title, w, h) {
     </ul>
 </div>
     
+     <div class="title" style="color:#fff; font-size: 40px; padding-bottom: 0; padding-right: 20px;  font-family: Impact; margin-left: 290px"> Create  an Account </div>
     <div class="container">
-        <h1 style="color:#fff; font-size: 35px; padding: 40px 0 30px 0; font-family: Impact;"> Create an Account </h1>
         <form name="addemp" method="POST" action="saverec.php">
             <div class="form-group row">
                 <div class="col-md-3 id_input">

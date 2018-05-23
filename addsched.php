@@ -33,8 +33,8 @@ session_start();
 </script>
 <style>
     .container{
-         width: 55%;
-         height: 100%;
+         width: 40%;
+         height: 90%;
             background: #27698d;
             margin-top: 5%;
             margin: auto;
@@ -43,7 +43,7 @@ session_start();
     }
 
     .child{
-        width: 50%;
+        width: 85%;
         margin: 0 auto;
         margin-top: 5%;
         display: flex;
@@ -117,7 +117,7 @@ function checkTime(i) {
 }
 </script>
 </head>
-<body onload="startTime()">
+<body onload="startTime()" background="bg.jpg">
 
       
     <div id="myAccountnav" class="accnav" style="top:70px;">
@@ -158,8 +158,8 @@ function checkTime(i) {
 </div>
     
 
+     <div class="title" style="color:#fff; font-size: 40px; padding-bottom: 0; padding-right: 20px;  font-family: Impact; margin-left: 390px"> Create Reservation </div>
     <div class="container">
-        <h1 style="color:#fff; font-size: 35px; padding-bottom: 0; padding-right: 20px; font-family: Impact;"> Create Reservation </h1>
         <form class="form_container" name="addsched" method="post">
             <div class="child">    
             <div class="form-group row">

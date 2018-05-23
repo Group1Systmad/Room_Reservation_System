@@ -91,36 +91,10 @@ function checkTime(i) {
             document.getElementById("myAccountnav").style.border = "none";
 }
 
-
-function PopupCenter(url, title, w, h) {  
-    // Fixes dual-screen position                         Most browsers      Firefox  
-    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
-    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;  
-              
-    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
-    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
-              
-    var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
-    var top = ((height / 2) - (h / 2)) + dualScreenTop;  
-    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
-  
-    // Puts focus on the newWindow  
-    if (window.focus) {  
-        newWindow.focus();  
-    }  
-}  
 </script>
 </head>
 <body onload="startTime()">
 
-<?php
-if (isset($_SESSION["count"])){
-    echo "Count: ".$_SESSION["count"];
-    echo "Selected ".$_SESSION["selected"];
-}else{
-    echo "Session is not set";
-}
-?>
   
 <div id="myAccountnav" class="accnav" style="top:70px;">
   <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
@@ -206,7 +180,7 @@ if (isset($_SESSION["count"])){
     $_SESSION['udate'] = "";
     $_SESSION['uerror'] = 'no';
     ?>
-    <a onclick="return PopupCenter('addsched_user.php','Update Profile ','900','500'); "> <button class="btn btn-primary" style="margin-top: 45px">Add Reservation</button></a><br>
+    <a href="addsched_user.php"> <button class="btn btn-primary" style="margin-top: 45px">Add Reservation</button></a><br>
 
         <font size="4" face="arial"  color="#ff7a24">
             <?php

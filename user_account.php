@@ -269,36 +269,17 @@ function PopupCenter(url, title, w, h) {
             </div>
 </div>
     
-<?php 
-if ($_SESSION['acctype'] == 'user') {
-    $sidebar = '<div class="sidebar">';
-  
-    $sidebar .= '<ul>';
-    $sidebar .= ' <li> <img src =' . 'logo3.png'.  ' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>';
-   $sidebar .= '<li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>';
-    $sidebar .= ' <li><div class="selected"><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></div></li>';
-    $sidebar .= '<li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>';
-    $sidebar .= '<li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>';
-    $sidebar .= '<li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>';
-    $sidebar .= '<li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>';
-    $sidebar .='<li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>';
-    $sidebar .= '</div>';
-    echo $sidebar;
-}else{
-    
-      $sidebar =  '<div class="sidebar">';
-    $sidebar .= '<ul>';
-    $sidebar .= ' <li> <img src =' . 'logo3.png'.  ' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>';
-    $sidebar .= '<li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></li>';
-   $sidebar .= ' <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>';
-    $sidebar .= '<li><a href="aboutusadmin.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>';
-     $sidebar .= '<li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>';
-    $sidebar .= '<li><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>';
-    $sidebar .= '<li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>';
-    $sidebar .='<li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>';
-    $sidebar .= '</div>';
-    echo $sidebar;
-}
+<div class="sidebar">
+    <ul>
+        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
+        <li><div class="selected"><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></div></li>
+        <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
+        <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
+        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
+</div>
 
 ?>
     
