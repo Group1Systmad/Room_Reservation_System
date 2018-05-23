@@ -163,14 +163,14 @@ var x = setInterval(function() {
 
 <div class="container">
     <div class="row" style="margin-left: 0%; text-align: center; ">
-     <div class="clock" div style="border-radius: 8px; height: 80px; width: 93%; padding-top: 1%; position: relative">
+     <div class="clock" div style="border-radius: 8px; max-height: 80px; width: 93%; padding-top: 1%; position: relative">
          <span class="h1" style="font-size: 45px; color: #22315d;font-family: Book Antiqua; "> <div id="txt"></div></span>
         <p style="font-size: 16px"><div id="da"></div></p>
      </div> </div>
     
     <div class="row" style=" padding-top: 1%; margin-left: 25px">
-    <div class="table_view col-lg-7" div style="height: 40%; border-radius: 8px; vertical-align: middle;">
-        <img src="office.jfif" style="width: 102%; margin-left: 1px; height:auto ">
+    <div class="table_view col-lg-7" div style="max-height: 40%; border-radius: 8px; vertical-align: middle;">
+        <img src="office.jfif" style="width: 102%; margin-left: 1px; height: ">
         <div class="black" style="position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: auto; padding: 10px;">
         <!--Edit Mar-->
         <span class="h1" style="font-size: 40px; " id="jumbo-header"> Room Reservation App</span>
@@ -196,6 +196,7 @@ var x = setInterval(function() {
      <span style="color: #fff; padding-left: 40px; font-size: 12px">
             <p></p> <p></p> <p></p> <p></p> <p></p>
             <?php
+            $counter = 0;
             $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
@@ -207,6 +208,7 @@ var x = setInterval(function() {
             $date = date("H:i:s");
              $hours_remaining =  $row3['time_in'] - $date;
             if ($date1 == $row3['date']) {
+                $counter++;
                 if($hours_remaining >=1)
                {echo "You have a reservation at room ";
                 echo $row3['room_id'];
@@ -219,8 +221,8 @@ var x = setInterval(function() {
                      echo $notif;
                      echo "<p></p>";
             }}
-              else {echo "No notifications";}
             }
+            if ($counter = 0){ echo "No notifications";}
    
             ?>
             

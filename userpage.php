@@ -161,6 +161,7 @@ function PopupCenter(url, title, w, h) {
      <span style="color: #fff; padding-left: 40px; font-size: 12px">
             <p></p> <p></p> <p></p> <p></p> <p></p>
             <?php
+            $counter = 0;
             $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
             $res = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($res);
@@ -172,6 +173,7 @@ function PopupCenter(url, title, w, h) {
             $date = date("H:i:s");
              $hours_remaining =  $row3['time_in'] - $date;
             if ($date1 == $row3['date']) {
+                $counter++;
                 if($hours_remaining >=1)
                {echo "You have a reservation at room ";
                 echo $row3['room_id'];
@@ -180,19 +182,19 @@ function PopupCenter(url, title, w, h) {
                     if ($hours_remaining == 1) {
                     echo " hour.   ";}
                     if($hours_remaining > 1) { echo " hours.   ";}
-                     $notif = '<span><a href="user_schedtable.php" style="color: #ff7a24;">View</a></span>';
+                     $notif = '<span><a href="schedtable.php" style="color: #ff7a24;">View</a></span>';
                      echo $notif;
                      echo "<p></p>";
             }}
-              else {echo "No notifications";}
             }
+            if ($counter = 0){ echo "No notifications";}
    
             ?>
             
          </span>
    
             <p></p> <p></p> <p></p> <p></p> <p></p>
-
+            
     </div></div>
     
     <div class="row" style="padding-top: 1%; margin-left: 40px">
