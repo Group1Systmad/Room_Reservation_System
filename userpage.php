@@ -171,8 +171,9 @@ function PopupCenter(url, title, w, h) {
              while($row3= mysqli_fetch_array($res3)){
             $date1 = date("Y-m-d"); 
             date_default_timezone_set('Asia/Manila');
-            $date = date("H:i:s");
-             $hours_remaining =  $row3['time_in'] - $date;
+           $date = time();
+             $hours_remaining =  strtotime($row3['time_in']) - $date;
+             $hours_remaining = floor($hours_remaining/3600);
             if ($date1 == $row3['date']) {
                 $counter++;
                 if($hours_remaining >=1)
@@ -188,7 +189,7 @@ function PopupCenter(url, title, w, h) {
                      echo "<p></p>";
             }}
             }
-            if ($counter = 0){ echo "No notifications";}
+            if ($counter == 0){ echo "No notifications";}
    
             ?>
             

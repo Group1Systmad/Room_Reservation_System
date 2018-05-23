@@ -36,13 +36,10 @@ if ($_SESSION['admin'] == true){
     $_SESSION['admin'] = false;
     if($_SESSION['deleted'] == true){
         $_SESSION['deleted'] = false;
-        header('location:schedtable.php');  
-    }else if($_SESSION['arduino']){
-        $_SESSION['arduino'] = false;
-        echo "Success";
+        header('location:schedtable.php');
     }
     else{
-        echo "<script>window.close(); </script>";
+        header('location:schedtable.php');
     }
  
 mysqli_close($con);
@@ -52,7 +49,6 @@ $_SESSION['users'] = false;
 if($_SESSION['deleted'] == true){
         $_SESSION['deleted'] = false;
         header('location:user_schedtable.php');
-        
     }
     else{
  echo "<script>window.close(); </script>";
