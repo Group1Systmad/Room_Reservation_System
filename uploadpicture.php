@@ -78,7 +78,7 @@ session_start();
             $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
             $res1 = mysqli_query($con, $sql1);
             $row1 = mysqli_fetch_array($res1);
-            $file_path = 'D:/xampp/htdocs/Room_Reservation_System/' . substr(md5(time()), 0, 10) . '.' . $file_extn;
+            $file_path = 'C:/xampp/htdocs/Room_Reservation_System/' . substr(md5(time()), 0, 10) . '.' . $file_extn;
             $file_photo = substr(md5(time()), 0, 10) . '.' . $file_extn;
             if (move_uploaded_file($file_temp, $file_path)) {
                 echo '<script language="javascript">';
@@ -125,9 +125,9 @@ session_start();
 <div class="container" style="padding-top: 50px; background-color: #3A539B; width: 100%; height: 100%;">
      <div class="center"> <img id="blah" src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" alt="User Portrait" style=" display: block; border-radius: 100%;width: 200px; max-height: 200px;border: 5px solid #fff;margin-left:60px">  </div>
      <div class="controls"><p style="font-size:12px; color:white; margin-left: 70px; "> Change your avatar</p>
-         <form action=""  method="post" enctype="multipart/form-data" style="color: #ebebe0;margin: auto; margin-left:220px" runat="server">
+         <form action=""  method="post" enctype="multipart/form-data" style="color: #ebebe0;margin: auto; margin-left:200px" runat="server">
         <input type="file" name="profile" onchange="readURL(this);"> 
-        <input onclick="window.location.href = 'user_account.php';" type="submit" name="submit" style="color:black; ">
+        <input onclick="window.location.href = 'user_account.php';" type="submit" name="submit" style="color:black; margin-left: 70px">
       </form> 
      </div>
          </div> 
