@@ -48,10 +48,10 @@ else if ($_SESSION['users'] == true){
 $_SESSION['users'] = false;
 if($_SESSION['deleted'] == true){
         $_SESSION['deleted'] = false;
-        header('location:user_schedtable.php');
+        header('location:user_reservation.php');
     }
     else{
- echo header('location:user_schedtable.php');
+ echo header('location:user_reservation.php');
 mysqli_close($con);
 }
 }

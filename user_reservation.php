@@ -179,19 +179,20 @@ function checkTime(i) {
             $sql1 ="select * from tbl_sched WHERE emp_id='".$row1['Employee_ID']."'";
             $res1 = mysqli_query($con, $sql1);
             $_SESSION["result_set"] = $res1;
+            $_SESSION['counter'] = 0;
             while($row= mysqli_fetch_array($res1))
             {
             ?>
             <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'cell_edit.php\'' : '' ?>>
             <tr>
-                <td><a href="Reserve_Details.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
+                <td><a href="Reserve_Details_User.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
                 <td align="center"><a onclick="return del()" href="delsched_user.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
 <!--                <td align="center"><a href="editsched.php?SID=--><?php //echo $row['id']; ?><!--"><span class="glyphicon glyphicon-pencil"></span></a></td>-->
 <!--                <td align="center"><a href="cell_edit.php?SID=<?php echo $row['id']; ?>"><<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? 'button name=\'save_button\' type=submit class="btn btn-link save"' : 'span' ?> class=<?php echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? "'glyphicon glyphicon-floppy-disk'" : "'glyphicon glyphicon-pencil'"?>><?php
                         echo ($_SESSION["count"]==2 && $_SESSION["selected"]==$row['id']) ? '<span class="glyphicon glyphicon-floppy-disk"></span></button>' : '</span>';
                         ?></a></td>
 <!--                <td>--><?php //echo $row['id']; ?><!--</td>-->
-                <td align="CENTER"><a href="editsched.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td align="CENTER"><a href="editsched_user.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 		<td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="reserv_id" id="reserv_id" value=<?php echo $row['id']; ?> readonly></td>
                 <td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="room_id" id="room_id" value=<?php echo $row['room_id']; ?> <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>> </td>
                 <td><input type="time" class="table_cell <?php echo 'cell'.$row['id']?>" name="time_in" value="<?php echo $row['time_in']; ?>"  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>

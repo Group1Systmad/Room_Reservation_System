@@ -152,7 +152,7 @@ function checkTime(i) {
             ?>
             <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'cell_edit.php\'' : '' ?>>
             <tr>
-                <td><a href="Reserve_Details.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
+                <td><a href="Reserve_Details_User.php?SID=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
                 <td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="reserv_id" id="reserv_id" value=<?php echo $row['id']; ?> readonly></td>
                 <td><input class="<?php echo 'cell'.$row['id']?> table_cell" name="room_id" id="room_id" value=<?php echo $row['room_id']; ?> readonly> </td>
                 <td><input class="table_cell <?php echo 'cell'.$row['id']?>" name="emp_id" id="emp_id" value=<?php echo $row['emp_id']; ?>  readonly></td>
