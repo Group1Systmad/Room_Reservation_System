@@ -1,5 +1,10 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
+
 ?>
 <html>
 <head>
@@ -12,6 +17,33 @@ session_start();
     <link rel="stylesheet" href="mika/reservation.css" type="text/css">
 <title>Reservations' List</title>
 <style>
+    .table{
+        width: 20%;
+        margin: 0 auto;
+    }
+    .container{
+        margin-top: 5%;
+        text-align: center;
+    }
+    .headers{
+        text-align: center;
+        font-size: medium;
+    }
+    td{
+        font-size: small;
+    }
+    .glyphicon-remove{
+        color: #ff572d;
+        font-size: medium;
+    }
+    .glyphicon-pencil,.glyphicon-floppy-disk{
+        font-size: medium;
+    }
+    .table_cell{
+        background: transparent;
+        border: none;
+        text-align: center;
+    }
     <?php echo ($_SESSION["count"]==2) ? $_SESSION["classname"].'{background:white;border:1px solid;}' : ''?>
     #room_id{
         width: 50px;
@@ -22,6 +54,10 @@ session_start();
     .save{
         padding: 0 0;
 
+    }
+    #main-container{
+        
+        margin-left: 6%;
     }
 </style>
 <script type="text/javascript">
@@ -142,12 +178,15 @@ function checkTime(i) {
                 <td>Date</td>
                 <td>Status</td>
             </tr>
-            <?php
-            include 'connect.php';
-            $sql ="select * from tbl_sched order by id";
-            $res = mysqli_query($con, $sql);
-            $_SESSION["result_set"] = $res;
-            while($row= mysqli_fetch_array($res))
+            <?php //1st
+                include 'connect.php';
+                if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+                $results_per_page = 10   ;
+                $start_from = ($page-1) * $results_per_page;
+                $SQL ="SELECT * FROM tbl_sched ORDER BY id LIMIT $start_from, ".$results_per_page;
+                $res2 = mysqli_query($con, $SQL);
+            $_SESSION["result_set"] = $res2;
+            while($row= mysqli_fetch_array($res2))
             {
             ?>
             <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'cell_edit.php\'' : '' ?>>
@@ -175,6 +214,25 @@ function checkTime(i) {
             mysqli_close($con);
             ?><!-- close of second php -->
         </table>
+        <div class="center">
+                <div class="page-footers">
+                    <?php
+                    include 'connect.php';
+                    $sql4 = "SELECT COUNT(id) AS total FROM tbl_sched";
+                    $res4 = mysqli_query($con, $sql4);
+                    $row4= mysqli_fetch_array($res4);
+                    $total_pages = ceil($row4["total"] / $results_per_page); // calculate total pages with results
+		
+                    for ($i=1; $i<=$total_pages; $i++) {
+                        echo "<a class='pages";
+                        echo ($i==$page) ? ' curPage\'' : '\'';
+                        echo " href='user_schedtable.php?page=".$i."'";
+
+                        echo ">".$i."</a> ";
+                    };
+                    ?>
+                     </div>
+         </div>
     
     <?php
     

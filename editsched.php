@@ -17,22 +17,19 @@
     <head>
         <title>Edit Rooms</title>
         <style>
-       .cont{
-        width: 50%;
-        background: #27698d;
-        margin: 0 auto;
-        margin-top: 10%;
-        padding: 5px;
-        border-radius: 10px;
-        }
-    input{
-        float: right;   
+    .cont{
+         width: 40%;
+         height: 95%;
+            background: #27698d;
+            margin-top: 5%;
+            margin: auto;
+            padding: 30px 30px 0 50px;
+            border-radius: 10px;
     }
     .child{
-        width: 50%;
+        width: 85%;
         margin: 0 auto;
-        margin-top: 10%;
-        padding: 20px;
+        margin-top: 5%;
         display: flex;
         flex-flow: column;
     }
@@ -46,7 +43,8 @@
     label{
         color: #fff;
     }
-        </style>
+
+</style>
           <script type="text/javascript">
               function startTime() {
     var today = new Date();
@@ -97,7 +95,7 @@ function checkTime(i) {
     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
  
     </head>
-    <body onload="startTime()">
+    <body onload="startTime()" background="bg.jpg">
         <div class="sidebar">
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li> 
@@ -167,7 +165,7 @@ function checkTime(i) {
           $_SESSION['ucode'] = $ucode;
           
           ?>
-         
+        <div class="title" style="color:#fff; font-size: 40px; padding-bottom: 0; padding-right: 20px;  font-family: Impact; margin-left: 390px"> Edit Reservation </div> 
         <div class="cont">
         <form class="form_container" name="editsched" method="post">
             
@@ -213,7 +211,7 @@ function checkTime(i) {
                 </div>
                 <div class="col-md-6">
 <!--                    <a href = "roomdetails.php"><button class="btn btn-primary">Room Details</button>></a>-->
-                    <input class="btn btn-primary" type="submit" value="Room Details" formaction="roomdetails.php">
+                    <input class="btn btn-primary" style="background-color: #ff7a24" type="submit" value="Room Details" formaction="roomdetails.php">
                 </div>
             </div>
             <div class="form-group row">
@@ -223,13 +221,11 @@ function checkTime(i) {
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label for="txtti">Time In</label>
                     <input class="form-control" type="time" name="txtti" value="<?php echo $time_in;?>" id="txtti">
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label for="txtto">Time Out</label>
                     <input class="form-control" type="time" name="txtto" value="<?php echo $time_out;?>" id="txtto">
                 </div>
@@ -259,8 +255,7 @@ function checkTime(i) {
               <div class="col-md-12">
                   <a href="schedtable.php"><button class="btn btn-primary">Back</button></a>
               </div>
-            </div>
-            -->
+            </div>-->
     </div>
         
              <?php
@@ -289,7 +284,6 @@ function checkTime(i) {
                 $_SESSION['error']='no';
                 }
                 ?>
-            </div>
         </form> 
     </body>
 </html>

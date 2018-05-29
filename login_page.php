@@ -101,9 +101,6 @@ session_start();
                     <form class="form_container" action="verifylogin.php" method="post">
                     <input class="input-child text-input" type="text" name="uname" placeholder="Username" required = "true">
                     <input class="input-child password-input" type="password" name="pword" placeholder="Password" required = "true">
-                    <div class="links">
-                        <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me</label>
-                    </div>
                     <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class = "links">
                         <a href="forgotpassword.php" name="forgotpassword" class = "forgot-pass">Forgot Password</a>
@@ -118,7 +115,7 @@ session_start();
             echo '<script type="text/javascript" language="JavaScript">';
             echo 'alert("Login failed. Incorrent username/password entered.Please try again")';
             echo '</script>';
-            $_SESSION["login"] = 'no';
+            $_SESSION["login"] = 'no'; 
         }
         else if ($_SESSION["login"]=='logout'){
             echo '<script type="text/javascript" language="JavaScript">';

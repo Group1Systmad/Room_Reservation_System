@@ -122,6 +122,7 @@ function checkTime(i) {
             document.getElementById("myAccountnav").style.width = "0";
             document.getElementById("myAccountnav").style.border = "none";
 }
+
 </script>
 </head>
 <body onload="startTime()" background="bg.jpg">
@@ -205,8 +206,8 @@ function checkTime(i) {
                     </SELECT>   
                     </div>
                 <div class="col-md-6">
-<!--                    <a href = "roomdetails.php"><button class="btn btn-primary">Room Details</button>></a>-->
 <input class="btn btn-primary" style="background-color: #ff7a24" type="submit" value="Room Details" formaction="roomdetails.php">
+<!--<a href = "roomdetails.php"><input class="btn btn-primary" style="background-color: #ff7a24" value="Room Details" formaction="roomdetails.php"></a>-->
                 </div>
             </div>
             <div class="form-group row">
@@ -292,8 +293,8 @@ function checkTime(i) {
                 $_SESSION['error']='no';
                 }
                 ?>
-            </div>
         </form> 
+            </div>
     
     
     

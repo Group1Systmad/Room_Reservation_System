@@ -1,5 +1,11 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
+
+
 
 ?>
 <html>
@@ -33,32 +39,32 @@ session_start();
 </script>
 <style>
     .container{
-        width: 40%;
-            height: 91%;
-            background: #0C67A6;
+         width: 40%;
+         height: 90%;
+            background: #27698d;
             margin-top: 5%;
             margin: auto;
-            padding: 30px 30px 60px 60px;
+            padding: 30px 30px 0 50px;
             border-radius: 10px;
     }
-
     .child{
-        width: 100%;
+        width: 85%;
         margin: 0 auto;
-        margin-top: 3%;
-        padding: 5px;
+        margin-top: 5%;
         display: flex;
         flex-flow: column;
     }
     .btn{
         width: 100%;
     }
+    #btnupdate{
+        background-color: #FFF;
+        color: #337ab7;
+    }
     label{
         color: #fff;
     }
-    #popup{
-        margin: 0;
-    }
+
 </style>
 <script type="text/javascript">
    window.onunload = refreshParent;
@@ -168,8 +174,9 @@ function checkTime(i) {
         <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
         <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
         <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
-        <li> <div class="selected"><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
-        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
+        <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li><div class="selected"><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></div></li>
+        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
         <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
 </div>
@@ -219,7 +226,7 @@ function checkTime(i) {
                 </div>
                 <div class="col-md-6">
 <!--                    <a href = "roomdetails.php"><button class="btn btn-primary">Room Details</button>></a>-->
-<input class="btn btn-primary" style="background-color: #ff7a24" type="submit" value="Room Details" formaction="roomdetails.php">
+<input class="btn btn-primary" style="background-color: #ff7a24" type="submit" value="Room Details" formaction="roomdetails_user.php">
                 </div>
             </div>
             <div class="form-group row">
@@ -231,17 +238,17 @@ function checkTime(i) {
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for="txtti">Time In</label>
-                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['utimein'];?>" id="txtti">
+                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['utimein'];?>" id="txtti" required="true">
                 </div>
                 <div class="col-md-6">
                     <label for="txtto">Time Out</label>
-                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['utimeout'];?>" id="txtto">
+                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['utimeout'];?>" id="txtto" required="true">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txtd">Date</label>
-                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['udate'];?>" id="txtd">
+                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['udate'];?>" id="txtd" required="true">
                 </div>
             </div>
             <div class="form-group row">
@@ -249,37 +256,33 @@ function checkTime(i) {
 
                     <?php
                         $random = rand(10000,99999); 
+                        $SQL1 = "SELECT * FROM tbl_sched";
+                        $res1 = mysqli_query($con,$SQL1);
+                        while ($row1 = mysqli_fetch_array($res1)){
+                            if ($random == $row1['u_code']){
+                                $random = rand(10000,99999);
+                            }
+                        }
+                        
                     ?>
                     <label for="txtuc">Unique Code</label>
                     <input class="form-control" id="txtuc" name="txtuc" value=<?php echo $random;?>  readonly>
                 </div>
             </div>
             <div class="form-group row">
-                <?php 
-                if ($_SESSION['uerror'] != 'avail'){ ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail_user.php">
+                    <input class="btn btn-primary" type="submit" value="Save" formaction="checkavail_user.php">
                 </div>   
                 <div class="col-md-6">
-                    <input class="btn btn-danger" type="reset" value="Clear">
-                </div>   
-                <?php }
-                else if ($_SESSION['uerror']=='avail'){
+                    <input class="btn btn-danger" type="reset" value="Clear" id=btnReset">
+                </div>  
                 
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Room Available.")';
-                echo '</script>';  
-                ?>
-                <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Save" formaction="add_user.php">
-                </div>
-                <div class="col-md-6">
-                    <input class="btn btn-danger" type="submit" value="Cancel" formaction="user_schedtable.php">
-                </div>
-                <?php }?>
-                
+                 </div>
+                <div class="row">
+              <div class="col-md-12">
+                  <a href="user_reservation.php"><button class="btn btn-primary">Back</button></a>
+              </div>
             </div>
-        </form>
 
 </div>
              <?php
@@ -308,6 +311,8 @@ function checkTime(i) {
                 $_SESSION['uerror']='no';
                 }
                 ?>
+            
+        </form>
             </div>
 </body>
 </html>

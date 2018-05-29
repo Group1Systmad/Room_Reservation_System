@@ -207,7 +207,7 @@ function checkTime(i) {
         <form <?php echo ($_SESSION["count"]==2) ? 'method=\'post\' action=\'employee_edit.php\'' : '' ?>>
         <TR>
             <td align="center"><a onclick="return Del()" href="delete_employee.php?SID=<?php echo $_SESSION['row']['Employee_ID']; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
-            <td align="CENTER"><a href="employee_edit.php?SID=<?php echo $row['Employee_ID']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td align="CENTER"><a href="employee_edit.php?SID=<?php echo $_SESSION['row']['Employee_ID']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
             <td><input class="<?php echo 'cell'.$_SESSION['row']['Employee_ID']?> table_cell" name="emp_id" id="emp_id" value=<?php echo $_SESSION['row']['Employee_ID']; ?> readonly></td>
             <td><input class="<?php echo 'cell'.$_SESSION['row']['Employee_ID']?> table_cell" name="emp_ln" id="emp_ln" value=<?php echo $_SESSION['row']['Emp_LN']; ?> <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>> </td>
             <td><input class="table_cell <?php echo 'cell'.$_SESSION['row']['Employee_ID']?>" name="emp_fn" id="emp_fn" value='<?php echo $_SESSION['row']['Emp_FN']; ?>'  <?php echo (($_SESSION["count"]==2 && $_SESSION['row']['Employee_ID']!=$_SESSION["selected"]) || $_SESSION["count"]<=1) ? "readonly" : ""?>></td>

@@ -35,26 +35,26 @@ function checkTime(i) {
     return i;
 }
 
-        function logout()
-        {
-	     var confirmdel = confirm("Confirm Log Out?");
-	     if (confirmdel==true)
-	     {
-	     	return true;
-	     }
-	     else
-	     {
-	     	return false;
-	    }
+function logout()
+    {
+	var confirmdel = confirm("Confirm Log Out?");
+	if (confirmdel==true)
+	{
+	    return true;
+	}
+	else
+	{
+	    return false;
+	}
     }
-//LOG OUT FUNCTION END
-   function openaccNav() {
-             document.getElementById("myAccountnav").style.width = "250px";
-             document.getElementById("myAccountnav").style.border = "1px solid black";
+
+function openaccNav() {
+    document.getElementById("myAccountnav").style.width = "250px";
+    document.getElementById("myAccountnav").style.border = "1px solid black";
 }
-    function closeaccNav() {
-            document.getElementById("myAccountnav").style.width = "0";
-            document.getElementById("myAccountnav").style.border = "none";
+function closeaccNav() {
+    document.getElementById("myAccountnav").style.width = "0";
+     document.getElementById("myAccountnav").style.border = "none";
 }
 
 
@@ -241,14 +241,19 @@ var x = setInterval(function() {
             <h1>
                 <?php
                 include 'connect.php';
-                $result = mysqli_query($con,"SELECT * FROM tbl_sched WHERE Status='1'");
+                date_default_timezone_set('Asia/Manila');
+                $date_current = date('Y-m-d');
+                $time_current = date('H:i:s');
+                $result = mysqli_query($con,"SELECT * FROM tbl_sched WHERE date='$date_current' AND time_in<='$time_current' AND time_out>='$time_current' AND Status='1'");
                 $rows = mysqli_num_rows($result);
-                echo $rows . "/10 ";
+                $res4 = mysqli_query($con,"SELECT * FROM tbl_roomlist");
+                $row4 = mysqli_num_rows($res4);
+                echo $rows . "/ ".$row4;
                 mysqli_close($con);
                 $_SESSION['same'] = false;
                 ?>
             </h1>
-            <p>rooms are reserved</p>
+            <p>rooms are currently reserved</p>
           
         </div>
         <div class="table_view col-md-8" style="background-color: #e6e6ff; margin-left: 1%; border-radius: 8px" id="room-preview">
@@ -305,7 +310,6 @@ var x = setInterval(function() {
 
                         echo ">".$i."</a> ";
                     };
-                    //edit ni bren
                     ?>
                     
                 </div>

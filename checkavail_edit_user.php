@@ -7,19 +7,21 @@
             $time_in = $_POST['txtti'];
             $time_out = $_POST['txtto'];
             $date = $_POST['txtd'];
+            $ucode = $_POST['txtuc'];
             //Get data from addsched.php
-            $_SESSION['eid'] = $empid;
-            $_SESSION['rid'] = $roomid;
-            $_SESSION['timein'] = $time_in;
-            $_SESSION['timeout'] = $time_out;
-            $_SESSION['date'] = $date;
+            $_SESSION['ueid'] = $empid;
+            $_SESSION['urid'] = $roomid;
+            $_SESSION['utimein'] = $time_in;
+            $_SESSION['utimeout'] = $time_out;
+            $_SESSION['udate'] = $date;
+            $_SESSION['ucode'] = $ucode;
             $_SESSION['counter'] = 1;
             date_default_timezone_set('Asia/Manila');
             //Check current time and date
             $date_current = date('Y-m-d');
             $time_current = date('H:i:s');
             //Check current time and date
-            $time_plus = date('H:i:s', strtotime("+30 minutes", $time_current));
+//            $time_plus = date('H:i:s', strtotime("+30 minutes", strtotime($time_current)));
             //Data from tbl_sched
             $SQL = "SELECT * FROM tbl_sched WHERE room_id='$roomid'";
             $res = mysqli_query($con, $SQL);
@@ -38,21 +40,71 @@
             //Check if corrent input of date and time
             if ($date < $date_current){
                     $_SESSION['uerror']= 'wrongdate';   
-                    header('location:editsched_user.php');
+                    header('location:editsched.php');
                     }
             else if ($date == $date_current){
                 if ($time_in < $time_current OR $time_out < $time_current){
                     $_SESSION['uerror']= 'wrongtime'; 
-                    header('location:editsched_user.php');
+                    header('location:editsched.php');
                     }
                 else if ($time_out < $time_in){
                     $_SESSION['uerror']= 'wrongtime';  
-                    header('location:editsched_user.php');
+                    header('location:editsched.php');
                     }
-                else if ($time_in >= $time_current OR $time_in <= $time_plus){
-                    $_SESSION['uerror']= 'wrongtime';  
-                    header('location:editsched_user.php');
+                else {   
+            while($row = mysqli_fetch_array($res))
+            {
+                $i++;
+                $col[$i]['time_in']=$row['time_in'];
+                $col[$i]['time_out']=$row['time_out'];
+                $col[$i]['date']=$row['date'];
+
+            }       
+            //Check if conflict with other schedules
+            if ($count>=1){
+                for ($j=0;$j<=$i;$j++){
+                    $time_in_stamp = strtotime($col[$j]['time_in']);
+                    $time_out_stamp = strtotime($col[$j]['time_out']);
+                    $time_in_f = date("H:i", $time_in_stamp);
+                    $time_out_f = date("H:i", $time_out_stamp);
+                    if ($col[$j]['date'] == $date){
+                        if (($time_in_f <= $time_in AND $time_out_f > $time_in))
+                        {
+                        $_SESSION['uerror']= 'notavail';   
+                        $j=$i;
+                        header('location:editsched_user.php');
+                        }
+                        else if (($time_in_f < $time_out AND $time_out_f >= $time_out))
+                        {
+                        $_SESSION['uerror']= 'notavail';   
+                        $j=$i;
+                        header('location:editsched_user.php');
+                        }    
+                        else if (($time_in_f >= $time_in AND $time_out_f <= $time_out))
+                        {
+                        $_SESSION['uerror']= 'notavail';   
+                        $j=$i;
+                        header('location:editsched_user.php');
+                        } 
+                        else
+                        {
+                        $_SESSION['uerror']= 'avail'; 
+                        header('location:user_reservation.php');
+                        }
                     }
+                    else
+                    {
+                    $_SESSION['uerror']= 'avail'; 
+                    header('location:user_reservation.php');
+                    }
+            }
+            }
+            else
+            {
+            $_SESSION['uerror']= 'avail';  
+            header('location:user_reservation.php');
+            }
+            }
             }
             else if ($time_out < $time_in){
                     $_SESSION['uerror']= 'wrongtime';  
@@ -107,20 +159,20 @@
                         else
                         {
                         $_SESSION['uerror']= 'avail'; 
-                        header('location:editsched_user.php');
+                        header('location:user_reservation.php');
                         }
                     }
                     else
                     {
                     $_SESSION['uerror']= 'avail'; 
-                    header('location:editsched_user.php');
+                    header('location:user_reservation.php');
                     }
             }
             }
             else
             {
             $_SESSION['uerror']= 'avail';  
-            header('location:editsched_user.php');
+            header('location:user_reservation.php');
             }
             }
             //Check if conflict with other schedules

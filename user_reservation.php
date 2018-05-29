@@ -207,6 +207,7 @@ function checkTime(i) {
             ?><!-- close of second php -->
         </table>
     <?php
+    $_SESSION['ueid'] = $_SESSION['employee_num'];
     $_SESSION['urid'] = "";
     $_SESSION['utimein'] = "";
     $_SESSION['utimeout'] = "";

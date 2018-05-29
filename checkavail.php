@@ -20,7 +20,7 @@
             $date_current = date('Y-m-d');
             $time_current = date('H:i:s');
             //Check current time and date
-            $time_plus = date('H:i:s',strtotime('+ 30 minutes',strtotime($time_current)));
+//            $time_plus = date('H:i:s',strtotime('+ 30 minutes',strtotime($time_current)));
             //Data from tbl_sched
             $SQL = "SELECT * FROM tbl_sched WHERE room_id='$roomid' AND Status='1'";
             $res = mysqli_query($con, $SQL);
@@ -50,10 +50,7 @@
                     $_SESSION['error']= 'wrongtime';  
                     header('location:addsched.php');
                     }
-                else if ($time_in >= $time_current AND $time_in <= $time_plus){
-                    $_SESSION['error']= 'wrongtime';  
-                    header('location:addsched.php');
-                    }
+               
                 else {   
             while($row = mysqli_fetch_array($res))
             {

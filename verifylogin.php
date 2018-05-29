@@ -33,17 +33,18 @@ if ($count == 1)
     else if ($row['acc_type'] == 'user'){
     $_SESSION['username'] = $un;
     $_SESSION['username_name'] = $un;
+    $_SESSION['ueid'] = "";
     $_SESSION['urid'] = "";
     $_SESSION['utimein'] = "";
     $_SESSION['utimeout'] = "";
     $_SESSION['udate'] = "";
     $_SESSION['username'] = $un;
     $_SESSION['acctype'] = 'user';
-    //If the user/admin just recently forgotpassword
+    //If the user just recently forgotpassword
     if ($row['count'] == 1){
         header('location:change_pass.php');
         }
-    //If the user/admin just recently forgotpassword end
+    //If the user just recently forgotpassword end
     else {
         $_SESSION['login_name'] = 'hello';
         header('location:userpage.php');

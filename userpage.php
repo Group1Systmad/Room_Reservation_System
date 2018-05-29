@@ -1,5 +1,10 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
+
 ?>
 <html>
 <head>
@@ -114,6 +119,7 @@ function PopupCenter(url, title, w, h) {
             $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
             $res1 = mysqli_query($con, $sql1);
             $row1 = mysqli_fetch_array($res1);
+            $_SESSION['employee_num'] = $row['Employee_ID'];
             ?>
             <div class="center"> <img src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" style="border-radius: 100%; max-height: 90px;">
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
@@ -204,9 +210,14 @@ function PopupCenter(url, title, w, h) {
             <h1>
                 <?php
                 include 'connect.php';
-                $result = mysqli_query($con,"SELECT * FROM tbl_sched WHERE Status='1'");
+                date_default_timezone_set('Asia/Manila');
+                $date_current = date('Y-m-d');
+                $time_current = date('H:i:s');
+                $result = mysqli_query($con,"SELECT * FROM tbl_sched WHERE date='$date_current' AND time_in<='$time_current' AND time_out>='$time_current' AND Status='1'");
                 $rows = mysqli_num_rows($result);
-                echo $rows . "/10 ";
+                $res4 = mysqli_query($con,"SELECT * FROM tbl_roomlist");
+                $row4 = mysqli_num_rows($res4);
+                echo $rows . "/ ".$row4;
                 mysqli_close($con);
                 ?>
             </h1>

@@ -7,28 +7,29 @@
   else {
   $id = $_SESSION['id'];
   }
+  if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
   
 ?>
 <html>
     <head>
         <title>Edit Rooms</title>
         <style>
-       .cont{
-        width: 50%;
-        background: #27698d;
-        margin: 0 auto;
-        margin-top: 10%;
-        padding: 5px;
-        border-radius: 10px;
-        }
-    input{
-        float: right;   
+    .cont{
+         width: 40%;
+         height: 95%;
+            background: #27698d;
+            margin-top: 5%;
+            margin: auto;
+            padding: 30px 30px 0 50px;
+            border-radius: 10px;
     }
     .child{
-        width: 50%;
+        width: 85%;
         margin: 0 auto;
-        margin-top: 10%;
-        padding: 20px;
+        margin-top: 5%;
         display: flex;
         flex-flow: column;
     }
@@ -42,8 +43,31 @@
     label{
         color: #fff;
     }
-        </style>
+
+</style>
           <script type="text/javascript">
+              function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var n= today.getMonth();
+    var o= today.getDate();
+    if (h>12){h= h-12; }
+    h = checkTime(h);
+    m = checkTime(m);
+    n = n+1;
+    n = checkTime(n);
+    o = checkTime(o);
+     document.getElementById('time').innerHTML =
+     h + ":" + m 
+     document.getElementById('date').innerHTML =
+     n + "/" + o 
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}	
         function logout()
         {
 	     var confirmdel = confirm("Confirm Log Out?");
@@ -71,18 +95,20 @@
     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
  
     </head>
-    <body>
+    <body onload="startTime()" background="bg.jpg">
         <div class="sidebar">
-    <ul>
+    
+        <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
         <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
         <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
         <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
-        <li> <div class="selected"><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
-        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
-        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
+        <li><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></li>
+        <li> <div class="selected"><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></div></li>
+        <li><a href="Room_View_User.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
         <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
+    
     </div>
         
          <div id="myAccountnav" class="accnav" style="top:70px;">
@@ -127,11 +153,11 @@
             $_SESSION['counter'] = 1;
         }
         else if ($_SESSION['counter'] == 1){
-            $rid = $_SESSION['rid'];
-            $eid = $_SESSION['eid'];
-            $time_in = $_SESSION['timein'];
-            $time_out = $_SESSION['timeout'];
-            $date = $_SESSION['date'];
+            $rid = $_SESSION['urid'];
+            $eid = $_SESSION['ueid'];
+            $time_in = $_SESSION['utimein'];
+            $time_out = $_SESSION['utimeout'];
+            $date = $_SESSION['udate'];
             $ucode = $_SESSION['ucode'];
           }
           
@@ -140,10 +166,11 @@
           $_SESSION['ucode'] = $ucode;
           
           ?>
-        
+        <div class="title" style="color:#fff; font-size: 40px; padding-bottom: 0; padding-right: 20px;  font-family: Impact; margin-left: 390px"> Edit Reservation </div> 
         <div class="cont">
-            <form "form-container" name="edit_room" method="POST">
-                <div class="child">    
+        <form class="form_container" name="editsched" method="post">
+            
+            <div class="child">    
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txtid">Reservation ID</label>
@@ -185,7 +212,7 @@
                 </div>
                 <div class="col-md-6">
 <!--                    <a href = "roomdetails.php"><button class="btn btn-primary">Room Details</button>></a>-->
-                    <input class="btn btn-primary" type="submit" value="Room Details" formaction="roomdetails.php">
+                    <input class="btn btn-primary" style="background-color: #ff7a24" type="submit" value="Room Details" formaction="roomdetails.php">
                 </div>
             </div>
             <div class="form-group row">
@@ -195,13 +222,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label for="txtti">Time In</label>
                     <input class="form-control" type="time" name="txtti" value="<?php echo $time_in;?>" id="txtti">
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label for="txtto">Time Out</label>
                     <input class="form-control" type="time" name="txtto" value="<?php echo $time_out;?>" id="txtto">
                 </div>
@@ -219,33 +244,21 @@
                 </div>
             </div>
             <div class="form-group row">
-                <?php 
-                if ($_SESSION['uerror'] != 'avail'){ ?>
                 <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Check Availability" formaction="checkavail_edit_user.php">
+                    <input class="btn btn-primary" type="submit" value="Save" formaction="checkavail_edit_user.php">
                 </div>   
                 <div class="col-md-6">
-                    <input class="btn btn-danger" type="reset" value="Clear">
-                </div>   
-                <?php }
-                else if ($_SESSION['uerror']=='avail'){
+                    <input class="btn btn-danger" type="reset" value="Clear" id=btnReset">
+                </div>  
                 
-                echo '<script type="text/javascript" language="JavaScript">';
-                echo 'alert("Room Available.")';
-                echo '</script>';  
-                ?>
-                <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="Save" formaction="user_reservation.php">
-                </div>
-                <div class="col-md-6">
-                    <input class="btn btn-danger" type="submit" value="Cancel" formaction="user_schedtable.php">
-                </div>
-                <?php }?>
-                
-            </div>
-        </form>
-
-</div>
+                 </div>
+<!--            <div class="row">
+              <div class="col-md-12">
+                  <a href="schedtable.php"><button class="btn btn-primary">Back</button></a>
+              </div>
+            </div>-->
+    </div>
+        
              <?php
                 if ($_SESSION['uerror']== 'wrongdate'){
                 echo '<script type="text/javascript" language="JavaScript">';
@@ -272,7 +285,7 @@
                 $_SESSION['uerror']='no';
                 }
                 ?>
-            </div>
+        </form> 
     </body>
 </html>
 
