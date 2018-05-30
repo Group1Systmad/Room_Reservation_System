@@ -106,7 +106,7 @@ session_start();
                     <input type="submit" class="input-child button-input" name="button_login" value="Log In">
                     <div class="links">
                         <label for="check1" class="remember-check"><input type="checkbox" name="check_box" id="check1">Remember me</label>
-                        <a href="#" name="signup" class = "sign-up">Sign up</a>
+       
 <!--                    <?php
                         $_SESSION["username"] = 1;
                         $_SESSION["oldpass"] = 1;
