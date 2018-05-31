@@ -185,13 +185,13 @@ function logout()
         <div class="sidebar">
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
-        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></li>
-        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
-        <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
-        <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
-        <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
-        <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
-       <li><div id="time" style="padding-top:20px; font-size: 18px; color:white;text-align: center"></div></li>
+        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Account</span></a></li>
+        <li><a href="userpage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><a href="aboutususer.php"><span class="glyphicon glyphicon-info-sign"></span><span class="menu_label">About</span></a></li>
+        <li> <div class="selected"><a href="user_schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
+        <li><a href="user_reservation.php"><span class="glyphicon glyphicon-list"></span><span class="menu_label">Your Reservations</span></a></li>
+        <li><a href="Room_View_User.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
+        <li><div id="time" style="padding-top:180px; font-size: 18px; color:white;text-align: center"></div> </li>
         <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
     </ul>
 </div>
@@ -212,7 +212,7 @@ function logout()
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
             <hr>
-            <a class="hoverable" href="admin_account.php">Account Info</a> 
+            <a class="hoverable" href="user_account.php">Account Info</a> 
             <a  class="hoverable" href="change_pass.php">Change Password</a> 
             <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php 
                 $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>
@@ -306,19 +306,10 @@ function logout()
                         </tr>
                     </table>
                    <div class="col-md-6">
-                    <a href="schedtable.php"><button class="btn btn-primary">Back</button></a>
+                    <a href="user_schedtable.php"><button class="btn btn-primary">Back</button></a>
                 </div>
                 </div>
-                
-                 <?php 
-                    if($reservation_status == 1){ ?>
-                <div class="col-md-6 half" id="cancel_panel">
-<!--                    Cancel button must appear if the reservation status is Active-->
-<!--                    Delete Alert Pop up before deleting-->
-                   <h2 id="cancel_header">Do you want to cancel your reservation?</h2>
-                    <a href="delsched.php?SID=<?php echo $sid;?>"><button class="btn btn-danger">Cancel Reservation</button></a>
-                </div>
-                    <?php } ?>
+                                 
                 
                 
             </div>

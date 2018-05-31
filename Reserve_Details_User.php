@@ -1,5 +1,9 @@
 <?php
 session_start();
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
 ?>
 <?php
     include 'connect.php';
@@ -301,6 +305,9 @@ function logout()
                             <td id="account_type"><?php echo $pax?></td>
                         </tr>
                     </table>
+                   <div class="col-md-6">
+                    <a href="user_reservation.php"><button class="btn btn-primary">Back</button></a>
+                </div>
                 </div>
                  <?php 
                     if($reservation_status == 1){ ?>
@@ -311,9 +318,7 @@ function logout()
                     <a href="delsched.php?SID=<?php echo $sid;?>"><button class="btn btn-danger">Cancel Reservation</button></a>
                 </div>
                     <?php } ?>
-                <div class="col-md-6">
-                    <a href="user_schedtable.php"><button class="btn btn-primary">Back</button></a>
-                </div>
+                
                 
                 
             </div>

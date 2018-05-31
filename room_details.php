@@ -259,6 +259,9 @@ function checkTime(i) {
                     </table>
                     
                 </div>
+                <div class="col-md-6">
+                    <a href="schedtable.php"><button class="btn btn-primary">Back</button></a>
+                </div>
                
             </div>
         </div>
