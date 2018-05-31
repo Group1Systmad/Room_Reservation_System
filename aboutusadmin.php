@@ -26,7 +26,7 @@ abnav {
     padding: 10px 12px 0 0;
     height: 50.5px;
     font-size: 14px;
-    width: 24%;
+    width: 32%;
 }
 
 .tablink:hover {
@@ -36,7 +36,6 @@ abnav {
 .tablink:focus{
     color: #000033;
 }
-
 
 .tabcontent {
     color: #000000;
@@ -158,21 +157,19 @@ function checkTime(i) {
 
          </div>
     <div class="abnav">
-<button class="tablink" onclick="openPage('Support', this, '#ffffff')">Support</button>
 <button class="tablink" onclick="openPage('Help', this, '#ffffff')">Help</button>
 <button class="tablink" onclick="openPage('OurTeam', this, '#ffffff')">Our Team</button>
 <button class="tablink" onclick="openPage('Vision', this, '#ffffff')" autofocus="on" id="defaultOpen">Vision</button>
 
 
-<div id="Support" class="tabcontent">
-    <h3> Support </h3>
-  <p>Recommendation & shit</p>
-</div>
-
 <div id="Help" class="tabcontent">
+    <div class="help" style=" color: #0f0f0f; padding: 20px; border-radius: 5px; margin-left: 0%;">
   <h3>Help</h3>
-  <p>Here goes the user manual!</p> 
-</div>
+  <p>We are also here to help you with these changes. </p>
+  <p>The link below will hopefully provide some assistance and will be updated as new questions come in.</p> 
+  <div class="manual">
+      <a href="ADMIN MANUAL.pdf" download style="color: #ff7a24; font-size: 13px">Click here to download the manual!</a>
+  </div></div></div>
 
 <div id="OurTeam" class="tabcontent">
     <h3 style="font-size: 18px; text-align: center; color: #777; padding-top: 2%">Who we are? Meet our team!</h3>
@@ -183,9 +180,9 @@ function checkTime(i) {
         <p class="title" style="color:  #ff7a24;font-size: 11px;">Back End Programmer</p>
                 <div style="margin: 10px; text-decoration: none;font-size: 10px;color: black;">
                      <a href="http://twitter.com/APaciteng" target="_blank"><i class="fa fa-twitter"></i></a>  
-                     <a href="http://facebook.com/alain.paciteng"><i class="fa fa-facebook"></i></a> 
+                     <a href="http://facebook.com/alain.paciteng" target="_blank"><i class="fa fa-facebook"></i></a> 
                         </div>
-        <p><button style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;">Email</button></p>
+       <p><a style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;" href="mailto:mishel_kate_aguilar@dlsl.edu.ph?subject=Room Reservation App"> Email</a></p>
                 </div>
               
 <div class="cardjay" style="background: white; width: 15%;  margin: auto;  text-align: center; font-family: arial; position: fixed; top: 45%; right: 21%; border-radius: 5px;">
@@ -194,9 +191,9 @@ function checkTime(i) {
         <p class="title" style="color:  #ff7a24;font-size: 11px;">Front End Designer</p>
                 <div style="margin: 10px; text-decoration: none;font-size: 10px;color: black;">
                      <a href="http://twitter.com/mikaaguilar_" target="_blank"><i class="fa fa-twitter"></i></a>  
-                     <a href="http://facebook.com/ohmikachu"><i class="fa fa-facebook"></i></a> 
+                     <a href="http://facebook.com/ohmikachu" target="_blank"><i class="fa fa-facebook"></i></a> 
                         </div>
-        <p><button style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;">Email</button></p>
+        <p><a style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;" href="mailto:mishel_kate_aguilar@dlsl.edu.ph?subject=Room Reservation App"> Email</a></p>
                 </div>
     
     <div class="cardbren" style="background: white; width: 15%;  margin: auto;  text-align: center; font-family: arial; position: fixed; top: 45%; right: 39%; border-radius: 5px;">
@@ -204,10 +201,10 @@ function checkTime(i) {
         <div class="ourname" style="padding-top: 10px; font-family: Lucida Console, fantasy; color: #000000; font-size: 24px;"> Bren Loria</div>
         <p class="title" style="color:  #ff7a24;font-size: 11px;">Database & Hardware Developer</p>
                 <div style="margin: 10px; text-decoration: none;font-size: 10px;color: black;">
-                     <<a href="http://twitter.com/loriaffe" target="_blank"><i class="fa fa-twitter"></i></a>  
-                     <a href="http://facebook.com/loriaffe"><i class="fa fa-facebook"></i></a> 
+                     <a href="http://twitter.com/loriaffe" target="_blank"><i class="fa fa-twitter"></i></a>  
+                     <a href="http://facebook.com/loriaffe" target="_blank"><i class="fa fa-facebook"></i></a> 
                         </div>
-        <p><button style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;">Email</button></p>
+<p><a style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;" href="mailto:mishel_kate_aguilar@dlsl.edu.ph?subject=Room Reservation App"> Email</a></p>
                 </div>
     
     <div class="cardmar" style="background: white; width: 15%;  margin: auto;  text-align: center; font-family: arial; position: fixed; top: 45%; right: 57%; border-radius: 5px;">
@@ -216,9 +213,9 @@ function checkTime(i) {
         <p class="title" style="color:  #ff7a24;font-size: 11px;">Software Developer</p>
                 <div style="margin: 10px; text-decoration: none;font-size: 10px;color: black;">
                      <a href="http://twitter.com/MCFSOfficial" target="_blank"><i class="fa fa-twitter"></i></a>  
-                     <a href="http://facebook.com/marchristian.serrano"><i class="fa fa-facebook"></i></a> 
+                     <a href="http://facebook.com/marchristian.serrano" target="_blank"><i class="fa fa-facebook"></i></a> 
                         </div>
-        <p><buttona style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;">Email</buttona></p>
+        <p><a style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;" href="mailto:mishel_kate_aguilar@dlsl.edu.ph?subject=Room Reservation App"> Email</a></p>
                 </div>
     
     <div class="cardjay" style="background: white; width: 15%;  margin: auto;  text-align: center; font-family: arial; position: fixed; top: 45%; right: 75%; border-radius: 5px;">
@@ -227,18 +224,18 @@ function checkTime(i) {
         <p class="title" style="color:  #ff7a24;font-size: 11px;">Scrum Master & Project Manager</p>
                <div style="margin: 10px; text-decoration: none;font-size: 10px;color: black;">
                      <a href="http://twitter.com/MarjayGab" target="_blank"><i class="fa fa-twitter"></i></a>  
-                     <a href="http://facebook.com/frozenpenofmind"><i class="fa fa-facebook"></i></a> 
+                     <a href="http://facebook.com/frozenpenofmind" target="_blank"><i class="fa fa-facebook"></i></a> 
                         </div>
-        <p><button style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;"> Email</button></p>
+        <p><a style="border: none;outline: 0; display: inline-block; padding: 8px; color: white; background-color: #ff7a24; text-align: center; cursor: pointer; width: 100%; font-size: 8px;" href="mailto:mishel_kate_aguilar@dlsl.edu.ph?subject=Room Reservation App"> Email</a></p>
                 </div>
                 </div>
 
 <div id="Vision" class="tabcontent" style="padding-top: 0; padding-left: 0;">
-    <div class="head" style=" width: 100%;"> <img src="head.jpg"> </div>
+    <div class="head" style=" width: 100%;"> <img src="head.jpg"> 
     <div style="margin-left: 5%; margin-top: 5%;">
   <h3>Our Vision</h3>
-  <p>Who we are and what we do.</p>
-  </div>
+  <p>Lorem Ipsum</p>
+  </div></div>
 </div>
 
 <script>

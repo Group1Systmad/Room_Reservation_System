@@ -392,7 +392,7 @@ function PopupCenter(url, title, w, h) {
                         </tr>
                         <tr>
                             <td>Password</td>
-                            <td>**** <a class="change-pass-link" href="#">Change Password</a></td>
+                            <td>**** <a class="change-pass-link" href="change_pass.php">Change Password</a></td>
                         </tr>
                         <tr>
                             <td>Account Type</td>
