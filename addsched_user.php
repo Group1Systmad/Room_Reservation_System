@@ -238,17 +238,17 @@ function checkTime(i) {
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for="txtti">Time In</label>
-                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['utimein'];?>" id="txtti" required="true">
+                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['utimein'];?>" id="txtti">
                 </div>
                 <div class="col-md-6">
                     <label for="txtto">Time Out</label>
-                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['utimeout'];?>" id="txtto" required="true">
+                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['utimeout'];?>" id="txtto">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txtd">Date</label>
-                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['udate'];?>" id="txtd" required="true">
+                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['udate'];?>" id="txtd">
                 </div>
             </div>
             <div class="form-group row">
@@ -309,6 +309,12 @@ function checkTime(i) {
                 echo 'alert("Room not available. Input another room or time and date")';
                 echo '</script>'; 
                 $_SESSION['uerror']='no';
+                }
+                else if ($_SESSION['uerror']== 'notimedate'){
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Input valid time or date.")';
+                echo '</script>'; 
+                $_SESSION['error']='no';
                 }
                 ?>
             

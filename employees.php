@@ -234,7 +234,7 @@ function checkTime(i) {
         <?php
         include 'connect.php';
 
-        $result = mysqli_query($con,"SELECT * FROM employee ");
+        $result = mysqli_query($con,"SELECT * FROM employee WHERE Emp_Status='ACTIVE'");
         $rows = mysqli_num_rows($result);
         echo "<br>";
         echo "There are " . $rows . " record(s) in the table. ";

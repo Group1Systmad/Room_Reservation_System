@@ -1,6 +1,10 @@
 <?php
 session_start();
 $rid = $_POST['txtrid'];
+if ($_SESSION['login_name']== '')
+{
+    header('location:login_page.php');
+}
 
 ?>
 <html>
@@ -12,10 +16,29 @@ $rid = $_POST['txtrid'];
     <link rel="stylesheet" href="bren/side_bar.css" type="text/css">
      <link rel="stylesheet" href="mika/about.css" type="text/css">
     <link rel="stylesheet" href="mika/aboutus.css" type="text/css">
+<script type="text/javascript">
+    function PopupCenter(url, title, w, h) {  
+        // Fixes dual-screen position                         Most browsers      Firefox  
+        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;  
+        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;  
 
+        width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
+        height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
+
+        var left = ((width / 2) - (w / 2)) + dualScreenLeft;  
+        var top = ((height / 2) - (h / 2)) + dualScreenTop;  
+        var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
+
+        // Puts focus on the newWindow  
+        if (window.focus) {  
+            newWindow.focus();  
+        }  
+    }  
+
+</script>
 <style>
     .container{
-        width: 100%;
+        width: 50%;
         background: #fff;
         margin: 0 auto;
         margin-top: 10%;
@@ -116,8 +139,104 @@ $rid = $_POST['txtrid'];
             opacity: 1;
 }
 </style>
+<SCRIPT TYPE="text/javascript">
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var n= today.getMonth();
+    var o= today.getDate();
+    if (h>12){h= h-12; }
+    h = checkTime(h);
+    m = checkTime(m);
+    n = n+1;
+    n = checkTime(n);
+    o = checkTime(o);
+     document.getElementById('time').innerHTML =
+     h + ":" + m 
+     document.getElementById('date').innerHTML =
+     n + "/" + o 
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}	
+    function Del()
+	  {
+	     var confirmDel = confirm("Are you sure?");
+
+	     if (confirmDel==true)//the user pressed the ok button
+	     {
+	     	return true;
+	     }
+	     else
+	     {
+	     	return false;
+	     }
+	  }
+          function logout()
+        {
+	     var confirmdel = confirm("Confirm Log Out?");
+
+	     if (confirmdel==true)
+	     {
+	     	return true;
+	     }
+	     else
+	     {
+	     	return false;
+	     }
+        }
+        
+          function openaccNav() {
+             document.getElementById("myAccountnav").style.width = "250px";
+             //document.getElementById("myAccountnav").style.border = "1px solid black";
+}
+        function closeaccNav() {
+            document.getElementById("myAccountnav").style.width = "0";
+            document.getElementById("myAccountnav").style.border = "none";
+}
+
+</script>
 </head>
-<body>
+<body onload="startTime()" background="bg.jpg">
+        <div id="myAccountnav" class="accnav" style="top:70px;">
+  <a href="javascript:void(0)" class="closebtn hoverable" onclick="closeaccNav()">&times;</a>
+            <?php
+            include 'connect.php';
+            $sql ="select * from accounts where Acc_Uname='".$_SESSION['username']."'";
+            $res = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($res);
+            $sql1 ="select * from employee where Employee_ID='".$row['Employee_ID']."'";
+            $res1 = mysqli_query($con, $sql1);
+            $row1 = mysqli_fetch_array($res1);
+            ?>
+           <div class="center"> <img src= "<?php  if (empty($row1['Emp_Photo'])){ echo "Male User_96px.png";} else {echo $row1['Emp_Photo'];}?>" style="border-radius: 100%; max-height: 90px;">
+            <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
+            <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
+            <hr>
+            <a class="hoverable" href="admin_account.php">Account Info</a> 
+            <a class="hoverable" href="change_pass.php">Change Password</a> 
+            <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php 
+                $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>
+            </div>
+</div>
+    
+<div class="sidebar">
+    <ul>
+        <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li>
+        <li><a onclick="return openaccNav()"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Admin</span></a></li>
+        <li><a href="homepage.php"><span class="glyphicon glyphicon-cloud"></span><span class="menu_label">Home</span></a></li>
+        <li><a href="aboutusadmin.php" ><span class="glyphicon glyphicon-info-sign" ></span><span class="menu_label">About</span></a></li>
+        <li><a href="employees.php"><span class="glyphicon glyphicon-user"></span><span class="menu_label">Accounts</span></a></li>
+        <li><div class="selected"><a href="schedtable.php"><span class="glyphicon glyphicon-calendar"></span><span class="menu_label">Reservations</span></a></div></li>
+         <li><a href="Room_View.php"><span class="glyphicon glyphicon-blackboard"></span><span class="menu_label">Rooms</span></a></li>
+        <li><div id="time" style="padding-top:20px; font-size: 18px; color:white; text-align: center"></div> </li>
+        <li><div id="date" style=" font-size: 12px; color:#ff7a24; text-align: center"></div> </li></ul>
+       
+    </ul>
+</div>
         <?php
         //code here to get data from database using $rid;
         include 'connect.php';
@@ -130,7 +249,7 @@ $rid = $_POST['txtrid'];
     
       <div class="container">
             <div class="row">
-                <div class="col-md-6 half">
+                <div class="col-md-6">
                 Location
                 <table class="table">
                     <tr>
@@ -150,7 +269,9 @@ $rid = $_POST['txtrid'];
                     </tr>
                 </table>
             </div>
-            <div class="col-md-6 half">
+            </div>
+          <div class="row">
+            <div class="col-md-6">
                 Features
                 <table class="table">
                     <tr>
@@ -162,7 +283,7 @@ $rid = $_POST['txtrid'];
             </div>
             </div>
             <div class="row">
-                <div class="col-md-6 half">
+                <div class="col-md-6">
                    Accommodation
                     <table class="table">
                         <tr>
@@ -176,7 +297,7 @@ $rid = $_POST['txtrid'];
                
             </div>
           <div class="row">
-              <div class="col-md-3 half">
+              <div class="col-md-3">
                   <a href="addsched.php"><button class="btn btn-primary">Back</button></a>
               </div>
           </div>

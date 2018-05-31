@@ -283,6 +283,12 @@ function checkTime(i) {
                 echo '</script>'; 
                 $_SESSION['error']='no';
                 }
+                else if ($_SESSION['error']== 'notimedate'){
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Input valid time or date.")';
+                echo '</script>'; 
+                $_SESSION['error']='no';
+                }
                 ?>
         </form> 
     </body>

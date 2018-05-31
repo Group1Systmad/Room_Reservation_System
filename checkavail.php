@@ -37,7 +37,11 @@
             $count = mysqli_num_rows($res);
             $i = -1;
             //Check if correct input of date and time
-            if ($date < $date_current){
+            if ($date == null OR $time_in == null OR $time_out == null){
+                $_SESSION['error']= 'notimedate';
+                header('location:addsched.php');
+            }
+            else if ($date < $date_current){
                     $_SESSION['error']= 'wrongdate';   
                     header('location:addsched.php');
                     }

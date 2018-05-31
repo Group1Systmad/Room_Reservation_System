@@ -219,17 +219,17 @@ function checkTime(i) {
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for="txtti">Time In</label>
-                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['timein'];?>" id="txtti" required="true">
+                    <input class="form-control" type="time" name="txtti" value="<?php echo $_SESSION['timein'];?>" id="txtti">
                 </div>
                 <div class="col-md-6">
                     <label for="txtto">Time Out</label>
-                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['timeout'];?>" id="txtto" required="true">
+                    <input class="form-control" type="time" name="txtto" value="<?php echo $_SESSION['timeout'];?>" id="txtto">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="txtd">Date</label>
-                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['date'];?>" id="txtd" required="true">
+                    <input class="form-control" type="date" name="txtd" value="<?php echo $_SESSION['date'];?>" id="txtd">
                 </div>
             </div>
             <div class="form-group row">
@@ -289,6 +289,12 @@ function checkTime(i) {
                 else if ($_SESSION['error']== 'notavail'){
                 echo '<script type="text/javascript" language="JavaScript">';
                 echo 'alert("Room not available. Input another room or time and date")';
+                echo '</script>'; 
+                $_SESSION['error']='no';
+                }
+                else if ($_SESSION['error']== 'notimedate'){
+                echo '<script type="text/javascript" language="JavaScript">';
+                echo 'alert("Input valid time or date.")';
                 echo '</script>'; 
                 $_SESSION['error']='no';
                 }
