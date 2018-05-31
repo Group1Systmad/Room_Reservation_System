@@ -311,6 +311,9 @@ function logout()
                     <a href="delsched.php?SID=<?php echo $sid;?>"><button class="btn btn-danger">Cancel Reservation</button></a>
                 </div>
                     <?php } ?>
+                <div class="col-md-6">
+                    <a href="schedtable.php"><button class="btn btn-primary">Back</button></a>
+                </div>
                 
             </div>
          

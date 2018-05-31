@@ -178,7 +178,7 @@ function checkTime(i) {
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <label for="txtrid">Room Number</label>
+                   <label for="txtrid">Room Number</label>
                    <?php 
                    if ($_SESSION['error'] != 'avail'){ ?>
                     <SELECT class="form-control" id="txtrid" NAME="txtrid">

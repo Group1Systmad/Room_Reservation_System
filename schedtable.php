@@ -208,7 +208,7 @@ function checkTime(i) {
                 <?php if ($row['Status']=='1'){
                     echo 'ACTIVE';}
                 else {
-                    echo 'CANCELLED';}
+                    echo 'INACTIVE';}
                     
                     ?>  <?php echo ($_SESSION["count"]==2 && $row['id']!=$_SESSION["selected"]) ? "readonly" : ""?>></td>
             </tr>
