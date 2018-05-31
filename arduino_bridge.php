@@ -45,12 +45,12 @@ $SQL1 = "INSERT INTO tbl_room(id,room_id,emp_id,time_in,time_out,date,u_code,Sta
 $res1 = mysqli_query($con,$SQL1);  
   
   
-    $SQL3 = "SELECT tbl_room.id,tbl_room.room_id,tbl_room.emp_id,tbl_room.time_in,tbl_room.time_out,tbl_room.date,tbl_room.u_code,tbl_room.Status,tbl_room.time_millis,tbl_roomlist.mac_address" 
-        . " FROM tbl_room JOIN tbl_roomlist ON tbl_room.room_id = tbl_roomlist.room_id WHERE mac_address='$post_mac'"; 
+    $SQL3 = "SELECT tbl_sched.id,tbl_sched.room_id,tbl_sched.time_in,tbl_sched.time_out,tbl_sched.date,tbl_sched.u_code,tbl_sched.time_millis,tbl_roomlist.mac_address "
+            . "FROM tbl_sched JOIN tbl_roomlist ON tbl_sched.room_id = tbl_roomlist.room_id WHERE mac_address = '$post_mac' AND Status = 1 ORDER BY date,time_in"; 
   
      $SQL = "SELECT * FROM tbl_room";
   $result = mysqli_query($con,$SQL3);
-  $data = mysqli_fetch_assoc(   $result);
+  $data = mysqli_fetch_assoc($result);
   while ($row= mysqli_fetch_assoc($result)) {
     $id = $row['room_id'];
     $unique = $row['u_code'];
