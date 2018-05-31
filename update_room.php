@@ -44,8 +44,8 @@ if ($_SESSION['admin'] == true){
  
 mysqli_close($con);
 }
-else if ($_SESSION['users'] == true){
-$_SESSION['users'] = false;
+else if ($_SESSION['user'] == true){
+$_SESSION['user'] = false;
 if($_SESSION['deleted'] == true){
         $_SESSION['deleted'] = false;
         header('location:user_reservation.php');

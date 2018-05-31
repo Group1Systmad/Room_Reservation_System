@@ -11,7 +11,7 @@ include 'connect.php';
 
 $SQL = "INSERT INTO tbl_sched(room_id,emp_id,time_in,time_out,date,u_code,Status) VALUES('$r_id','$e_id','$ti','$to','$date','$u_code',TRUE)";
 mysqli_query($con,$SQL);
-$_SESSION['users'] = true;
+$_SESSION['user'] = true;
 $_SESSION['admin'] = false;
 $_SESSION['error'] = 'no';
 $_SESSION['deleted'] = true;
