@@ -247,7 +247,7 @@ function checkTime(i) {
     
       <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                 Location
                 <table class="table">
                     <tr>
@@ -269,7 +269,7 @@ function checkTime(i) {
             </div>
             </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 Features
                 <table class="table">
                     <tr>
@@ -281,7 +281,7 @@ function checkTime(i) {
             </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                    Accommodation
                     <table class="table">
                         <tr>
@@ -289,6 +289,31 @@ function checkTime(i) {
                         <!-- replace code below to get data from a variable stored when the system connected-->
                         <td><?php echo $row['Pax']; ?></td>
                         </tr>
+                    </table>
+                    
+                </div>
+               
+            </div>
+          <div class="row">
+                <div class="col-md-12">
+                   Date/Time Reserved
+                    <table class="table">
+                        <tr>
+                        <td>Date</td>
+                        <td>Time In</td>
+                        <td>Time Out</td>
+                        </tr>
+                        <?php 
+                        $SQL2 = "SELECT * FROM tbl_sched WHERE room_id='$rid' AND Status='1' ORDER BY date,time_in";
+                        $res2 = mysqli_query($con,$SQL2);
+                        while($row2= mysqli_fetch_array($res2)){
+                            ?>
+                        <tr>
+                            <td><?php echo $row2['date']; ?></td>
+                            <td><?php echo $row2['time_in']; ?></td>
+                            <td><?php echo $row2['time_out']; ?></td>
+                        </tr>
+                        <?php } ?>
                     </table>
                     
                 </div>
