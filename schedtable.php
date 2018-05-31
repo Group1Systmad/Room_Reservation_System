@@ -181,7 +181,7 @@ function checkTime(i) {
                 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
                 $results_per_page = 10   ;
                 $start_from = ($page-1) * $results_per_page;
-                $SQL ="SELECT * FROM tbl_sched ORDER BY id LIMIT $start_from, ".$results_per_page;
+                $SQL ="SELECT * FROM tbl_sched ORDER BY date DESC,time_in DESC LIMIT $start_from, ".$results_per_page;
                 $res2 = mysqli_query($con, $SQL);
 //            date_default_timezone_set('Asia/Manila');
 //            $date_current = date('Y-m-d');

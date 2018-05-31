@@ -153,7 +153,7 @@ function checkTime(i) {
         }
         else if ($_SESSION['counter'] == 1){
             $rid = $_SESSION['rid'];
-            $eid = $_SESSION['eid'];
+            $eid = $_SESSION['eeid'];
             $time_in = $_SESSION['timein'];
             $time_out = $_SESSION['timeout'];
             $date = $_SESSION['date'];
