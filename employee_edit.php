@@ -15,7 +15,7 @@ $id = $_GET['SID'];
         width: 50%;
         background: #27698d;
         margin: 0 auto;
-        margin-top: 10%;
+        margin-top: 3%;
         padding: 5px;
         border-radius: 10px;
         }
@@ -25,7 +25,7 @@ $id = $_GET['SID'];
     .child{
         width: 50%;
         margin: 0 auto;
-        margin-top: 10%;
+        margin-top: 3%;
         padding: 20px;
         display: flex;
         flex-flow: column;
@@ -69,7 +69,7 @@ $id = $_GET['SID'];
     <link rel="stylesheet" href="mika/jumbotron.css" type="text/css">
  
     </head>
-    <body>
+    <body onload="startTime()" background="bg.jpg">
         <div class="sidebar">
     <ul>
         <li> <img src ='logo3.png' style="width: 78%; border-radius: 100%; margin-left: 7px; margin-top: 7px; margin-bottom: 5px"></li> 

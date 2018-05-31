@@ -151,7 +151,7 @@ function checkTime(i) {
             <div class="name"> <?php echo $row1['Emp_FN']; ?> <?php echo $row1['Emp_LN']; ?> </div>
             <div class="id"> ID Number: <?php echo $row['Employee_ID']; ?> </div>
             <hr>
-            <a class="hoverable" href="admin_account.php">Account Info</a> 
+            <a class="hoverable" href="user_account.php">Account Info</a> 
             <a class="hoverable" href="change_pass.php">Change Password</a> 
             <div class="logoutbtn"> <a class="btn btn-danger" onclick="return logout()" <?php 
                 $_SESSION["login"] = 'logout'; ?> href="login_page.php">Logout</a></div>

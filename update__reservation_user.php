@@ -1,11 +1,11 @@
 <?php
 session_start();
 $id = $_SESSION['id'];
-$r_id = $_SESSION['rid'];
-$e_id = $_SESSION['eid'];
-$ti = $_SESSION['timein'];
-$to = $_SESSION['timeout'];
-$date = $_SESSION['date'];
+$r_id = $_SESSION['urid'];
+$e_id = $_SESSION['ueid'];
+$ti = $_SESSION['utimein'];
+$to = $_SESSION['utimeout'];
+$date = $_SESSION['udate'];
 $u_code = $_SESSION['ucode'];
 
 include 'connect.php';
@@ -22,5 +22,5 @@ $_SESSION['timein'] = $ti;
 $_SESSION['timeout'] = $to;
 $_SESSION['date'] = $date;
 $_SESSION['ucode'] = $u_code;
-header('location:sendupdate.php');
+header('location:user_reservation.php');
 ?>

@@ -93,20 +93,20 @@
                         else
                         {
                         $_SESSION['uerror']= 'avail'; 
-                        header('location:user_reservation.php');
+                        header('location:update__reservation_user.php');
                         }
                     }
                     else
                     {
                     $_SESSION['uerror']= 'avail'; 
-                    header('location:user_reservation.php');
+                    header('location:update__reservation_user.php');
                     }
             }
             }
             else
             {
             $_SESSION['uerror']= 'avail';  
-            header('location:user_reservation.php');
+            header('location:update__reservation_user.php');
             }
             }
             }
@@ -163,20 +163,20 @@
                         else
                         {
                         $_SESSION['uerror']= 'avail'; 
-                        header('location:user_reservation.php');
+                        header('location:update__reservation_user.php');
                         }
                     }
                     else
                     {
                     $_SESSION['uerror']= 'avail'; 
-                    header('location:user_reservation.php');
+                    header('location:update__reservation_user.php');
                     }
             }
             }
             else
             {
             $_SESSION['uerror']= 'avail';  
-            header('location:user_reservation.php');
+            header('location:update__reservation_user.php');
             }
             }
             //Check if conflict with other schedules
